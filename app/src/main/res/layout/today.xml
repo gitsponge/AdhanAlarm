@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/today"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="2"
+    android:rowCount="7"
+    tools:showIn="@layout/activity_main">
+
+    <TextView
+        android:text="@string/fajr"
+        android:id="@+id/label_fajr"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:typeface="monospace"
+        android:background="@drawable/row_divider"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/fajr"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:typeface="monospace"
+        android:background="@drawable/row_divider"
+        android:gravity="center" />
+
+    <TextView
+        android:text="@string/sunrise"
+        android:id="@+id/label_sunrise"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:typeface="monospace"
+        android:background="@drawable/row_divider"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/sunrise"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:typeface="monospace"
+        android:background="@drawable/row_divider"
+        android:gravity="center" />
+
+    <TextView
+        android:text="@string/dhuhr"
+        android:id="@+id/label_dhuhr"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:typeface="monospace"
+        android:background="@drawable/row_divider"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/dhuhr"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:typeface="monospace"
+        android:background="@drawable/row_divider"
+        android:gravity="center" />
+
+    <TextView
+        android:text="@string/asr"
+        android:id="@+id/label_asr"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:typeface="monospace"
+        android:background="@drawable/row_divider"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/asr"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:typeface="monospace"
+        android:background="@drawable/row_divider"
+        android:gravity="center" />
+
+    <TextView
+        android:text="@string/maghrib"
+        android:id="@+id/label_maghrib"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:typeface="monospace"
+        android:background="@drawable/row_divider"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/maghrib"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:typeface="monospace"
+        android:background="@drawable/row_divider"
+        android:gravity="center" />
+
+    <TextView
+        android:text="@string/ishaa"
+        android:id="@+id/label_ishaa"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:typeface="monospace"
+        android:background="@drawable/row_divider"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/ishaa"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:typeface="monospace"
+        android:background="@drawable/row_divider"
+        android:gravity="center" />
+
+    <TextView
+        android:text="@string/next_fajr"
+        android:id="@+id/label_next_fajr"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:typeface="monospace"
+        android:background="@drawable/row_divider"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/next_fajr"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:typeface="monospace"
+        android:background="@drawable/row_divider"
+        android:gravity="center" />
+
+</GridLayout>

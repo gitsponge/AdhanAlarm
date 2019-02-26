@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#558b2f</color>
+    <color name="colorPrimaryDark">#1b5e20</color>
+    <color name="colorAccent">#64dd17</color>
+    <color name="rowDivider">#DFDFDF</color>
+    <color name="selectedRow">#0a000000</color>
+</resources>

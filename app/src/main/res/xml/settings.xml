@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/settings">
+        <EditTextPreference
+            android:key="latitude"
+            android:title="@string/latitude"
+            android:inputType="numberDecimal|numberSigned"
+            android:defaultValue="43.67" />
+        <EditTextPreference
+            android:key="longitude"
+            android:title="@string/longitude"
+            android:inputType="numberDecimal|numberSigned"
+            android:defaultValue="-79.417" />
+        <Preference
+            android:key="lookupGPS"
+            android:title="@string/lookup_gps" />
+        <ListPreference
+            android:key="calculationMethodsIndex"
+            android:title="@string/calculation"
+            android:summary="%s"
+            android:entries="@array/calculation_methods"
+            android:entryValues="@array/calculation_methods_values"
+            android:defaultValue="4" />
+        <ListPreference
+            android:key="timeFormatIndex"
+            android:title="@string/time_format"
+            android:summary="%s"
+            android:entries="@array/time_format"
+            android:entryValues="@array/time_format_values"
+            android:defaultValue="0" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/notification">
+        <ListPreference
+            android:key="notificationMethod0"
+            android:title="@string/fajr"
+            android:summary="%s"
+            android:entries="@array/notification_methods"
+            android:entryValues="@array/notification_methods_values"
+            android:defaultValue="1" />
+        <ListPreference
+            android:key="notificationMethod1"
+            android:title="@string/sunrise"
+            android:summary="%s"
+            android:entries="@array/notification_methods_sunrise"
+            android:entryValues="@array/notification_methods_sunrise_values"
+            android:defaultValue="1" />
+        <ListPreference
+            android:key="notificationMethod2"
+            android:title="@string/dhuhr"
+            android:summary="%s"
+            android:entries="@array/notification_methods"
+            android:entryValues="@array/notification_methods_values"
+            android:defaultValue="1" />
+        <ListPreference
+            android:key="notificationMethod3"
+            android:title="@string/asr"
+            android:summary="%s"
+            android:entries="@array/notification_methods"
+            android:entryValues="@array/notification_methods_values"
+            android:defaultValue="1" />
+        <ListPreference
+            android:key="notificationMethod4"
+            android:title="@string/maghrib"
+            android:summary="%s"
+            android:entries="@array/notification_methods"
+            android:entryValues="@array/notification_methods_values"
+            android:defaultValue="1" />
+        <ListPreference
+            android:key="notificationMethod5"
+            android:title="@string/ishaa"
+            android:summary="%s"
+            android:entries="@array/notification_methods"
+            android:entryValues="@array/notification_methods_values"
+            android:defaultValue="1" />
+        <CheckBoxPreference
+            android:key="bismillahOnBootUp"
+            android:title="@string/bismillah_on_boot_up" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/advanced">
+        <EditTextPreference
+            android:key="altitude"
+            android:title="@string/altitude"
+            android:inputType="numberDecimal"
+            android:defaultValue="0" />
+        <EditTextPreference
+            android:key="pressure"
+            android:title="@string/pressure"
+            android:inputType="numberDecimal|numberSigned"
+            android:defaultValue="110" />
+        <EditTextPreference
+            android:key="temperature"
+            android:title="@string/temperature"
+            android:inputType="numberDecimal|numberSigned"
+            android:defaultValue="10" />
+        <ListPreference
+            android:key="roundingTypesIndex"
+            android:title="@string/rounding"
+            android:summary="%s"
+            android:entries="@array/rounding_types"
+            android:entryValues="@array/rounding_types_values"
+            android:defaultValue="2" />
+        <EditTextPreference
+            android:key="offsetMinutes"
+            android:title="@string/offset"
+            android:inputType="number|numberSigned"
+            android:defaultValue="0" />
+    </PreferenceCategory>
+
+    <Preference
+        android:key="information"
+        android:title="@string/information"
+        android:summary="@string/information_text" />
+
+</PreferenceScreen>
