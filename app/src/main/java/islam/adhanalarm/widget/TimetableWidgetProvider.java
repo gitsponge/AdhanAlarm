@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -58,8 +59,13 @@ public class TimetableWidgetProvider extends AppWidgetProvider {
         final int nextTimeIndex = scheduleHandler.getNextTimeIndex();
         for (short i = CONSTANT.FAJR; i <= CONSTANT.NEXT_FAJR; i++) {
             views.setTextViewText(times[i], scheduleHandler.getFormattedTime(i));
-            views.setInt(labels[i], "setBackgroundResource", i == nextTimeIndex ? rowSelectedStart : R.drawable.row_divider);
-            views.setInt(times[i], "setBackgroundResource", i == nextTimeIndex ? rowSelectedEnd : R.drawable.row_divider);
+            try {
+                views.setInt(labels[i], "setBackgroundResource", i == nextTimeIndex ? rowSelectedStart : R.drawable.row_divider);
+                views.setInt(times[i], "setBackgroundResource", i == nextTimeIndex ? rowSelectedEnd : R.drawable.row_divider);
+            } catch (Resources.NotFoundException ex) {
+                views.setInt(labels[i], "setBackgroundResource", R.color.selectedRow);
+                views.setInt(times[i], "setBackgroundResource", R.color.selectedRow);
+            }
         }
         appWidgetManager.updateAppWidget(appWidgetId, views);
 	}
