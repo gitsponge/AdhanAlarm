@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -119,8 +120,13 @@ public class MainActivity extends AppCompatActivity {
                     TextView labelView = (TextView) today.getChildAt(i * 2);
                     TextView timeView = (TextView) today.getChildAt(i * 2 + 1);
                     timeView.setText(scheduleHandler.getFormattedTime(i));
-                    labelView.setBackgroundResource(i == nextTimeIndex ? rowSelectedStart : R.drawable.row_divider);
-                    timeView.setBackgroundResource(i == nextTimeIndex ? rowSelectedEnd : R.drawable.row_divider);
+                    try {
+                        labelView.setBackgroundResource(i == nextTimeIndex ? rowSelectedStart : R.drawable.row_divider);
+                        timeView.setBackgroundResource(i == nextTimeIndex ? rowSelectedEnd : R.drawable.row_divider);
+                    } catch (Resources.NotFoundException ex) {
+                        labelView.setBackgroundResource(R.color.selectedRow);
+                        timeView.setBackgroundResource(R.color.selectedRow);
+                    }
                 }
 
                 /* Set Hijri date */
