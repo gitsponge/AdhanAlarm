@@ -2,9 +2,7 @@ package islam.adhanalarm;
 
 import android.app.Application;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.support.v4.content.LocalBroadcastManager;
 
 import islam.adhanalarm.receiver.StartNotificationReceiver;
@@ -17,15 +15,16 @@ public class App extends Application {
 
     private MediaPlayer mPlayer;
 
-    private StartNotificationReceiver mStartNotificationReceiver = new StartNotificationReceiver();
-    private TimetableWidgetProvider mTimetableWidgetProvider = new TimetableWidgetProvider();
-    private NextNotificationWidgetProvider mNextNotificationWidgetProvider = new NextNotificationWidgetProvider();
+    private static StartNotificationReceiver sStartNotificationReceiver = new StartNotificationReceiver();
+    private static TimetableWidgetProvider sTimetableWidgetProvider = new TimetableWidgetProvider();
+    private static NextNotificationWidgetProvider sNextNotificationWidgetProvider = new NextNotificationWidgetProvider();
 
     public static void broadcastPrayerTimeUpdate() {
-        Intent intent = new Intent(CONSTANT.ACTION_UPDATE_PRAYER_TIME);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            LocalBroadcastManager.getInstance(sInstance).sendBroadcast(intent);
-        }
+        LocalBroadcastManager.getInstance(sInstance).sendBroadcast(new Intent(CONSTANT.ACTION_UPDATE_PRAYER_TIME));
+        sInstance.sendBroadcast(new Intent(CONSTANT.ACTION_UPDATE_PRAYER_TIME));
+        sStartNotificationReceiver.onReceive(sInstance, new Intent(CONSTANT.ACTION_UPDATE_PRAYER_TIME));
+        sTimetableWidgetProvider.onReceive(sInstance, new Intent(CONSTANT.ACTION_UPDATE_PRAYER_TIME));
+        sNextNotificationWidgetProvider.onReceive(sInstance, new Intent(CONSTANT.ACTION_UPDATE_PRAYER_TIME));
     }
 
     public static void startMedia(int resid) {
@@ -44,16 +43,10 @@ public class App extends Application {
         super.onCreate();
         sInstance = this;
         mPlayer = MediaPlayer.create(this, R.raw.bismillah);
-        LocalBroadcastManager.getInstance(this).registerReceiver(mStartNotificationReceiver, new IntentFilter(CONSTANT.ACTION_NOTIFY_PRAYER_TIME));
-        LocalBroadcastManager.getInstance(this).registerReceiver(mTimetableWidgetProvider, new IntentFilter(CONSTANT.ACTION_UPDATE_PRAYER_TIME));
-        LocalBroadcastManager.getInstance(this).registerReceiver(mNextNotificationWidgetProvider, new IntentFilter(CONSTANT.ACTION_UPDATE_PRAYER_TIME));
     }
 
     @Override
     public void onTerminate() {
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mStartNotificationReceiver);
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mTimetableWidgetProvider);
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mNextNotificationWidgetProvider);
         sInstance.mPlayer.stop();
         super.onTerminate();
     }

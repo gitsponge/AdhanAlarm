@@ -30,25 +30,22 @@ public class StartNotificationService extends JobIntentService {
         enqueueWork(context, StartNotificationService.class, JOB_ID, work);
     }
 
-	@Override
-	protected void onHandleWork(@NonNull Intent intent) {
-		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+    @Override
+    protected void onHandleWork(@NonNull Intent intent) {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
 
-		short timeIndex = intent.getShortExtra("timeIndex", (short) -1);
-		if (timeIndex == -1) {
-		    // Got here from boot
-			if (settings.getBoolean("bismillahOnBootUp", false)) {
+        short timeIndex = intent.getShortExtra("timeIndex", (short) -1);
+        ScheduleHandler scheduleHandler = new ScheduleHandler(settings);
+        short notificationType = scheduleHandler.getNotificationType(timeIndex);
+
+        if (timeIndex == -1) {
+            // Got here from boot
+            if (settings.getBoolean("bismillahOnBootUp", false)) {
                 App.startMedia(R.raw.bismillah);
-			}
-		} else {
+            }
+        } else if (notificationType != CONSTANT.NOTIFICATION_NONE) {
             if (timeIndex == CONSTANT.NEXT_FAJR) {
                 timeIndex = CONSTANT.FAJR;
-            }
-            ScheduleHandler scheduleHandler = new ScheduleHandler(settings);
-            short notificationType = scheduleHandler.getNotificationType(timeIndex);
-
-            if (notificationType == CONSTANT.NOTIFICATION_NONE) {
-                return;
             }
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                     .setSmallIcon(R.drawable.icon_notification)
@@ -57,8 +54,8 @@ public class StartNotificationService extends JobIntentService {
                     .setContentIntent(PendingIntent.getBroadcast(this, 0, new Intent(CONSTANT.ACTION_NOTIFICATION_CLICKED, null, this, HandleNotificationReceiver.class), PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_ONE_SHOT))
                     .setDeleteIntent(PendingIntent.getBroadcast(this, 0, new Intent(CONSTANT.ACTION_NOTIFICATION_DELETED, null, this, HandleNotificationReceiver.class), PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_ONE_SHOT));
 
-            int ringerMode = ((AudioManager) getSystemService(Context.AUDIO_SERVICE)).getRingerMode();
-            int callState = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE)).getCallState();
+            int ringerMode = ((AudioManager) getSystemService(AUDIO_SERVICE)).getRingerMode();
+            int callState = ((TelephonyManager) getSystemService(TELEPHONY_SERVICE)).getCallState();
 
             if (ringerMode != AudioManager.RINGER_MODE_SILENT && ringerMode != AudioManager.RINGER_MODE_VIBRATE && callState == TelephonyManager.CALL_STATE_IDLE) {
                 if (notificationType == CONSTANT.NOTIFICATION_PLAY || notificationType == CONSTANT.NOTIFICATION_BEEP) {
@@ -71,7 +68,7 @@ public class StartNotificationService extends JobIntentService {
                 }
             }
 
-            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 String channelId = "ADHAN_ALARM_CHANNEL_ID";
@@ -80,6 +77,7 @@ public class StartNotificationService extends JobIntentService {
                 builder.setChannelId(channelId);
             }
             notificationManager.notify(NOTIFICATION_ID, builder.build());
-		}
-	}
+        }
+        App.broadcastPrayerTimeUpdate();
+    }
 }

@@ -55,9 +55,6 @@
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="islam.adhanalarm.action.UPDATE_PRAYER_TIME" />
-            </intent-filter>
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_timetable" />
         </receiver>
         <receiver android:name=".widget.NextNotificationWidgetProvider" android:exported="false" android:label="@string/adhan_next_time">
@@ -67,9 +64,6 @@
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="islam.adhanalarm.action.UPDATE_PRAYER_TIME" />
-            </intent-filter>
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_next_notification" />
         </receiver>
         <receiver android:name=".receiver.StartNotificationReceiver" android:exported="false">
@@ -78,6 +72,9 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="islam.adhanalarm.action.NOTIFY_PRAYER_TIME" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="islam.adhanalarm.action.UPDATE_PRAYER_TIME" />
             </intent-filter>
         </receiver>
         <receiver android:name=".receiver.HandleNotificationReceiver" android:exported="false">
@@ -91,6 +88,6 @@
                 <action android:name="islam.adhanalarm.action.NOTIFICATION_STOPPED" />
             </intent-filter>
         </receiver>
-        <service android:name=".service.StartNotificationService" android:permission="android.permission.BIND_JOB_SERVICE" />
+            <service android:name=".service.StartNotificationService" android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 </manifest>
