@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <!-- Debug builds only. DUMP means only adb (or the system) can send to it. See README.txt. -->
+        <receiver android:name=".debug.TestAlarmReceiver"
+            android:exported="true"
+            android:permission="android.permission.DUMP">
+            <intent-filter>
+                <action android:name="islam.adhanalarm.debug.TEST_ALARM" />
+                <action android:name="islam.adhanalarm.debug.STOP_ADHAN" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

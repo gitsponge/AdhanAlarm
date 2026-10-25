@@ -1,0 +1,54 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace = 'islam.adhanalarm'
+    compileSdk = 37
+
+    defaultConfig {
+        applicationId = 'islam.adhanalarm'
+        minSdk = 23
+        targetSdk = 37
+        versionCode = 117 // Google Play needs every upload above the last release, which was 116
+        versionName = '3.0' // The comeback release, after 2.4 in 2019. Keep it at 3.0 until it's published on Google Play.
+    }
+
+    signingConfigs {
+        release {
+            // The release key and its passwords come from the environment at build time, so none of them live in the repository
+            if (System.getenv('ADHAN_ALARM_KEYSTORE')) {
+                storeFile = file(System.getenv('ADHAN_ALARM_KEYSTORE'))
+                storePassword = System.getenv('ADHAN_ALARM_STORE_PASSWORD')
+                keyAlias = System.getenv('ADHAN_ALARM_KEY_ALIAS')
+                keyPassword = System.getenv('ADHAN_ALARM_KEY_PASSWORD')
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled = false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig = signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.8.0'
+    implementation 'androidx.core:core:1.19.1'
+    implementation 'androidx.preference:preference:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.2'
+    implementation 'com.google.android.material:material:1.14.0'
+}
