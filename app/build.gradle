@@ -10,8 +10,8 @@ android {
         applicationId = 'islam.adhanalarm'
         minSdk = 23
         targetSdk = 37
-        versionCode = 117 // Google Play needs every upload above the last release, which was 116
-        versionName = '3.0' // The comeback release, after 2.4 in 2019. Keep it at 3.0 until it's published on Google Play.
+        versionCode = 118 // Google Play needs every upload above the last one, which was 117 (3.0)
+        versionName = '3.0.1' // 3.0 was the comeback release after 2.4 in 2019; 3.0.1 brings the new icon
     }
 
     signingConfigs {

@@ -22,6 +22,10 @@ Debug builds include a receiver that sets a real alarm a few seconds ahead, so t
 
 The adhan and beep never play during a call. On silent or vibrate they only play if Play On Silent Or Vibrate is ticked in the settings.
 
+What's new in 3.0.1
+
+A new app icon: the minaret and dome of the original icon, redrawn as a white silhouette on the same olive green. It also comes as a themed icon on Android 13+ and as a simplified notification icon.
+
 What's new in 3.0
 
 Updated for Android 6 to 17 (minSdk 23, targetSdk 37), built with Gradle 9, AGP 9 and AndroidX.
