@@ -27,7 +27,6 @@ import androidx.core.text.HtmlCompat;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.preference.PreferenceManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -135,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
         mCompassHandler = new CompassHandler((QiblaCompassView) findViewById(R.id.qibla_compass), (TextView) findViewById(R.id.bearing_north), (TextView) findViewById(R.id.bearing_qibla));
 
-        mScheduleHandler = new ScheduleHandler(PreferenceManager.getDefaultSharedPreferences(this));
+        mScheduleHandler = new ScheduleHandler(App.getSettings(this));
 
         mScheduleHandler.addListener(new ScheduleHandler.ScheduleListener() {
             @Override
@@ -173,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
 
                 double qibla = Jitl.getNorthQibla(location).getDecimalValue(net.sourceforge.jitl.astro.Direction.NORTH);
 
-                mCompassHandler.update(qibla);
+                mCompassHandler.update(qibla, location.getDegreeLat(), location.getDegreeLong(), location.getSeaLevel());
 
                 setDms(R.id.current_latitude_deg, R.id.current_latitude_min, R.id.current_latitude_sec, location.getDegreeLat());
                 setDms(R.id.current_longitude_deg, R.id.current_longitude_min, R.id.current_longitude_sec, location.getDegreeLong());
@@ -188,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         mLocationHandler.addListener(new LocationHandler.LocationListener() {
             @Override
             public void onUpdated(Location currentLocation) {
-                SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                SharedPreferences settings = App.getSettings(MainActivity.this);
                 settings.edit().putString("latitude", Double.toString(currentLocation.getLatitude())).apply();
                 settings.edit().putString("longitude", Double.toString(currentLocation.getLongitude())).apply();
                 App.broadcastPrayerTimeUpdate();

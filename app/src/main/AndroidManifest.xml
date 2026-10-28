@@ -48,9 +48,11 @@
             </intent-filter>
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_next_notification" />
         </receiver>
-        <receiver android:name=".receiver.StartNotificationReceiver" android:exported="false">
+        <!-- Direct boot aware, so after a restart the alarm is set and the adhan plays even before the phone is unlocked -->
+        <receiver android:name=".receiver.StartNotificationReceiver" android:exported="false" android:directBootAware="true">
             <!-- Anything that can move the next prayer time reschedules the alarm -->
             <intent-filter>
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
                 <action android:name="android.intent.action.TIME_SET" />
@@ -62,7 +64,7 @@
                 <action android:name="islam.adhanalarm.action.PLAY_BISMILLAH" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".receiver.HandleNotificationReceiver" android:exported="false">
+        <receiver android:name=".receiver.HandleNotificationReceiver" android:exported="false" android:directBootAware="true">
             <intent-filter>
                 <action android:name="islam.adhanalarm.action.NOTIFICATION_DELETED" />
                 <action android:name="islam.adhanalarm.action.NOTIFICATION_STOPPED" />
@@ -71,6 +73,7 @@
         <service
             android:name=".service.AdhanService"
             android:exported="false"
+            android:directBootAware="true"
             android:foregroundServiceType="mediaPlayback" />
     </application>
 </manifest>

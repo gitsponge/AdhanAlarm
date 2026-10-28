@@ -4,7 +4,7 @@ Introduction
 
 In a busy world where there are many distractions, it would be nice if your cellphone could alert you when it's time to pray. Especially in western countries where the call to prayer is not publicly announced, this application can help Muslims establish prayer. The times for the five daily prayers are determined by the position of the sun, for example the noon prayer is established when the sun produces the shortest shadows of the day. Algorithms exist that can determine these times based on the latitude, longitude and a few other input parameters.
 
-The app is no longer listed on Google Play. Build it and install it yourself as described below.
+The app is on Google Play at https://play.google.com/store/apps/details?id=islam.adhanalarm, or you can build it and install it yourself as described below.
 
 Building
 
@@ -21,6 +21,16 @@ Debug builds include a receiver that sets a real alarm a few seconds ahead, so t
   adb shell am broadcast -a islam.adhanalarm.debug.STOP_ADHAN -n islam.adhanalarm/.debug.TestAlarmReceiver
 
 The adhan and beep never play during a call. On silent or vibrate they only play if Play On Silent Or Vibrate is ticked in the settings.
+
+What's new in 3.0.2
+
+Bug fixes
+- Where Isha comes after midnight in summer (much of the UK, northern Europe and Canada), its adhan was skipped. It now plays, and the app keeps showing the evening's times until it has.
+- On the nights the clocks change, Fajr could be an hour out if the times were worked out again between midnight and the change, for example by an app update.
+- A number setting left empty, or holding only a minus sign or a point, crashed the app and stopped the alarms. Number settings are now checked when you enter them.
+- The Qibla compass now allows for the difference between magnetic and true north, which is more than 10° in parts of North America and Australia.
+- After a restart, the next prayer's alarm is set before the phone is first unlocked, so the adhan still plays.
+- The pressure setting showed 110 instead of 1010 millibars.
 
 What's new in 3.0.1
 

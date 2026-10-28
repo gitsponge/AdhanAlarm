@@ -12,6 +12,7 @@
     <string name="information">حول البرنامج</string>
     <string name="information_text">لمزيد من المعلومات حول البرنامج قم بزيارة:\ngithub.com/gitsponge/AdhanAlarm\n\nVersion: #</string>
     <string name="privacy_policy">سياسة الخصوصية</string>
+    <string name="invalid_value">قيمة غير صالحة</string>
     <string name="more_applications">برامج اخرى</string>
     <string name="today">اليوم</string>
     <string name="fajr">الفجر</string>

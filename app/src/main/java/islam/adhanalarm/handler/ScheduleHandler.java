@@ -53,33 +53,23 @@ public class ScheduleHandler {
     }
 
     public void update() {
-        String calculationMethodsIndex = mSettings.getString("calculationMethodsIndex", Integer.toString(CONSTANT.DEFAULT_CALCULATION_METHOD));
-        Method method = CONSTANT.CALCULATION_METHODS[calculationMethodsIndex != null ? Integer.parseInt(calculationMethodsIndex) : CONSTANT.DEFAULT_CALCULATION_METHOD].copy();
-        String roundingTypesIndex = mSettings.getString("roundingTypesIndex", Integer.toString(CONSTANT.DEFAULT_ROUNDING_TYPE));
-        method.setRound(CONSTANT.ROUNDING_TYPES[roundingTypesIndex != null ? Integer.parseInt(roundingTypesIndex) : CONSTANT.DEFAULT_ROUNDING_TYPE]);
+        update(new GregorianCalendar());
+    }
 
-        net.sourceforge.jitl.astro.Location location = getLocation();
+    /**
+     * Works out the times around the given moment, which tests can choose
+     */
+    void update(Calendar now) {
+        Method method = CONSTANT.CALCULATION_METHODS[getIndex("calculationMethodsIndex", CONSTANT.DEFAULT_CALCULATION_METHOD, CONSTANT.CALCULATION_METHODS.length)].copy();
+        method.setRound(CONSTANT.ROUNDING_TYPES[getIndex("roundingTypesIndex", CONSTANT.DEFAULT_ROUNDING_TYPE, CONSTANT.ROUNDING_TYPES.length)]);
 
-        GregorianCalendar day = new GregorianCalendar();
-
-        // Tomorrow's fajr uses tomorrow's GMT offset in case daylight savings starts or ends overnight
-        GregorianCalendar tomorrow = new GregorianCalendar();
-        tomorrow.add(Calendar.DAY_OF_MONTH, 1);
-        tomorrow.set(Calendar.HOUR_OF_DAY, 12);
-        Jitl tomorrowItl = new Jitl(getLocation(getGMTOffset(tomorrow)), method);
-
-        Jitl itl = new Jitl(location, method);
-        Prayer[] dayPrayers = itl.getPrayerTimes(day).getPrayers();
-        Prayer[] allTimes = new Prayer[]{dayPrayers[0], dayPrayers[1], dayPrayers[2], dayPrayers[3], dayPrayers[4], dayPrayers[5], tomorrowItl.getNextDayFajr(day)};
-
-        String offsetMinutes = mSettings.getString("offsetMinutes", "0");
-        int offset = offsetMinutes != null ? Integer.parseInt(offsetMinutes) : 0;
-        for(short i = CONSTANT.FAJR; i <= CONSTANT.NEXT_FAJR; i++) { // Set the times on the getScheduleHandler
-            mSchedule[i] = new GregorianCalendar(day.get(Calendar.YEAR), day.get(Calendar.MONTH), day.get(Calendar.DAY_OF_MONTH), allTimes[i].getHour(), allTimes[i].getMinute(), allTimes[i].getSecond());
-            mSchedule[i].add(Calendar.MINUTE, offset);
-            mExtremes[i] = allTimes[i].isExtreme();
+        // Far north in summer Isha can come after midnight. It still belongs to the evening before, so keep that evening's times until it has passed.
+        Calendar yesterday = (Calendar) now.clone();
+        yesterday.add(Calendar.DAY_OF_MONTH, -1);
+        setSchedule(yesterday, method);
+        if (!now.before(mSchedule[CONSTANT.ISHAA])) {
+            setSchedule(now, method);
         }
-        mSchedule[CONSTANT.NEXT_FAJR].add(Calendar.DAY_OF_MONTH, 1); // Next fajr is tomorrow
 
         mHijriDate = new fi.joensuu.joyds1.calendar.IslamicCalendar();
 
@@ -88,13 +78,36 @@ public class ScheduleHandler {
         }
     }
 
+    private void setSchedule(Calendar day, Method method) {
+        // Each day's times use that day's GMT offset, and the next fajr the next day's, in case daylight savings starts or ends overnight
+        GregorianCalendar noon = new GregorianCalendar(day.get(Calendar.YEAR), day.get(Calendar.MONTH), day.get(Calendar.DAY_OF_MONTH), 12, 0);
+        GregorianCalendar nextNoon = (GregorianCalendar) noon.clone();
+        nextNoon.add(Calendar.DAY_OF_MONTH, 1);
+
+        Prayer[] dayPrayers = new Jitl(getLocation(getGMTOffset(noon)), method).getPrayerTimes(noon).getPrayers();
+        Prayer nextFajr = new Jitl(getLocation(getGMTOffset(nextNoon)), method).getNextDayFajr(noon);
+        Prayer[] allTimes = new Prayer[]{dayPrayers[0], dayPrayers[1], dayPrayers[2], dayPrayers[3], dayPrayers[4], dayPrayers[5], nextFajr};
+
+        for (short i = CONSTANT.FAJR; i <= CONSTANT.NEXT_FAJR; i++) {
+            mSchedule[i] = new GregorianCalendar(noon.get(Calendar.YEAR), noon.get(Calendar.MONTH), noon.get(Calendar.DAY_OF_MONTH), allTimes[i].getHour(), allTimes[i].getMinute(), allTimes[i].getSecond());
+            if (i == CONSTANT.NEXT_FAJR || (i > CONSTANT.FAJR && mSchedule[i].before(mSchedule[i - 1]))) {
+                mSchedule[i].add(Calendar.DAY_OF_MONTH, 1); // Tomorrow's fajr, or a time that has gone past midnight
+            }
+            mExtremes[i] = allTimes[i].isExtreme();
+        }
+
+        int offset = getInt("offsetMinutes", 0);
+        for (GregorianCalendar time : mSchedule) {
+            time.add(Calendar.MINUTE, offset);
+        }
+    }
+
     public boolean getIsExtreme(short i) {
         return mExtremes[i];
     }
 
     public String getFormattedTime(short i) {
-        String timeFormatIndex = mSettings.getString("timeFormatIndex", Integer.toString(CONSTANT.DEFAULT_TIME_FORMAT));
-        boolean isAMPM = timeFormatIndex == null || Integer.parseInt(timeFormatIndex) == CONSTANT.DEFAULT_TIME_FORMAT;
+        boolean isAMPM = getInt("timeFormatIndex", CONSTANT.DEFAULT_TIME_FORMAT) == CONSTANT.DEFAULT_TIME_FORMAT;
         if (mSchedule[i] == null) {
             return "";
         }
@@ -113,10 +126,13 @@ public class ScheduleHandler {
     }
 
     public short getNextTimeIndex() {
-        Calendar now = new GregorianCalendar();
+        return getNextTimeIndex(new GregorianCalendar());
+    }
+
+    short getNextTimeIndex(Calendar now) {
         if(now.before(mSchedule[CONSTANT.FAJR])) return CONSTANT.FAJR;
         for(short i = CONSTANT.FAJR; i < CONSTANT.NEXT_FAJR; i++) {
-            if(now.after(mSchedule[i]) && now.before(mSchedule[i + 1])) {
+            if(!now.before(mSchedule[i]) && now.before(mSchedule[i + 1])) {
                 return ++i;
             }
         }
@@ -128,13 +144,14 @@ public class ScheduleHandler {
     }
 
     public short getNotificationType(short i) {
-        String notificationMethod = mSettings.getString("notificationMethod" + i, Short.toString(CONSTANT.NOTIFICATION_DEFAULT));
-        return Short.parseShort(notificationMethod);
+        return (short) getInt("notificationMethod" + i, CONSTANT.NOTIFICATION_DEFAULT);
     }
 
     private boolean getIsCurrentlyAfterSunset() {
         Calendar now = new GregorianCalendar();
-        return now.after(mSchedule[CONSTANT.MAGHRIB]);
+        Calendar maghrib = mSchedule[CONSTANT.MAGHRIB];
+        // Only the same day's sunset starts the next Islamic date. After midnight the calendar date has moved on by itself.
+        return now.after(maghrib) && now.get(Calendar.YEAR) == maghrib.get(Calendar.YEAR) && now.get(Calendar.DAY_OF_YEAR) == maghrib.get(Calendar.DAY_OF_YEAR);
     }
 
     public String getCurrentHijriDate(Context context) {
@@ -157,21 +174,41 @@ public class ScheduleHandler {
     }
 
     private net.sourceforge.jitl.astro.Location getLocation(double gmtOffset) {
-        String latitude = mSettings.getString("latitude", "43.67");
-        String longitude = mSettings.getString("longitude", "-79.417");
         net.sourceforge.jitl.astro.Location location = new net.sourceforge.jitl.astro.Location(
-                latitude != null ? Float.parseFloat(latitude) : 43.67f,
-                longitude != null ? Float.parseFloat(longitude) : -79.417f,
+                getFloat("latitude", 43.67f),
+                getFloat("longitude", -79.417f),
                 gmtOffset,
                 0
         );
-        String altitude = mSettings.getString("altitude", "0");
-        String pressure = mSettings.getString("pressure", "1010");
-        String temperature = mSettings.getString("temperature", "10");
-        location.setSeaLevel(altitude == null || Float.parseFloat(altitude) < 0 ? 0 : Float.parseFloat(altitude));
-        location.setPressure(pressure != null ? Float.parseFloat(pressure) : 1010);
-        location.setTemperature(temperature != null ? Float.parseFloat(temperature) : 10);
+        location.setSeaLevel(Math.max(0, getFloat("altitude", 0)));
+        location.setPressure(getFloat("pressure", 1010));
+        location.setTemperature(getFloat("temperature", 10));
         return location;
+    }
+
+    // A setting that can't be read falls back to its default, so a bad value never stops the alarms
+
+    private float getFloat(String key, float defaultValue) {
+        String value = mSettings.getString(key, null);
+        try {
+            return value != null ? Float.parseFloat(value) : defaultValue;
+        } catch (NumberFormatException ex) {
+            return defaultValue;
+        }
+    }
+
+    private int getInt(String key, int defaultValue) {
+        String value = mSettings.getString(key, null);
+        try {
+            return value != null ? Integer.parseInt(value) : defaultValue;
+        } catch (NumberFormatException ex) {
+            return defaultValue;
+        }
+    }
+
+    private int getIndex(String key, int defaultValue, int count) {
+        int index = getInt(key, defaultValue);
+        return index >= 0 && index < count ? index : defaultValue;
     }
 
     private static double getGMTOffset(Calendar time) {

@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.media.AudioManager;
 
 import androidx.core.app.AlarmManagerCompat;
-import androidx.preference.PreferenceManager;
 
 import java.util.Calendar;
 
@@ -30,12 +29,12 @@ public class StartNotificationReceiver extends BroadcastReceiver {
             notifyPrayerTime(context, intent);
         } else if (CONSTANT.ACTION_PLAY_BISMILLAH.equals(action)) {
             AdhanService.playBismillah(context);
-        } else if (Intent.ACTION_BOOT_COMPLETED.equals(action)) {
-            if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("bismillahOnBootUp", false)) {
+        } else if (Intent.ACTION_BOOT_COMPLETED.equals(action)) { // Once the phone is unlocked after starting
+            if (App.getSettings(context).getBoolean("bismillahOnBootUp", false)) {
                 setBismillahAlarm(context);
             }
         }
-        // Boot, app updates, clock and time zone changes all move the next prayer time
+        // Boot (before and after the first unlock), app updates, clock and time zone changes all move the next prayer time
         App.broadcastPrayerTimeUpdate();
     }
 
@@ -46,7 +45,7 @@ public class StartNotificationReceiver extends BroadcastReceiver {
             timeIndex = CONSTANT.FAJR; // Before the notification type lookup, so tomorrow's fajr uses the fajr setting
         }
 
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences settings = App.getSettings(context);
         short notificationType = intent.getShortExtra(CONSTANT.EXTRA_NOTIFICATION_TYPE, new ScheduleHandler(settings).getNotificationType(timeIndex));
         if (notificationType == CONSTANT.NOTIFICATION_NONE) return;
 
@@ -67,7 +66,7 @@ public class StartNotificationReceiver extends BroadcastReceiver {
     }
 
     public static void setNextAlarm(Context context) {
-        ScheduleHandler scheduleHandler = new ScheduleHandler(PreferenceManager.getDefaultSharedPreferences(context));
+        ScheduleHandler scheduleHandler = new ScheduleHandler(App.getSettings(context));
 
         short timeIndex = scheduleHandler.getNextTimeIndex();
         Calendar actualTime = scheduleHandler.getNextTime();

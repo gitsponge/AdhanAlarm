@@ -92,7 +92,7 @@
             android:key="pressure"
             android:title="@string/pressure"
             android:inputType="numberDecimal|numberSigned"
-            android:defaultValue="110" />
+            android:defaultValue="1010" />
         <EditTextPreference
             android:key="temperature"
             android:title="@string/temperature"

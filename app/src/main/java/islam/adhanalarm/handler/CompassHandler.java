@@ -1,6 +1,7 @@
 package islam.adhanalarm.handler;
 
 import android.content.Context;
+import android.hardware.GeomagneticField;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -18,6 +19,7 @@ public class CompassHandler implements SensorEventListener {
     private QiblaCompassView mQiblaCompass;
 
     private double mQiblaDirection;
+    private float mDeclination;
 
     private boolean isTrackingOrientation = false;
     private Display mDisplay;
@@ -33,8 +35,10 @@ public class CompassHandler implements SensorEventListener {
         mQiblaCompass.setConstants(bearingNorth, bearingNorth.getText(), bearingQibla, bearingQibla.getText());
     }
 
-    public void update(double qiblaDirection) {
+    public void update(double qiblaDirection, double latitude, double longitude, double altitude) {
         mQiblaDirection = qiblaDirection;
+        // The sensors find magnetic north, which can be more than 10° from true north, so turn the compass by the difference here
+        mDeclination = new GeomagneticField((float) latitude, (float) longitude, (float) altitude, System.currentTimeMillis()).getDeclination();
     }
 
     public void startTrackingOrientation(Context context) {
@@ -92,7 +96,7 @@ public class CompassHandler implements SensorEventListener {
         SensorManager.remapCoordinateSystem(mRotationMatrix, axisX, axisY, mRemappedMatrix);
         SensorManager.getOrientation(mRemappedMatrix, mOrientation);
 
-        float northDirection = (float) ((Math.toDegrees(mOrientation[0]) + 360) % 360);
+        float northDirection = (float) ((Math.toDegrees(mOrientation[0]) + mDeclination + 360) % 360);
         mQiblaCompass.setDirections(northDirection, (float) mQiblaDirection);
     }
 

@@ -8,8 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
-import androidx.preference.PreferenceManager;
-
+import islam.adhanalarm.App;
 import islam.adhanalarm.MainActivity;
 import islam.adhanalarm.R;
 import islam.adhanalarm.handler.ScheduleHandler;
@@ -37,7 +36,7 @@ public class NextNotificationWidgetProvider extends AppWidgetProvider {
 
     private static void updateAppWidget(final Context context, final AppWidgetManager appWidgetManager, int appWidgetId) {
 
-        final ScheduleHandler scheduleHandler = new ScheduleHandler(PreferenceManager.getDefaultSharedPreferences(context));
+        final ScheduleHandler scheduleHandler = new ScheduleHandler(App.getSettings(context));
 
         final short nextTimeIndex = scheduleHandler.getNextTimeIndex();
 

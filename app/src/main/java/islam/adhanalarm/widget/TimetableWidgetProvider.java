@@ -10,8 +10,7 @@ import android.content.res.Resources;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import androidx.preference.PreferenceManager;
-
+import islam.adhanalarm.App;
 import islam.adhanalarm.CONSTANT;
 import islam.adhanalarm.MainActivity;
 import islam.adhanalarm.R;
@@ -41,7 +40,7 @@ public class TimetableWidgetProvider extends AppWidgetProvider {
 
     private static void updateAppWidget(final Context context, final AppWidgetManager appWidgetManager, int appWidgetId) {
 
-        final ScheduleHandler scheduleHandler = new ScheduleHandler(PreferenceManager.getDefaultSharedPreferences(context));
+        final ScheduleHandler scheduleHandler = new ScheduleHandler(App.getSettings(context));
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_timetable);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, new Intent(context, MainActivity.class), PendingIntent.FLAG_IMMUTABLE);

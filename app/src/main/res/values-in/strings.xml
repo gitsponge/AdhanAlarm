@@ -12,6 +12,7 @@
     <string name="information">Informasi</string>
     <string name="information_text">Untuk informasi lanjut mengenai aplikasi ini, kunjungi"\ngithub.com/gitsponge/AdhanAlarm\n\nVersi: #</string>
     <string name="privacy_policy">Kebijakan Privasi</string>
+    <string name="invalid_value">Nilai tidak valid</string>
     <string name="more_applications">Aplikasi lain</string>
     <string name="today">Hari Ini</string>
     <string name="fajr">Subuh</string>

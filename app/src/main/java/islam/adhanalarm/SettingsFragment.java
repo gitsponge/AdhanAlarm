@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -40,6 +41,16 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         TEXT_ENTRIES.put("temperature", decimal | InputType.TYPE_NUMBER_FLAG_SIGNED);
         TEXT_ENTRIES.put("offsetMinutes", InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED);
     }
+    // The range each number has to be in. The keyboards still allow an empty entry, a lone minus sign or a lone point.
+    static final Map<String, float[]> RANGES = new HashMap<>();
+    static {
+        RANGES.put("latitude", new float[]{-90, 90});
+        RANGES.put("longitude", new float[]{-180, 180});
+        RANGES.put("altitude", new float[]{0, 9000}); // Metres
+        RANGES.put("pressure", new float[]{100, 1100}); // Millibars
+        RANGES.put("temperature", new float[]{-90, 60}); // Degrees Celsius
+        RANGES.put("offsetMinutes", new float[]{-720, 720});
+    }
     LocationHandler mLocationHandler;
 
     private final ActivityResultLauncher<String[]> mLocationPermissionRequest = registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), new ActivityResultCallback<Map<String, Boolean>>() {
@@ -53,6 +64,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
+        getPreferenceManager().setStorageDeviceProtected(); // Where App.getSettings() reads them
         setPreferencesFromResource(R.xml.settings, rootKey);
         removeIconSpace(getPreferenceScreen());
 
@@ -64,6 +76,16 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 @Override
                 public void onBindEditText(@NonNull EditText editText) {
                     editText.setInputType(inputType);
+                }
+            });
+            preference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
+                    if (isValid(preference.getKey(), (String) newValue)) {
+                        return true;
+                    }
+                    Toast.makeText(requireContext(), R.string.invalid_value, Toast.LENGTH_SHORT).show();
+                    return false; // Keeps the old value
                 }
             });
         }
@@ -104,6 +126,16 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         });
 
         findPreference("information").setSummary(getText(R.string.information_text).toString().replace("#", BuildConfig.VERSION_NAME));
+    }
+
+    private static boolean isValid(String key, String value) {
+        float[] range = RANGES.get(key);
+        try {
+            float number = "offsetMinutes".equals(key) ? Integer.parseInt(value) : Float.parseFloat(value);
+            return number >= range[0] && number <= range[1];
+        } catch (NumberFormatException ex) {
+            return false;
+        }
     }
 
     private static void removeIconSpace(PreferenceGroup group) {
