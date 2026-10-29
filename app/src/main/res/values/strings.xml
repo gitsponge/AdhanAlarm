@@ -1,100 +1,280 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+<resources>
     <string name="app_name">Adhān Alarm</string>
-    <string name="description">Displays and can alert you to the daily Muslim prayer times.</string>
-    <string name="adhan_next_time">Adhān: Next Time</string>
-    <string name="adhan_timetable">Adhān: Timetable</string>
-    <string name="previous">Previous</string>
-    <string name="next">Next</string>
-    <string name="stop">Stop</string>
-    <string name="help">Help</string>
-    <string name="help_text"><u>Frequently Asked Questions</u>\n\nQ: Why do the times not match my local timetable?\n\nA: There are many factors that affect the schedule including the input parameters (ex. latitude, longitude, calculation method, ...), algorithmic differences and precision differences due to computations on different machines.\n\nQ: Why does the Qibla compass not point in the right direction?\n\nA: Confirm that your latitude and longitude are set correctly in your settings and your phone is away from electro-magnetic interference.\n\nQ: Why is my favorite feature not included in the application?\n\nA: Please visit the project website at github.com/gitsponge/AdhanAlarm and help us improve the program.</string>
-    <string name="information">Information</string>
-    <string name="information_text">For more information about the program visit:\ngithub.com/gitsponge/AdhanAlarm\n\nVersion: #</string>
-    <string name="privacy_policy">Privacy Policy</string>
-    <string name="invalid_value">Not a valid value</string>
-    <string name="more_applications">More Applications</string>
-    <string name="today">Today</string>
+    <string name="description">Shows the daily prayer times and calls you to prayer.</string>
+
+    <!-- Prayers -->
     <string name="fajr">Fajr</string>
     <string name="sunrise">Sunrise</string>
     <string name="dhuhr">Dhuhr</string>
     <string name="asr">`Asr</string>
     <string name="maghrib">Maghrib</string>
     <string name="ishaa">`Ishaa\'</string>
-    <string name="next_fajr">Next Fajr</string>
-    <string name="next_time_marker">&gt;</string>
-    <string name="next_time_marker_reverse">&lt;</string>
-    <string name="sdefault">Default</string>
-    <string name="error_playing_alert">Error Playing Alert</string>
-    <string name="error_playing_custom_file">Custom File Error</string>
-    <string name="location_not_set"><u>Location Not Set</u>\n\nPlease enable the device\'s GPS or set your location manually through settings.</string>
-    <string name="allahu_akbar">God is greater</string>
-    <string name="time_for">Time for</string>
-    <string name="latitude">Latitude</string>
-    <string name="longitude">Longitude</string>
-    <string name="extreme">Extreme</string>
-    <string name="qibla">Qibla</string>
-    <string name="compass_disclaimer">Compass works in portrait mode.</string>
-    <string name="bearing_north">1) Bearing North = (1)°</string>
-    <string name="bearing_qibla">2) Bearing Qibla = (1) (+/-) (2)° = (3)°</string>
-    <string name="settings">Settings</string>
-    <string name="play_on_silent">Play On Silent Or Vibrate</string>
-    <string name="bismillah_on_boot_up">Bismillah On Boot Up</string>
-    <string name="notification">Notification</string>
-    <string name="none">None</string>
-    <string name="beep">Beep</string>
-    <string name="recite">Recite</string>
-    <string name="custom">Custom</string>
-    <string name="file_path">File Path</string>
-    <string name="file_path_example">File Path ex. /sdcard/sound.mp3</string>
-    <string name="sinterface">Interface</string>
-    <string name="advanced">Advanced</string>
-    <string name="extra_alerts">Extra Alerts</string>
-    <string name="daylight_savings">Daylight Savings</string>
-    <string name="lookup_gps">Lookup\nGPS</string>
-    <string name="system_time_zone">System Time Zone</string>
-    <string name="gmt">GMT</string>
-    <string name="save">Save</string>
-    <string name="reset">Reset</string>
-    <string name="calculation">Calculation</string>
-    <string name="egypt_survey">Egyptian General Authority of Survey</string>
-    <string name="karachi_shaf">Shaf`i - Karachi University of Islamic Sciences</string>
-    <string name="karachi_hanaf">Hanafi - Karachi University of Islamic Sciences</string>
-    <string name="north_america">Islamic Society of North America</string>
-    <string name="muslim_league">Muslim World League</string>
-    <string name="umm_alqurra">Umm Al-Qurra, Saudi Arabia</string>
-    <string name="fixed_ishaa">Fixed Ishaa Interval (always 90)</string>
-    <string name="time_format">Time Format</string>
-    <string name="clock_24_hour">24 Hour Clock</string>
-    <string name="altitude">Altitude</string>
-    <string name="pressure">Pressure</string>
-    <string name="temperature">Temperature</string>
-    <string name="degrees_celsius">°C</string>
-    <string name="rounding">Rounding</string>
-    <string name="normal">Normal</string>
-    <string name="special">Special</string>
-    <string name="aggressive">Aggressive</string>
-    <string name="offset">Offset</string>
-    <string name="minutes">minutes</string>
-    <string name="language">Language</string>
-    <string name="theme">Theme</string>
-    <string name="brown">Brown</string>
-    <string name="dialog">Dialog</string>
-    <string name="green">Green</string>
-    <string name="light">Light</string>
+    <string name="arabic_fajr" translatable="false">الفجر</string>
+    <string name="arabic_sunrise" translatable="false">الشروق</string>
+    <string name="arabic_dhuhr" translatable="false">الظهر</string>
+    <string name="arabic_asr" translatable="false">العصر</string>
+    <string name="arabic_maghrib" translatable="false">المغرب</string>
+    <string name="arabic_ishaa" translatable="false">العشاء</string>
+    <string name="fajr_tomorrow">Fajr tomorrow</string>
+    <string name="fajr_ends">Fajr ends</string>
+
+    <!-- Islamic months -->
     <string name="month0">Muharram</string>
     <string name="month1">Safar</string>
-    <string name="month2">Rabi` al-awwal</string>
-    <string name="month3">Rabi` al-thani</string>
-    <string name="month4">Jumada al-awwal</string>
-    <string name="month5">Jumada al-thani</string>
+    <string name="month2">Rabīʿ al-Awwal</string>
+    <string name="month3">Rabīʿ al-Thānī</string>
+    <string name="month4">Jumādā al-Ūlā</string>
+    <string name="month5">Jumādā al-Ākhirah</string>
     <string name="month6">Rajab</string>
-    <string name="month7">Sha`aban</string>
-    <string name="month8">Ramadan</string>
-    <string name="month9">Shawwal</string>
-    <string name="month10">Dhu al-Qi`dah</string>
-    <string name="month11">Dhu al-Hijjah</string>
-    <string name="anno_hegirae">AH</string>
+    <string name="month7">Shaʿbān</string>
+    <string name="month8">Ramadān</string>
+    <string name="month9">Shawwāl</string>
+    <string name="month10">Dhū al-Qaʿdah</string>
+    <string name="month11">Dhū al-Hijjah</string>
+    <!-- Day, month and year, for example 16 Jumādā al-Ūlā 1448 -->
+    <string name="hijri_date">%1$s %2$s %3$s</string>
+
+    <!-- Shared -->
+    <string name="today">Today</string>
+    <string name="qibla">Qibla</string>
+    <string name="settings">Settings</string>
+    <string name="stop">Stop</string>
+    <string name="close">Close</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="done">Done</string>
+    <string name="reset">Reset</string>
+    <string name="save">Save</string>
+    <string name="change">Change</string>
+    <string name="open_settings">Open settings</string>
+    <string name="invalid_value">Not a valid value</string>
+    <!-- Two parts side by side, for example Wed 28 October · 16 Jumādā al-Ūlā 1448 -->
+    <string name="date_line">%1$s · %2$s</string>
+    <string name="name_and_time">%1$s %2$s</string>
+    <string name="name_with_arabic">%1$s · %2$s</string>
+    <!-- Between items in a list, for example "Fajr, Dhuhr" -->
+    <string name="list_separator">",\u0020"</string>
+    <string name="place_and_coordinates">%1$s · %2$s</string>
+    <string name="coordinates">%1$s, %2$s</string>
+    <string name="latitude_north">%s° N</string>
+    <string name="latitude_south">%s° S</string>
+    <string name="longitude_east">%s° E</string>
+    <string name="longitude_west">%s° W</string>
+    <string name="place_note_city">Nearest city via offline mapping</string>
+    <string name="place_note_none">No city within 20 km</string>
+
+    <!-- Today -->
+    <string name="next_prayer">Next prayer</string>
+    <string name="now_badge">Now</string>
+    <string name="countdown_now">now</string>
+    <string name="countdown_minutes">in %d min</string>
+    <string name="countdown_hours_minutes">in %1$d h %2$d min</string>
+    <string name="location_change">Location: %s. Change location</string>
+    <string name="alert_open">%1$s alert: %2$s. Open alert options</string>
+    <string name="extreme_note">* Estimated, because the sun doesn\'t go low enough here at this time of year.</string>
+
+    <!-- How a prayer calls you -->
+    <string name="alert_off">Off</string>
+    <string name="alert_notification">Notification</string>
+    <string name="alert_chime">Chime</string>
+    <string name="alert_adhan">Adhan</string>
+    <string name="alert_off_hint">No alert</string>
+    <string name="alert_notification_hint">Your phone\'s notification sound</string>
+    <string name="alert_chime_hint">A short, gentle chime</string>
+    <string name="alert_adhan_hint">The call to prayer</string>
+    <string name="alert_adhan_fajr_hint">The Fajr call to prayer</string>
+    <string name="adhan_sound">Adhan sound</string>
+    <string name="fajr_adhan_sound">Fajr adhan sound</string>
+    <string name="sound_built_in">Built-in adhan</string>
+    <string name="sound_built_in_fajr">Built-in Fajr adhan</string>
+    <string name="sound_shared">%s, used for every prayer but Fajr</string>
+    <string name="sound_missing">A sound that\'s no longer on this phone</string>
+    <string name="sound_unavailable">That sound can\'t be played, so the built-in adhan plays instead.</string>
+    <string name="choose_sound">Choose a sound on your phone</string>
+    <string name="play_preview">Play a preview</string>
+    <string name="stop_preview">Stop the preview</string>
+    <string name="remind_before">Remind me before</string>
+    <string name="remind_before_sunrise">Remind me before Fajr ends</string>
+    <string name="remind_before_hint">A notification beforehand, separate from the alert above</string>
+    <string name="reminder_off">Off</string>
+    <string name="reminder_minutes">%d min</string>
+    <string name="adjust_time">Adjust time</string>
+    <string name="adjust_time_hint">To match your mosque\'s timetable</string>
+    <string name="adjust_none">None</string>
+    <string name="adjust_minutes">%s min</string>
+    <string name="one_minute_earlier">One minute earlier</string>
+    <string name="one_minute_later">One minute later</string>
+
+    <!-- Qibla -->
+    <string name="qibla_facing">Facing the Qibla</string>
+    <string name="qibla_turn_right">Turn %d° right</string>
+    <string name="qibla_turn_left">Turn %d° left</string>
+    <string name="qibla_no_compass">This phone has no compass</string>
+    <!-- For example 119° ESE from true north -->
+    <string name="qibla_direction">%1$s° %2$s from true north</string>
+    <string name="makkah">Makkah</string>
+    <string name="makkah_distance">%s km away</string>
+    <string name="compass">Compass</string>
+    <string name="accuracy_good">Accuracy good</string>
+    <string name="accuracy_fair">Accuracy fair</string>
+    <string name="accuracy_low">Compass accuracy is low. Move your phone in a figure 8 to calibrate it.</string>
+    <string name="qibla_hint">Hold the phone flat, away from metal and magnets.</string>
+    <string name="compass_description">Compass. The phone points %1$d° from true north and the Qibla is at %2$d°.</string>
+    <string name="compass_n">N</string>
+    <string name="compass_e">E</string>
+    <string name="compass_s">S</string>
+    <string name="compass_w">W</string>
+
+    <!-- Notifications -->
     <string name="channel_reminder">Prayer times</string>
     <string name="channel_adhan">Adhān</string>
+    <string name="channel_before">Before prayer</string>
+    <string name="notification_prayer">It\'s time for %s</string>
+    <string name="notification_sunrise">Fajr time has ended</string>
+    <string name="notification_before">%1$s in %2$d min</string>
+    <string name="notification_before_sunrise">Fajr ends in %d min</string>
+    <string name="notification_at">At %s</string>
+
+    <!-- Settings -->
+    <string name="settings_location">Location</string>
+    <string name="settings_prayer_times">Prayer times</string>
+    <string name="settings_alerts">Alerts</string>
+    <string name="settings_display">Display</string>
+    <string name="settings_about">About</string>
+    <string name="location">Location</string>
+    <string name="location_summary">%1$s · %2$s</string>
+    <string name="auto_location">Update automatically</string>
+    <string name="auto_location_summary">Uses your phone\'s location when you open the app</string>
+    <string name="method">Calculation method</string>
+    <string name="method_summary">%1$s · %2$s</string>
+    <string name="method_angles">Fajr %1$s°, `Ishaa\' %2$s°</string>
+    <string name="method_angles_interval">Fajr %1$s°, `Ishaa\' %2$d min after Maghrib</string>
+    <string name="method_mwl">Muslim World League</string>
+    <string name="method_isna">Islamic Society of North America</string>
+    <string name="method_egypt">Egyptian General Authority of Survey</string>
+    <string name="method_karachi">University of Islamic Sciences, Karachi</string>
+    <string name="method_ummalqura">Umm al-Qura, Makkah</string>
+    <string name="method_gulf">Gulf region</string>
+    <string name="method_kuwait">Kuwait</string>
+    <string name="method_qatar">Qatar</string>
+    <string name="method_singapore">Singapore, Malaysia and Indonesia</string>
+    <string name="method_diyanet">Diyanet, Türkiye</string>
+    <string name="method_fixedisha">Fixed `Ishaa\', 90 min after Maghrib</string>
+    <string name="asr_standard">Standard: Shāfiʿī, Mālikī, Hanbalī</string>
+    <string name="asr_standard_short">Standard</string>
+    <string name="asr_hanafi">Hanafi</string>
+    <string name="high_latitude">High-latitude rule</string>
+    <string name="high_latitude_summary">%s · for times marked *</string>
+    <string name="high_latitude_seventh">One-seventh of the night</string>
+    <string name="high_latitude_good_day">Nearest good day</string>
+    <string name="high_latitude_latitude">Nearest latitude, 48.5°</string>
+    <string name="adjust_times">Adjust times</string>
+    <string name="adjust_times_none">No adjustments</string>
+    <string name="hijri_date_title">Hijri date</string>
+    <string name="hijri_summary">%1$s · %2$s</string>
+    <string name="hijri_two_earlier">Two days earlier</string>
+    <string name="hijri_one_earlier">One day earlier</string>
+    <string name="hijri_as_calculated">As calculated</string>
+    <string name="hijri_one_later">One day later</string>
+    <string name="hijri_two_later">Two days later</string>
+    <string name="prayer_alerts">Prayer alerts</string>
+    <string name="alert_group">%1$s: %2$s</string>
+    <string name="short_adhan">Short adhan</string>
+    <string name="short_adhan_summary">Only the opening Allāhu akbar</string>
+    <string name="play_on_silent">Play on silent or vibrate</string>
+    <string name="play_on_silent_summary">Still never during a call</string>
+    <string name="bismillah_on_boot_up">Bismillah when the phone starts</string>
+    <string name="bismillah_summary">Plays once you unlock after a restart</string>
+    <string name="test_adhan">Test the adhan</string>
+    <string name="test_adhan_summary">Plays it now so you can check the volume</string>
+    <string name="test_adhan_playing">Playing now. Tap to stop</string>
+    <string name="alarm_check">Alarm check</string>
+    <string name="alarm_check_ok">Alarms can ring on time</string>
+    <plurals name="alarm_check_issues">
+        <item quantity="one">%d thing to check</item>
+        <item quantity="other">%d things to check</item>
+    </plurals>
+    <string name="check_notifications">Notifications</string>
+    <string name="check_allowed">Allowed</string>
+    <string name="check_notifications_off">Turned off, so prayer alerts can\'t show</string>
+    <string name="check_exact">Exact alarms</string>
+    <string name="check_exact_off">Not allowed, so alerts may come a few minutes late</string>
+    <string name="check_volume">Alarm volume</string>
+    <string name="check_volume_ok">On. The adhan and chime use it.</string>
+    <string name="check_volume_off">Muted. The adhan and chime use the alarm volume.</string>
+    <string name="check_battery">Battery</string>
+    <string name="check_battery_ok">Not restricted</string>
+    <string name="check_battery_off">Optimised. Some phones stop alarms to save battery.</string>
+    <string name="time_format">Time format</string>
+    <string name="time_format_system">Follow phone</string>
+    <string name="time_format_12">12-hour</string>
+    <string name="time_format_24">24-hour</string>
+    <string name="arabic_names">Arabic names</string>
+    <string name="arabic_names_summary">In their own column beside each prayer</string>
+    <string name="theme">Theme</string>
+    <string name="theme_system">Follow phone</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="language">Language</string>
+    <string name="language_system">Follow phone</string>
+    <string name="altitude">Altitude</string>
+    <string name="altitude_summary">%s m</string>
+    <string name="pressure">Air pressure</string>
+    <string name="pressure_summary">%s mbar</string>
+    <string name="temperature">Temperature</string>
+    <string name="temperature_summary">%s °C</string>
+    <string name="rounding">Rounding</string>
+    <string name="rounding_none">None</string>
+    <string name="rounding_normal">To the nearest minute</string>
+    <string name="rounding_special">Nearest minute, sunrise rounded down</string>
+    <string name="rounding_aggressive">Prayers rounded up, sunrise down</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="privacy_summary">Adhān Alarm never goes online or shares your data</string>
+    <string name="source_code">Source code</string>
+    <string name="source_code_summary" translatable="false">github.com/gitsponge/AdhanAlarm</string>
+    <string name="credits">Credits</string>
+    <string name="credits_summary">City list: GeoNames, CC BY 4.0</string>
+    <string name="credits_text">City list: GeoNames (geonames.org), under the Creative Commons Attribution 4.0 licence.\n\nPrayer times: ITL, the Islamic Tools and Libraries project.\n\nHijri calendar: hvjavacal.</string>
+    <string name="version">Version</string>
+
+    <!-- Location -->
+    <string name="use_current_location">Use my current location</string>
+    <string name="search_city">Search for a city</string>
+    <string name="enter_coordinates">Enter coordinates</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="latitude_range">From -90 to 90</string>
+    <string name="longitude_range">From -180 to 180</string>
+    <string name="location_unnamed">Your location</string>
+    <string name="finding_location">Finding your location…</string>
+    <string name="location_unavailable">Your location couldn\'t be found. Try again near a window, or search for a city.</string>
+    <string name="location_off">Location is turned off on this phone. Turn it on, or search for a city.</string>
+    <string name="location_permission_needed">Allow location access, or search for a city instead.</string>
+    <string name="no_results">No cities match. Try another spelling, or enter the coordinates.</string>
+    <string name="auto_location_off">Automatic location updates are off, so this place stays until you change it.</string>
+
+    <!-- First run -->
+    <string name="setup_greeting">assalamu `alaikum</string>
+    <string name="setup_welcome">Adhān Alarm calls you to prayer on time. It works entirely on your phone and never goes online.</string>
+    <string name="setup_where">Where are you?</string>
+    <string name="setup_where_text">Your location sets the prayer times and the direction of the Qibla.</string>
+    <string name="setup_method_title">How the times are calculated</string>
+    <string name="setup_method_text">Most mosques where you are use this method. You can change it at any time in Settings.</string>
+    <string name="setup_asr_text">Standard follows the Shāfiʿī, Mālikī and Hanbalī schools. Hanafi puts `Asr later.</string>
+    <string name="setup_alerts_title">How do you want to be alerted?</string>
+    <string name="setup_alerts_text">You can change each prayer later from its icon on the Today screen.</string>
+    <string name="setup_alerts_adhan">Adhan</string>
+    <string name="setup_alerts_adhan_hint">The call to prayer at each prayer</string>
+    <string name="setup_alerts_chime">Chime</string>
+    <string name="setup_alerts_notification">Notification</string>
+    <!-- For example 1 of 3 -->
+    <string name="setup_step">%1$d of %2$d</string>
+    <string name="setup_start">Start</string>
+
+    <!-- Widgets -->
+    <string name="widget_next_prayer">Next prayer</string>
+    <string name="widget_next_prayer_description">The next prayer and its time</string>
+    <string name="widget_today">Today\'s times</string>
+    <string name="widget_today_description">All of today\'s prayer times</string>
 </resources>

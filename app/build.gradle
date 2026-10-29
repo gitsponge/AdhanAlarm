@@ -10,8 +10,8 @@ android {
         applicationId = 'islam.adhanalarm'
         minSdk = 23
         targetSdk = 37
-        versionCode = 119 // Google Play needs every upload above the last one, which was 118 (3.0.1)
-        versionName = '3.0.2' // 3.0 was the comeback release after 2.4 in 2019, 3.0.1 brought the new icon and 3.0.2 bug fixes
+        versionCode = 120 // Google Play needs every upload above the last one, which was 119 (3.0.2)
+        versionName = '4.0'
     }
 
     signingConfigs {
@@ -28,10 +28,20 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled = false
+            minifyEnabled = true // Google Play asks for shrunk, optimised code; it also keeps the app small
+            shrinkResources = true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig = signingConfigs.release
         }
+        debug {
+            // Installs beside the Play version as "Adhān Alarm Dev", so testing never touches the real one
+            applicationIdSuffix = '.dev'
+            versionNameSuffix = '-dev'
+        }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true // Android calls the tests don't care about return defaults instead of failing
     }
 
     compileOptions {
@@ -49,6 +59,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.8.0'
     implementation 'androidx.core:core:1.19.1'
     implementation 'androidx.preference:preference:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.2'
     implementation 'com.google.android.material:material:1.14.0'
+    testImplementation 'junit:junit:4.13.2'
 }

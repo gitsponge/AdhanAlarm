@@ -1,124 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:title="@string/settings">
-        <EditTextPreference
-            android:key="latitude"
-            android:title="@string/latitude"
-            android:inputType="numberDecimal|numberSigned"
-            android:defaultValue="43.67" />
-        <EditTextPreference
-            android:key="longitude"
-            android:title="@string/longitude"
-            android:inputType="numberDecimal|numberSigned"
-            android:defaultValue="-79.417" />
+    <PreferenceCategory android:title="@string/settings_location">
         <Preference
-            android:key="lookupGPS"
-            android:title="@string/lookup_gps" />
-        <ListPreference
-            android:key="calculationMethodsIndex"
-            android:title="@string/calculation"
-            android:summary="%s"
-            android:entries="@array/calculation_methods"
-            android:entryValues="@array/calculation_methods_values"
-            android:defaultValue="4" />
-        <ListPreference
-            android:key="timeFormatIndex"
-            android:title="@string/time_format"
-            android:summary="%s"
-            android:entries="@array/time_format"
-            android:entryValues="@array/time_format_values"
-            android:defaultValue="0" />
+            android:key="location"
+            android:title="@string/location" />
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="autoLocation"
+            android:summary="@string/auto_location_summary"
+            android:title="@string/auto_location" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/notification">
+    <PreferenceCategory android:title="@string/settings_prayer_times">
         <ListPreference
-            android:key="notificationMethod0"
-            android:title="@string/fajr"
-            android:summary="%s"
-            android:entries="@array/notification_methods"
-            android:entryValues="@array/notification_methods_values"
-            android:defaultValue="1" />
+            android:entries="@array/method_names"
+            android:entryValues="@array/method_values"
+            android:key="method"
+            android:title="@string/method" />
         <ListPreference
-            android:key="notificationMethod1"
-            android:title="@string/sunrise"
-            android:summary="%s"
-            android:entries="@array/notification_methods_sunrise"
-            android:entryValues="@array/notification_methods_sunrise_values"
-            android:defaultValue="1" />
-        <ListPreference
-            android:key="notificationMethod2"
-            android:title="@string/dhuhr"
-            android:summary="%s"
-            android:entries="@array/notification_methods"
-            android:entryValues="@array/notification_methods_values"
-            android:defaultValue="1" />
-        <ListPreference
-            android:key="notificationMethod3"
+            android:defaultValue="standard"
+            android:entries="@array/asr_names"
+            android:entryValues="@array/asr_values"
+            android:key="asr"
             android:title="@string/asr"
-            android:summary="%s"
-            android:entries="@array/notification_methods"
-            android:entryValues="@array/notification_methods_values"
-            android:defaultValue="1" />
+            app:useSimpleSummaryProvider="true" />
         <ListPreference
-            android:key="notificationMethod4"
-            android:title="@string/maghrib"
-            android:summary="%s"
-            android:entries="@array/notification_methods"
-            android:entryValues="@array/notification_methods_values"
-            android:defaultValue="1" />
+            android:defaultValue="seventh"
+            android:entries="@array/high_latitude_names"
+            android:entryValues="@array/high_latitude_values"
+            android:key="highLatitude"
+            android:title="@string/high_latitude" />
+        <Preference
+            android:key="adjustTimes"
+            android:title="@string/adjust_times" />
         <ListPreference
-            android:key="notificationMethod5"
-            android:title="@string/ishaa"
-            android:summary="%s"
-            android:entries="@array/notification_methods"
-            android:entryValues="@array/notification_methods_values"
-            android:defaultValue="1" />
-        <CheckBoxPreference
+            android:defaultValue="0"
+            android:entries="@array/hijri_adjust_names"
+            android:entryValues="@array/hijri_adjust_values"
+            android:key="hijriAdjust"
+            android:title="@string/hijri_date_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/settings_alerts">
+        <Preference
+            android:key="prayerAlerts"
+            android:title="@string/prayer_alerts" />
+        <Preference
+            android:key="adhanSound"
+            android:title="@string/adhan_sound" />
+        <Preference
+            android:key="fajrAdhanSound"
+            android:title="@string/fajr_adhan_sound" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="shortAdhan"
+            android:summary="@string/short_adhan_summary"
+            android:title="@string/short_adhan" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
             android:key="playOnSilent"
+            android:summary="@string/play_on_silent_summary"
             android:title="@string/play_on_silent" />
-        <CheckBoxPreference
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
             android:key="bismillahOnBootUp"
+            android:summary="@string/bismillah_summary"
             android:title="@string/bismillah_on_boot_up" />
+        <Preference
+            android:key="testAdhan"
+            android:summary="@string/test_adhan_summary"
+            android:title="@string/test_adhan" />
+        <Preference
+            android:key="alarmCheck"
+            android:title="@string/alarm_check" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/advanced">
-        <EditTextPreference
-            android:key="altitude"
-            android:title="@string/altitude"
-            android:inputType="numberDecimal"
-            android:defaultValue="0" />
-        <EditTextPreference
-            android:key="pressure"
-            android:title="@string/pressure"
-            android:inputType="numberDecimal|numberSigned"
-            android:defaultValue="1010" />
-        <EditTextPreference
-            android:key="temperature"
-            android:title="@string/temperature"
-            android:inputType="numberDecimal|numberSigned"
-            android:defaultValue="10" />
+    <PreferenceCategory android:title="@string/settings_display">
         <ListPreference
-            android:key="roundingTypesIndex"
-            android:title="@string/rounding"
-            android:summary="%s"
-            android:entries="@array/rounding_types"
-            android:entryValues="@array/rounding_types_values"
-            android:defaultValue="2" />
-        <EditTextPreference
-            android:key="offsetMinutes"
-            android:title="@string/offset"
-            android:inputType="number|numberSigned"
-            android:defaultValue="0" />
+            android:defaultValue="system"
+            android:entries="@array/time_format_names"
+            android:entryValues="@array/time_format_values"
+            android:key="timeFormat"
+            android:title="@string/time_format"
+            app:useSimpleSummaryProvider="true" />
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="arabicNames"
+            android:summary="@string/arabic_names_summary"
+            android:title="@string/arabic_names" />
+        <ListPreference
+            android:defaultValue="system"
+            android:entries="@array/theme_names"
+            android:entryValues="@array/theme_values"
+            android:key="theme"
+            android:title="@string/theme"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            android:entries="@array/language_names"
+            android:entryValues="@array/language_values"
+            android:key="language"
+            android:persistent="false"
+            android:title="@string/language"
+            app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
-    <Preference
-        android:key="privacyPolicy"
-        android:title="@string/privacy_policy" />
+    <!-- Folded away behind one "Advanced" row until it's tapped -->
+    <PreferenceCategory
+        android:key="advanced"
+        app:initialExpandedChildrenCount="0">
+        <EditTextPreference
+            android:defaultValue="0"
+            android:key="altitude"
+            android:title="@string/altitude" />
+        <EditTextPreference
+            android:defaultValue="1010"
+            android:key="pressure"
+            android:title="@string/pressure" />
+        <EditTextPreference
+            android:defaultValue="10"
+            android:key="temperature"
+            android:title="@string/temperature" />
+        <ListPreference
+            android:defaultValue="2"
+            android:entries="@array/rounding_names"
+            android:entryValues="@array/rounding_values"
+            android:key="roundingTypesIndex"
+            android:title="@string/rounding" />
+    </PreferenceCategory>
 
-    <Preference
-        android:key="information"
-        android:title="@string/information"
-        android:summary="@string/information_text" />
-
+    <PreferenceCategory android:title="@string/settings_about">
+        <Preference
+            android:key="privacyPolicy"
+            android:summary="@string/privacy_summary"
+            android:title="@string/privacy_policy" />
+        <Preference
+            android:key="sourceCode"
+            android:summary="@string/source_code_summary"
+            android:title="@string/source_code" />
+        <Preference
+            android:key="credits"
+            android:summary="@string/credits_summary"
+            android:title="@string/credits" />
+        <Preference
+            android:key="version"
+            android:selectable="false"
+            android:title="@string/version" />
+    </PreferenceCategory>
 </PreferenceScreen>

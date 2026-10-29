@@ -23,7 +23,7 @@ public class App extends Application {
     private static final List<PrayerTimeListener> sListeners = new ArrayList<>();
 
     /**
-     * Schedules the next alarm and refreshes the widgets and any open screens. Call on the main thread.
+     * Schedules the next alarms and refreshes the widgets and any open screens. Call on the main thread.
      */
     public static void broadcastPrayerTimeUpdate() {
         StartNotificationReceiver.setNextAlarm(sInstance);
@@ -62,12 +62,11 @@ public class App extends Application {
         super.onCreate();
         sInstance = this;
         NotificationHandler.createChannels(this);
-
-        // Before 3.0.2 the settings screen saved the air pressure as 110 by mistake. The calculation assumes 1010 millibars.
         SharedPreferences settings = getSettings(this);
-        if ("110".equals(settings.getString("pressure", null))) {
-            settings.edit().putString("pressure", "1010").apply();
+        if (UserManagerCompat.isUserUnlocked(this)) { // Before the first unlock the old settings haven't moved across yet
+            Prefs.migrate(settings);
         }
+        Prefs.applyTheme(settings);
     }
 
     public interface PrayerTimeListener {

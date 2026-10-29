@@ -1,64 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="calculation_methods">
-        <item>@string/egypt_survey</item>
-        <item>@string/karachi_shaf</item>
-        <item>@string/karachi_hanaf</item>
-        <item>@string/north_america</item>
-        <item>@string/muslim_league</item>
-        <item>@string/umm_alqurra</item>
-        <item>@string/fixed_ishaa</item>
+    <array name="method_names">
+        <item>@string/method_mwl</item>
+        <item>@string/method_isna</item>
+        <item>@string/method_egypt</item>
+        <item>@string/method_karachi</item>
+        <item>@string/method_ummalqura</item>
+        <item>@string/method_gulf</item>
+        <item>@string/method_kuwait</item>
+        <item>@string/method_qatar</item>
+        <item>@string/method_singapore</item>
+        <item>@string/method_diyanet</item>
+        <item>@string/method_fixedisha</item>
     </array>
-    <string-array name="calculation_methods_values">
+    <string-array name="method_values" translatable="false">
+        <item>mwl</item>
+        <item>isna</item>
+        <item>egypt</item>
+        <item>karachi</item>
+        <item>ummalqura</item>
+        <item>gulf</item>
+        <item>kuwait</item>
+        <item>qatar</item>
+        <item>singapore</item>
+        <item>diyanet</item>
+        <item>fixedisha</item>
+    </string-array>
+    <array name="asr_names">
+        <item>@string/asr_standard</item>
+        <item>@string/asr_hanafi</item>
+    </array>
+    <string-array name="asr_values" translatable="false">
+        <item>standard</item>
+        <item>hanafi</item>
+    </string-array>
+    <array name="high_latitude_names">
+        <item>@string/high_latitude_seventh</item>
+        <item>@string/high_latitude_good_day</item>
+        <item>@string/high_latitude_latitude</item>
+    </array>
+    <string-array name="high_latitude_values" translatable="false">
+        <item>seventh</item>
+        <item>goodDay</item>
+        <item>latitude</item>
+    </string-array>
+    <array name="hijri_adjust_names">
+        <item>@string/hijri_two_earlier</item>
+        <item>@string/hijri_one_earlier</item>
+        <item>@string/hijri_as_calculated</item>
+        <item>@string/hijri_one_later</item>
+        <item>@string/hijri_two_later</item>
+    </array>
+    <string-array name="hijri_adjust_values" translatable="false">
+        <item>-2</item>
+        <item>-1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <array name="time_format_names">
+        <item>@string/time_format_system</item>
+        <item>@string/time_format_12</item>
+        <item>@string/time_format_24</item>
+    </array>
+    <string-array name="time_format_values" translatable="false">
+        <item>system</item>
+        <item>12</item>
+        <item>24</item>
+    </string-array>
+    <array name="theme_names">
+        <item>@string/theme_system</item>
+        <item>@string/theme_light</item>
+        <item>@string/theme_dark</item>
+    </array>
+    <string-array name="theme_values" translatable="false">
+        <item>system</item>
+        <item>light</item>
+        <item>dark</item>
+    </string-array>
+    <array name="rounding_names">
+        <item>@string/rounding_none</item>
+        <item>@string/rounding_normal</item>
+        <item>@string/rounding_special</item>
+        <item>@string/rounding_aggressive</item>
+    </array>
+    <string-array name="rounding_values" translatable="false">
         <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
     </string-array>
-    <array name="time_format">
-        <item>@string/sdefault</item>
-        <item>@string/clock_24_hour</item>
-    </array>
-    <string-array name="time_format_values">
-        <item>0</item>
-        <item>1</item>
+    <!-- Each language names itself, so anyone can find their own: Latin scripts A to Z, then Cyrillic, then Arabic -->
+    <string-array name="language_names" translatable="false">
+        <item>@string/language_system</item>
+        <item>Bahasa Indonesia</item>
+        <item>Bahasa Melayu</item>
+        <item>Deutsch</item>
+        <item>English</item>
+        <item>Español</item>
+        <item>Français</item>
+        <item>Italiano</item>
+        <item>Türkçe</item>
+        <item>Русский</item>
+        <item>العربية</item>
     </string-array>
-    <array name="rounding_types">
-        <item>@string/none</item>
-        <item>@string/normal</item>
-        <item>@string/special</item>
-        <item>@string/aggressive</item>
-    </array>
-    <string-array name="rounding_types_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-    <array name="notification_methods">
-        <item>@string/none</item>
-        <item>@string/sdefault</item>
-        <item>@string/beep</item>
-        <item>@string/recite</item>
-    </array>
-    <string-array name="notification_methods_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-    <array name="notification_methods_sunrise">
-        <item>@string/none</item>
-        <item>@string/sdefault</item>
-        <item>@string/beep</item>
-    </array>
-    <string-array name="notification_methods_sunrise_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
+    <string-array name="language_values" translatable="false">
+        <item />
+        <item>id</item>
+        <item>ms</item>
+        <item>de</item>
+        <item>en</item>
+        <item>es</item>
+        <item>fr</item>
+        <item>it</item>
+        <item>tr</item>
+        <item>ru</item>
+        <item>ar</item>
     </string-array>
     <array name="hijri_months">
         <item>@string/month0</item>
@@ -74,16 +131,23 @@
         <item>@string/month10</item>
         <item>@string/month11</item>
     </array>
-    <array name="languages">
-        <item>@string/sdefault</item>
-        <item>العربية</item>
-        <item>Deutsch</item>
-        <item>English</item>
-        <item>Español</item>
-        <item>Français</item>
-        <item>Indonesia</item>
-        <item>Italiano</item>
-        <item>Русский</item>
-        <item>Türkçe</item>
-    </array>
+    <!-- The 16 points of the compass, clockwise from north -->
+    <string-array name="compass_points">
+        <item>N</item>
+        <item>NNE</item>
+        <item>NE</item>
+        <item>ENE</item>
+        <item>E</item>
+        <item>ESE</item>
+        <item>SE</item>
+        <item>SSE</item>
+        <item>S</item>
+        <item>SSW</item>
+        <item>SW</item>
+        <item>WSW</item>
+        <item>W</item>
+        <item>WNW</item>
+        <item>NW</item>
+        <item>NNW</item>
+    </string-array>
 </resources>

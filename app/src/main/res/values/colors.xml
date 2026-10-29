@@ -1,8 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#558b2f</color>
-    <color name="colorPrimaryDark">#1b5e20</color>
-    <color name="colorAccent">#64dd17</color>
-    <color name="rowDivider">#DFDFDF</color>
-    <color name="selectedRow">#0a000000</color>
+    <!-- Material 3 roles built from the icon's olive. values-night holds the dark theme. -->
+    <color name="primary">#5A6131</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="primary_container">#E0E7B0</color>
+    <color name="on_primary_container">#1B1F00</color>
+    <color name="secondary">#5D6146</color>
+    <color name="on_secondary">#FFFFFF</color>
+    <color name="secondary_container">#E3E4CB</color>
+    <color name="on_secondary_container">#1B1D0E</color>
+    <color name="tertiary">#8B4F3C</color>
+    <color name="on_tertiary">#FFFFFF</color>
+    <color name="tertiary_container">#FFDBCF</color>
+    <color name="on_tertiary_container">#3A0B00</color>
+    <color name="error">#BA1A1A</color>
+    <color name="on_error">#FFFFFF</color>
+    <color name="error_container">#FFDAD6</color>
+    <color name="on_error_container">#410002</color>
+    <color name="surface">#FCFBF2</color>
+    <color name="on_surface">#1C1C16</color>
+    <color name="on_surface_variant">#47483B</color>
+    <color name="surface_container_lowest">#FFFFFF</color>
+    <color name="surface_container_low">#F6F5EB</color>
+    <color name="surface_container">#F0EFE5</color>
+    <color name="surface_container_high">#EAE9DF</color>
+    <color name="surface_container_highest">#E5E4D8</color>
+    <color name="outline">#77786A</color>
+    <color name="outline_variant">#C9C8B7</color>
+    <color name="inverse_surface">#31312A</color>
+    <color name="inverse_on_surface">#F3F1E4</color>
+    <color name="inverse_primary">#C4CC8F</color>
+
+    <!-- The app's own -->
+    <color name="past">#6A6B5C</color>
+    <color name="next_row">#EEF1D6</color>
+    <color name="progress_track">#C3CA94</color>
+    <color name="hero_caption">#3B4110</color>
+    <color name="brand">#5A6131</color>
 </resources>

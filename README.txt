@@ -13,14 +13,38 @@ Needs a full JDK 17 or newer (a JRE without javac won't do) and the Android SDK.
   JAVA_HOME=/path/to/android-studio/jbr ./gradlew assembleDebug
   adb install -r app/build/outputs/apk/debug/app-debug.apk
 
+Debug builds install beside the Play version as Adhān Alarm Dev (islam.adhanalarm.dev), with their own settings and alarms. Uninstall it after testing, or both will call you to prayer. The unit tests run on the computer:
+
+  JAVA_HOME=/path/to/android-studio/jbr ./gradlew testDebugUnitTest
+
+The app never goes online and has no internet permission. City names come from app/src/main/assets/cities.bin, made from GeoNames' cities5000 list (CC BY 4.0) by tools/make_cities.py, which says how to update it.
+
 Testing the adhan without waiting for a prayer time
 
-Debug builds include a receiver that sets a real alarm a few seconds ahead, so the whole path (exact alarm, notification, adhan) can be tried on a phone. prayer is fajr, sunrise, dhuhr, asr, maghrib or ishaa; type is none, default, beep or play:
+Debug builds include a receiver that sets a real alarm a few seconds ahead, so the whole path (exact alarm, notification, adhan) can be tried on a phone. prayer is fajr, sunrise, dhuhr, asr, maghrib or ishaa; type is none, notification, chime or adhan:
 
-  adb shell am broadcast -a islam.adhanalarm.debug.TEST_ALARM -n islam.adhanalarm/.debug.TestAlarmReceiver --es prayer fajr --es type play --ei delay 10
-  adb shell am broadcast -a islam.adhanalarm.debug.STOP_ADHAN -n islam.adhanalarm/.debug.TestAlarmReceiver
+  adb shell am broadcast -a islam.adhanalarm.debug.TEST_ALARM -n islam.adhanalarm.dev/islam.adhanalarm.debug.TestAlarmReceiver --es prayer fajr --es type adhan --ei delay 10
+  adb shell am broadcast -a islam.adhanalarm.debug.STOP_ADHAN -n islam.adhanalarm.dev/islam.adhanalarm.debug.TestAlarmReceiver
 
-The adhan and beep never play during a call. On silent or vibrate they only play if Play On Silent Or Vibrate is ticked in the settings.
+The adhan and chime never play during a call. On silent or vibrate they only play if Play On Silent Or Vibrate is on in the settings.
+
+What's new in 4.0
+
+A new design throughout, in light and dark, and still entirely offline.
+- Today shows the next prayer with how long until it, and all of the day's times with their Arabic names in a column of their own. Phones and tablets get landscape layouts.
+- Tap a prayer's icon to choose how it calls you: off, a notification, a chime or the adhan. Each prayer can also remind you 5 to 30 minutes before, and be moved up to an hour to match your mosque.
+- A gentle chime replaces the beep.
+- The adhan can be any sound on your phone, with a separate one for Fajr. Short Adhan plays only the opening Allāhu akbar.
+- Find your city by name, also in Arabic or Russian script, or use your location. The nearest city within 20 km is named from a list of 64,000 places that comes with the app, so nothing is looked up online.
+- A first-run setup suggests the calculation method used where you are.
+- New methods: Gulf region, Kuwait, Qatar, Singapore, Malaysia and Indonesia, and Diyanet for Türkiye. Diyanet's times match its own timetable, safety minutes and rounding included.
+- High latitudes use one-seventh of the night by default, so Isha and Fajr stay sensible in summer. Times estimated this way are marked *.
+- Qibla says which way to turn and taps when you face it, shows the distance to Makkah, and helps when the compass needs calibrating.
+- Settings are regrouped, and Alarm Check finds what could stop alarms: notifications, exact alarms, alarm volume and battery restrictions.
+- New widgets: Next Prayer (wide, or a small tile) and Today's Times (a grid, or a small list). Both resize.
+- The Hijri date can be moved up to two days either way.
+- The language can be chosen in the app. Malay is new, and every language is complete. Number fields accept the language's own digits and decimal comma.
+- Settings from 3.x carry over.
 
 What's new in 3.0.2
 

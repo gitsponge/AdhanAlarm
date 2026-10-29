@@ -1,86 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Azan alarmı</string>
-    <string name="description">Günlük namaz vakitlerini görüntüler ve uyarabilir.</string>
-    <string name="adhan_next_time">Azan: sonraki</string>
-    <string name="adhan_timetable">Azan: Tarife</string>
-    <string name="previous">Önceki</string>
-    <string name="next">Sonraki</string>
-    <string name="stop">Durdur</string>
-    <string name="help">Yardım</string>
-    <string name="help_text"><u>Sık Sık Sorulan Sorular</u>\n\nS: Neden namaz vakitleri yerel takvimle eşleşmiyor?\n\nC: Buna etki eden birçok faktörler vardir, örneğin, giriş parametreleri (enlem, boylam, hesaplama yöntemi, ...), algoritmik ve farklı makinelerdeki hesaplama hassaslık farklılıkları.\n\nS: Neden pusula Kıbleyi doğru yönde göstermiyor?\n\nC: Enlem ve boylam doğru ayarlanmış olduğunu onaylayın ve telefonuzu elektro-manyetik etkileşimden uzak tutun.\n\nS: Neden en sevdiğim özellik daha eklenmemiştir?\n\nC: Lütfen github.com/gitsponge/AdhanAlarm adresindeki proje web sitesini ziyaret edin ve uygulamayı geliştirmeye yardımcı olun.</string>
-    <string name="information">Bilgi</string>
-    <string name="information_text">Uygulama hakkında daha fazla bilgi için:\ngithub.com/gitsponge/AdhanAlarm\n\nVersion: #</string>
-    <string name="privacy_policy">Gizlilik Politikası</string>
-    <string name="invalid_value">Geçerli bir değer değil</string>
-    <string name="more_applications">Daha fazla uygulamalar</string>
-    <string name="today">Bugün</string>
+    <string name="app_name">Ezan Alarmı</string>
+    <string name="description">Günlük namaz vakitlerini gösterir ve sizi namaza çağırır.</string>
+
+    <!-- Prayers -->
     <string name="fajr">İmsak</string>
     <string name="sunrise">Güneş</string>
     <string name="dhuhr">Öğle</string>
     <string name="asr">İkindi</string>
     <string name="maghrib">Akşam</string>
     <string name="ishaa">Yatsı</string>
-    <string name="next_fajr">Sonraki imsak</string>
-    <!--string name="next_time_marker">&gt;</string>
-    <string name="next_time_marker_reverse">&lt;</string-->
-    <string name="sdefault">Varsayılan</string>
-    <string name="error_playing_alert">Uyarı çalmada yanlışlık</string>
-    <string name="error_playing_custom_file">Özel dosya hatası</string>
-    <string name="location_not_set">Lütfen <u>yer</u> ayarlayın</string>
-    <string name="allahu_akbar">Allahu Akbar</string>
-    <string name="time_for"></string>
-    <string name="latitude">Enlem</string>
-    <string name="longitude">Boylam</string>
-    <string name="extreme">Aşırı</string>
-    <string name="qibla">Kible</string>
-    <string name="compass_disclaimer">Pusula portre modunda belirtilen yere göre çalışır.</string>
-    <string name="bearing_north">1) Kuzey Yatak = (1)°</string>
-    <string name="bearing_qibla">2) Kible Yatak = (1) (+/-) (2)° = (3)°</string>
-    <string name="settings">Ayarlar</string>
-    <string name="bismillah_on_boot_up">Başlarken Besmele oku</string>
-    <string name="notification">Duyuru</string>
-    <string name="none">Yok</string>
-    <string name="beep">Bip</string>
-    <string name="recite">Azan oku</string>
-    <string name="custom">Özel</string>
-    <string name="file_path">Doya yolu</string>
-    <string name="file_path_example">Meselâ, /sdcard/sound.mp3</string>
-    <string name="sinterface">Arayüzey</string>
-    <string name="advanced">İleri ayarlar</string>
-    <string name="extra_alerts">Ek uyarılar</string>
-    <string name="daylight_savings">Aydınlık saklamaları</string>
-    <string name="lookup_gps">GPS\naraması</string>
-    <string name="system_time_zone">Sistem saati</string>
-    <!--string name="gmt">GMT</string-->
-    <string name="save">Kaydet</string>
-    <string name="reset">Sıfırla</string>
-    <string name="calculation">Hesaplama</string>
-    <string name="egypt_survey">Mısır Genel Anket Yetkilisi</string>
-    <string name="karachi_shaf">Şafiî - Karaçi İslâm Bilimleri Üniv.</string>
-    <string name="karachi_hanaf">Hanefi - Karaçi İslâm Bilimleri Üniv.</string>
-    <string name="north_america">Kuzey Amerika İslâm Topluluğu</string>
-    <string name="muslim_league">Müslüman Dünya Ligi</string>
-    <string name="umm_alqurra">Umm Al-Qurra, Suudi Arabistani</string>
-    <string name="fixed_ishaa">Sabit yatsı aralık (her zaman 90 dak)</string>
-    <string name="time_format">Saat biçimi</string>
-    <string name="clock_24_hour">24 saat</string>
-    <string name="altitude">Rakım</string>
-    <string name="pressure">Basınç</string>
-    <string name="temperature">Sıcaklık</string>
-    <!--string name="degrees_celsius">°C</string-->
-    <string name="rounding">Yuvarlama</string>
-    <string name="normal">Normal</string>
-    <string name="special">Özel</string>
-    <string name="aggressive">Agresif</string>
-    <string name="offset">Offset</string>
-    <string name="minutes">dakika</string>
-    <string name="language">Dil</string>
-    <string name="theme">Tema</string>
-    <string name="brown">Kahverengi</string>
-    <string name="dialog">Diyalog</string>
-    <string name="green">Yeşil</string>
-    <string name="light">Hafif</string>
+    <string name="fajr_tomorrow">Yarın İmsak</string>
+    <string name="fajr_ends">Sabah vakti biter</string>
+
+    <!-- Islamic months -->
     <string name="month0">Muharrem</string>
     <string name="month1">Safer</string>
     <string name="month2">Rebiülevvel</string>
@@ -93,7 +26,267 @@
     <string name="month9">Şevval</string>
     <string name="month10">Zilkade</string>
     <string name="month11">Zilhicce</string>
-    <string name="anno_hegirae">Hicri</string>
+    <!-- Day, month and year, for example 16 Jumādā al-Ūlā 1448 -->
+    <string name="hijri_date">%1$s %2$s %3$s</string>
+
+    <!-- Shared -->
+    <string name="today">Bugün</string>
+    <string name="qibla">Kıble</string>
+    <string name="settings">Ayarlar</string>
+    <string name="stop">Durdur</string>
+    <string name="close">Kapat</string>
+    <string name="back">Geri</string>
+    <string name="next">İleri</string>
+    <string name="done">Bitti</string>
+    <string name="reset">Sıfırla</string>
+    <string name="save">Kaydet</string>
+    <string name="change">Değiştir</string>
+    <string name="open_settings">Ayarları aç</string>
+    <string name="invalid_value">Geçerli bir değer değil</string>
+    <!-- Two parts side by side, for example Wed 28 October · 16 Jumādā al-Ūlā 1448 -->
+    <string name="date_line">%1$s · %2$s</string>
+    <string name="name_and_time">%1$s %2$s</string>
+    <string name="name_with_arabic">%1$s · %2$s</string>
+    <string name="list_separator">",\u0020"</string>
+    <string name="place_and_coordinates">%1$s · %2$s</string>
+    <string name="coordinates">%1$s, %2$s</string>
+    <string name="latitude_north">%s° K</string>
+    <string name="latitude_south">%s° G</string>
+    <string name="longitude_east">%s° D</string>
+    <string name="longitude_west">%s° B</string>
+    <string name="place_note_city">Telefondaki harita verisine göre en yakın şehir</string>
+    <string name="place_note_none">20 km içinde şehir yok</string>
+
+    <!-- Today -->
+    <string name="next_prayer">Sonraki namaz</string>
+    <string name="now_badge">Şimdi</string>
+    <string name="countdown_now">şimdi</string>
+    <string name="countdown_minutes">%d dk sonra</string>
+    <string name="countdown_hours_minutes">%1$d saat %2$d dk sonra</string>
+    <string name="location_change">Konum: %s. Konumu değiştir</string>
+    <string name="alert_open">%1$s uyarısı: %2$s. Uyarı seçeneklerini aç</string>
+    <string name="extreme_note">* Yılın bu döneminde güneş burada yeterince alçalmadığı için tahminidir.</string>
+
+    <!-- How a prayer calls you -->
+    <string name="alert_off">Kapalı</string>
+    <string name="alert_notification">Bildirim</string>
+    <string name="alert_chime">Melodi</string>
+    <string name="alert_adhan">Ezan</string>
+    <string name="alert_off_hint">Uyarı yok</string>
+    <string name="alert_notification_hint">Telefonunuzun bildirim sesi</string>
+    <string name="alert_chime_hint">Kısa, yumuşak bir melodi</string>
+    <string name="alert_adhan_hint">Namaza çağrı</string>
+    <string name="alert_adhan_fajr_hint">Sabah ezanı</string>
+    <string name="adhan_sound">Ezan sesi</string>
+    <string name="fajr_adhan_sound">Sabah ezanı sesi</string>
+    <string name="sound_built_in">Yerleşik ezan</string>
+    <string name="sound_built_in_fajr">Yerleşik sabah ezanı</string>
+    <string name="sound_shared">%s, sabah namazı hariç her namazda</string>
+    <string name="sound_missing">Artık bu telefonda olmayan bir ses</string>
+    <string name="sound_unavailable">Bu ses çalınamadığı için yerleşik ezan çalınacak.</string>
+    <string name="choose_sound">Telefondan bir ses seç</string>
+    <string name="play_preview">Önizlemeyi çal</string>
+    <string name="stop_preview">Önizlemeyi durdur</string>
+    <string name="remind_before">Vakitten önce hatırlat</string>
+    <string name="remind_before_sunrise">Sabah namazı vakti bitmeden hatırlat</string>
+    <string name="remind_before_hint">Önceden ayrı bir bildirim, yukarıdaki uyarıdan bağımsız</string>
+    <string name="reminder_off">Kapalı</string>
+    <string name="reminder_minutes">%d dk</string>
+    <string name="adjust_time">Vakti ayarla</string>
+    <string name="adjust_time_hint">Gittiğiniz caminin takvimine uyması için</string>
+    <string name="adjust_none">Yok</string>
+    <string name="adjust_minutes">%s dk</string>
+    <string name="one_minute_earlier">Bir dakika daha erken</string>
+    <string name="one_minute_later">Bir dakika daha geç</string>
+
+    <!-- Qibla -->
+    <string name="qibla_facing">Kıbleye dönüksünüz</string>
+    <string name="qibla_turn_right">%d° sağa dönün</string>
+    <string name="qibla_turn_left">%d° sola dönün</string>
+    <string name="qibla_no_compass">Bu telefonda pusula yok</string>
+    <!-- For example 119° ESE from true north -->
+    <string name="qibla_direction">Coğrafi kuzeye göre %1$s° %2$s</string>
+    <string name="makkah">Mekke</string>
+    <string name="makkah_distance">%s km uzakta</string>
+    <string name="compass">Pusula</string>
+    <string name="accuracy_good">Doğruluk iyi</string>
+    <string name="accuracy_fair">Doğruluk orta</string>
+    <string name="accuracy_low">Pusula doğruluğu düşük. Kalibre etmek için telefonunuzla havada 8 çizin.</string>
+    <string name="qibla_hint">Telefonu metal ve mıknatıslardan uzakta, düz tutun.</string>
+    <string name="compass_description">Pusula. Telefon coğrafi kuzeye göre %1$d° yönüne bakıyor, kıble ise %2$d° yönünde.</string>
+    <string name="compass_n">K</string>
+    <string name="compass_e">D</string>
+    <string name="compass_s">G</string>
+    <string name="compass_w">B</string>
+
+    <!-- Notifications -->
     <string name="channel_reminder">Namaz vakitleri</string>
     <string name="channel_adhan">Ezan</string>
+    <string name="channel_before">Vakitten önce</string>
+    <string name="notification_prayer">%s vakti geldi</string>
+    <string name="notification_sunrise">Sabah namazı vakti bitti</string>
+    <string name="notification_before">%1$s vaktine %2$d dk kaldı</string>
+    <string name="notification_before_sunrise">Sabah namazı vakti %d dk sonra bitiyor</string>
+    <string name="notification_at">Saat %s</string>
+
+    <!-- Settings -->
+    <string name="settings_location">Konum</string>
+    <string name="settings_prayer_times">Namaz vakitleri</string>
+    <string name="settings_alerts">Uyarılar</string>
+    <string name="settings_display">Görünüm</string>
+    <string name="settings_about">Hakkında</string>
+    <string name="location">Konum</string>
+    <string name="location_summary">%1$s · %2$s</string>
+    <string name="auto_location">Otomatik olarak güncelle</string>
+    <string name="auto_location_summary">Uygulamayı açtığınızda telefonunuzun konumunu kullanır</string>
+    <string name="method">Hesaplama yöntemi</string>
+    <string name="method_summary">%1$s · %2$s</string>
+    <string name="method_angles">İmsak %1$s°, Yatsı %2$s°</string>
+    <string name="method_angles_interval">İmsak %1$s°, Yatsı akşamdan %2$d dk sonra</string>
+    <string name="method_mwl">Dünya İslam Birliği</string>
+    <string name="method_isna">Kuzey Amerika İslam Topluluğu</string>
+    <string name="method_egypt">Mısır Genel Harita Kurumu</string>
+    <string name="method_karachi">İslami Bilimler Üniversitesi, Karaçi</string>
+    <string name="method_ummalqura">Ümmülkura, Mekke</string>
+    <string name="method_gulf">Körfez bölgesi</string>
+    <string name="method_kuwait">Kuveyt</string>
+    <string name="method_qatar">Katar</string>
+    <string name="method_singapore">Singapur, Malezya ve Endonezya</string>
+    <string name="method_diyanet">Diyanet İşleri Başkanlığı</string>
+    <string name="method_fixedisha">Sabit yatsı, akşamdan 90 dk sonra</string>
+    <string name="asr_standard">Standart: Şafii, Maliki, Hanbeli</string>
+    <string name="asr_standard_short">Standart</string>
+    <string name="asr_hanafi">Hanefi</string>
+    <string name="high_latitude">Yüksek enlem kuralı</string>
+    <string name="high_latitude_summary">%s · * işaretli vakitler için</string>
+    <string name="high_latitude_seventh">Gecenin yedide biri</string>
+    <string name="high_latitude_good_day">En yakın uygun gün</string>
+    <string name="high_latitude_latitude">En yakın enlem (48,5°)</string>
+    <string name="adjust_times">Vakitleri ayarla</string>
+    <string name="adjust_times_none">Ayarlama yok</string>
+    <string name="hijri_date_title">Hicri tarih</string>
+    <string name="hijri_summary">%1$s · %2$s</string>
+    <string name="hijri_two_earlier">İki gün geri</string>
+    <string name="hijri_one_earlier">Bir gün geri</string>
+    <string name="hijri_as_calculated">Hesaplandığı gibi</string>
+    <string name="hijri_one_later">Bir gün ileri</string>
+    <string name="hijri_two_later">İki gün ileri</string>
+    <string name="prayer_alerts">Vakit uyarıları</string>
+    <string name="alert_group">%1$s: %2$s</string>
+    <string name="short_adhan">Kısa ezan</string>
+    <string name="short_adhan_summary">Yalnızca baştaki Allahu ekber</string>
+    <string name="play_on_silent">Sessiz veya titreşim modunda da çal</string>
+    <string name="play_on_silent_summary">Arama sırasında ise asla çalmaz</string>
+    <string name="bismillah_on_boot_up">Telefon açılınca Besmele</string>
+    <string name="bismillah_summary">Yeniden başlattıktan sonra kilidi açtığınızda çalar</string>
+    <string name="test_adhan">Ezanı dene</string>
+    <string name="test_adhan_summary">Ses düzeyini kontrol edebilmeniz için hemen çalar</string>
+    <string name="test_adhan_playing">Çalıyor. Durdurmak için dokunun</string>
+    <string name="alarm_check">Alarm kontrolü</string>
+    <string name="alarm_check_ok">Alarmlar zamanında çalabilir</string>
+    <plurals name="alarm_check_issues">
+        <item quantity="one">Kontrol edilecek %d şey</item>
+        <item quantity="other">Kontrol edilecek %d şey</item>
+    </plurals>
+    <string name="check_notifications">Bildirimler</string>
+    <string name="check_allowed">İzin verildi</string>
+    <string name="check_notifications_off">Kapalı, bu yüzden vakit uyarıları gösterilemez</string>
+    <string name="check_exact">Alarmlar ve hatırlatıcılar</string>
+    <string name="check_exact_off">İzin verilmedi, bu yüzden uyarılar birkaç dakika gecikebilir</string>
+    <string name="check_volume">Alarm ses düzeyi</string>
+    <string name="check_volume_ok">Açık. Ezan ve melodi bu ses düzeyiyle çalar.</string>
+    <string name="check_volume_off">Sesi kapalı. Ezan ve melodi, alarm ses düzeyiyle çalar.</string>
+    <string name="check_battery">Pil</string>
+    <string name="check_battery_ok">Kısıtlanmamış</string>
+    <string name="check_battery_off">Optimize edilmiş. Bazı telefonlar pil tasarrufu için alarmları durdurur.</string>
+    <string name="time_format">Saat biçimi</string>
+    <string name="time_format_system">Telefonla aynı</string>
+    <string name="time_format_12">12 saat</string>
+    <string name="time_format_24">24 saat</string>
+    <string name="arabic_names">Arapça adlar</string>
+    <string name="arabic_names_summary">Her vaktin yanında, ayrı bir sütunda</string>
+    <string name="theme">Tema</string>
+    <string name="theme_system">Telefonla aynı</string>
+    <string name="theme_light">Açık</string>
+    <string name="theme_dark">Koyu</string>
+    <string name="language">Dil</string>
+    <string name="language_system">Telefonla aynı</string>
+    <string name="altitude">Rakım</string>
+    <string name="altitude_summary">%s m</string>
+    <string name="pressure">Hava basıncı</string>
+    <string name="pressure_summary">%s mbar</string>
+    <string name="temperature">Sıcaklık</string>
+    <string name="temperature_summary">%s °C</string>
+    <string name="rounding">Yuvarlama</string>
+    <string name="rounding_none">Yok</string>
+    <string name="rounding_normal">En yakın dakikaya</string>
+    <string name="rounding_special">En yakın dakikaya, Güneş aşağı yuvarlanır</string>
+    <string name="rounding_aggressive">Namazlar yukarı, Güneş aşağı yuvarlanır</string>
+    <string name="privacy_policy">Gizlilik politikası</string>
+    <string name="privacy_summary">Ezan Alarmı hiçbir zaman internete bağlanmaz ve verilerinizi paylaşmaz</string>
+    <string name="source_code">Kaynak kodu</string>
+    <string name="credits">Emeği geçenler</string>
+    <string name="credits_summary">Şehir listesi: GeoNames, CC BY 4.0</string>
+    <string name="credits_text">Şehir listesi: GeoNames (geonames.org), Creative Commons Atıf 4.0 lisansı kapsamında.\n\nNamaz vakitleri: ITL, Islamic Tools and Libraries projesi.\n\nHicri takvim: hvjavacal.</string>
+    <string name="version">Sürüm</string>
+
+    <!-- Location -->
+    <string name="use_current_location">Mevcut konumumu kullan</string>
+    <string name="search_city">Şehir ara</string>
+    <string name="enter_coordinates">Koordinatları gir</string>
+    <string name="latitude">Enlem</string>
+    <string name="longitude">Boylam</string>
+    <string name="latitude_range">-90 ile 90 arasında</string>
+    <string name="longitude_range">-180 ile 180 arasında</string>
+    <string name="location_unnamed">Konumunuz</string>
+    <string name="finding_location">Konumunuz belirleniyor…</string>
+    <string name="location_unavailable">Konumunuz bulunamadı. Pencereye yakın bir yerde tekrar deneyin veya bir şehir arayın.</string>
+    <string name="location_off">Bu telefonda konum kapalı. Konumu açın veya bir şehir arayın.</string>
+    <string name="location_permission_needed">Konum erişimine izin verin veya bunun yerine bir şehir arayın.</string>
+    <string name="no_results">Eşleşen şehir yok. Farklı bir yazımla deneyin veya koordinatları girin.</string>
+    <string name="auto_location_off">Otomatik konum güncellemeleri kapalı, bu yüzden siz değiştirene kadar bu konum kullanılır.</string>
+
+    <!-- First run -->
+    <string name="setup_greeting">Selamün aleyküm</string>
+    <string name="setup_welcome">Ezan Alarmı sizi namaza vaktinde çağırır. Tamamen telefonunuzda çalışır ve hiçbir zaman internete bağlanmaz.</string>
+    <string name="setup_where">Neredesiniz?</string>
+    <string name="setup_where_text">Namaz vakitleri ve kıble yönü konumunuza göre belirlenir.</string>
+    <string name="setup_method_title">Vakitler nasıl hesaplanır</string>
+    <string name="setup_method_text">Bulunduğunuz yerdeki camilerin çoğu bu yöntemi kullanır. Bunu istediğiniz zaman Ayarlar\'dan değiştirebilirsiniz.</string>
+    <string name="setup_asr_text">Standart vakit Şafii, Maliki ve Hanbeli mezheplerine göredir. Hanefi mezhebinde ikindi vakti daha geç girer.</string>
+    <string name="setup_alerts_title">Nasıl uyarılmak istersiniz?</string>
+    <string name="setup_alerts_text">Her namazın uyarısını daha sonra Bugün ekranındaki simgesinden değiştirebilirsiniz.</string>
+    <string name="setup_alerts_adhan">Ezan</string>
+    <string name="setup_alerts_adhan_hint">Her namaz vaktinde ezan</string>
+    <string name="setup_alerts_chime">Melodi</string>
+    <string name="setup_alerts_notification">Bildirim</string>
+    <!-- For example 1 of 3 -->
+    <string name="setup_step">%1$d / %2$d</string>
+    <string name="setup_start">Başla</string>
+
+    <!-- Widgets -->
+    <string name="widget_next_prayer">Sonraki namaz</string>
+    <string name="widget_next_prayer_description">Sonraki namaz ve vakti</string>
+    <string name="widget_today">Bugünün vakitleri</string>
+    <string name="widget_today_description">Bugünün tüm namaz vakitleri</string>
+
+    <!-- The 16 points of the compass, clockwise from north -->
+    <string-array name="compass_points">
+        <item>K</item>
+        <item>KKD</item>
+        <item>KD</item>
+        <item>DKD</item>
+        <item>D</item>
+        <item>DGD</item>
+        <item>GD</item>
+        <item>GGD</item>
+        <item>G</item>
+        <item>GGB</item>
+        <item>GB</item>
+        <item>BGB</item>
+        <item>B</item>
+        <item>BKB</item>
+        <item>KB</item>
+        <item>KKB</item>
+    </string-array>
 </resources>

@@ -1,99 +1,294 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Азан</string>
-    <string name="description">Покажет и может предупредить о времях ежедневных мусульманских молитв.</string>
-    <string name="adhan_next_time">Азан: следующий</string>
-    <string name="adhan_timetable">Азан: расписание</string>
-    <string name="previous">Предыдущий</string>
-    <string name="next">Следующий</string>
-    <string name="stop">Стоп</string>
-    <string name="help">Помощь</string>
-    <string name="help_text"><u>Часто задаваемые вопросы</u>\n\nВ: Почему время не соответствуют моему местных график?\n\nО: Есть много факторов, которые влияют на график, включая входные параметры (напр. широта, долгота, метод расчета, ...), алгоритмическая разногласия и различия точности вычисления на разных машинах.\n\nВ: Почему компас не указывает Кибла в верном направлении?\n\nО: Убедитесь, что широта и долгота установлены правильно и держите телефон вдали от электро-магнитных помех.\n\nВ: Почему моя любимая функция не включен?\n\nО: Пожалуйста, посетите вебсайт проекта на github.com/gitsponge/AdhanAlarm и помогите нам улучшить программу.</string>
-    <string name="information">Информация</string>
-    <string name="information_text">Для получения более подробной информации о программе:\ngithub.com/gitsponge/AdhanAlarm\n\nVersion: #</string>
-    <string name="privacy_policy">Политика конфиденциальности</string>
-    <string name="invalid_value">Недопустимое значение</string>
-    <string name="more_applications">Другие приложения</string>
-    <string name="today">Сегодня</string>
+    <string name="description">Показывает время ежедневных намазов и призывает на намаз.</string>
+
+    <!-- Prayers -->
     <string name="fajr">Фаджр</string>
     <string name="sunrise">Восход</string>
     <string name="dhuhr">Зухр</string>
     <string name="asr">Аср</string>
     <string name="maghrib">Магриб</string>
     <string name="ishaa">Иша</string>
-    <string name="next_fajr">Следующий Фаджр</string>
-    <!-- string name="next_time_marker">&gt;</string>
-    <string name="next_time_marker_reverse">&lt;</string-->
-    <string name="sdefault">По умолчанию</string>
-    <string name="error_playing_alert">Ошибка воспроизведения оповещение</string>
-    <string name="error_playing_custom_file">Ошибка пользовательского файла</string>
-    <string name="location_not_set">Укажите <u>место</u></string>
-    <string name="allahu_akbar">Аллаху акбар</string>
-    <string name="time_for">Время для</string>
-    <string name="latitude">Широта</string>
-    <string name="longitude">Долгота</string>
-    <string name="extreme">Экстремальный</string>
-    <string name="qibla">Кибла</string>
-    <string name="compass_disclaimer">Компас работает в портретном режиме основано на настройках месте.</string>
-    <string name="bearing_north">1) Опора севера = (1)°</string>
-    <string name="bearing_qibla">2) Опора Киблы = (1) (+/-) (2)° = (3)°</string>
-    <string name="settings">Настройки</string>
-    <string name="bismillah_on_boot_up">Бисмиллах при загрузке</string>
-    <string name="notification">Оповещение</string>
-    <string name="none">Никакой</string>
-    <string name="beep">Гудок</string>
-    <string name="recite">Азан</string>
-    <string name="custom">Пользовательский</string>
-    <string name="file_path">Путь к файлу</string>
-    <string name="file_path_example">Например, /sdcard/sound.mp3</string>
-    <string name="sinterface">Интерфейс</string>
-    <string name="advanced">Расширенный</string>
-    <string name="extra_alerts">Дополнительные сигналы</string>
-    <string name="daylight_savings">Летнее время</string>
-    <string name="lookup_gps">Авто\n(GPS)</string>
-    <string name="system_time_zone">Часовой пояс</string>
-    <!--string name="gmt">GMT</string-->
-    <string name="save">Сохранить</string>
-    <string name="reset">Сбросить</string>
-    <string name="calculation">Расчет</string>
-    <string name="egypt_survey">Египетская ген. админист. по обслед.</string>
-    <string name="karachi_shaf">Шафиитский - Унив. Карачи</string>
-    <string name="karachi_hanaf">Ханифитский - Унив. Карачи</string>
-    <string name="north_america">Исламское общество Сев. Амер.</string>
-    <string name="muslim_league">Всемирная мусульманская лига</string>
-    <string name="umm_alqurra">Умм-Аль-Курра, Сауд. Аравия</string>
-    <string name="fixed_ishaa">Фикс. инт-л для Иша (90 мин.)</string>
-    <string name="time_format">Формат времени</string>
-    <string name="clock_24_hour">24-часовой</string>
-    <string name="altitude">Высота над уровнем моря</string>
-    <string name="pressure">Давление</string>
-    <string name="temperature">Температура</string>
-    <!--string name="degrees_celsius">°C</string-->
-    <string name="rounding">Округление</string>
-    <string name="normal">Нормальный</string>
-    <string name="special">Специальный</string>
-    <string name="aggressive">Агрессивный</string>
-    <string name="offset">Офсет</string>
-    <string name="minutes">минут</string>
-    <string name="language">Язык</string>
-    <string name="theme">Шаблон</string>
-    <string name="brown">Коричневый</string>
-    <string name="dialog">Диалоговый</string>
-    <string name="green">Зеленый</string>
-    <string name="light">Светлый</string>
+    <string name="fajr_tomorrow">Фаджр завтра</string>
+    <string name="fajr_ends">Конец Фаджра</string>
+
+    <!-- Islamic months -->
     <string name="month0">Мухаррам</string>
     <string name="month1">Сафар</string>
-    <string name="month2">Рабии`у ль-авваль</string>
-    <string name="month3">Рабии`у с-саании</string>
-    <string name="month4">Джумаада ль-ууля</string>
-    <string name="month5">Джумаада ль-аахыр</string>
-    <string name="month6">Ра́джаб</string>
+    <string name="month2">Раби аль-авваль</string>
+    <string name="month3">Раби ас-сани</string>
+    <string name="month4">Джумада аль-уля</string>
+    <string name="month5">Джумада ас-сани</string>
+    <string name="month6">Раджаб</string>
     <string name="month7">Шаабан</string>
     <string name="month8">Рамадан</string>
     <string name="month9">Шавваль</string>
-    <string name="month10">Зуль-ка`да</string>
-    <string name="month11">Зульхиджа</string>
-    <string name="anno_hegirae">Хиджры</string>
-    <string name="channel_reminder">Время намаза</string>
+    <string name="month10">Зуль-када</string>
+    <string name="month11">Зуль-хиджа</string>
+    <!-- Day, month and year, for example 16 Jumādā al-Ūlā 1448 -->
+    <string name="hijri_date">%1$s %2$s %3$s</string>
+
+    <!-- Shared -->
+    <string name="today">Сегодня</string>
+    <string name="qibla">Кибла</string>
+    <string name="settings">Настройки</string>
+    <string name="stop">Остановить</string>
+    <string name="close">Закрыть</string>
+    <string name="back">Назад</string>
+    <string name="next">Далее</string>
+    <string name="done">Готово</string>
+    <string name="reset">Сбросить</string>
+    <string name="save">Сохранить</string>
+    <string name="change">Изменить</string>
+    <string name="open_settings">Открыть настройки</string>
+    <string name="invalid_value">Недопустимое значение</string>
+    <!-- Two parts side by side, for example Wed 28 October · 16 Jumādā al-Ūlā 1448 -->
+    <string name="date_line">%1$s · %2$s</string>
+    <string name="name_and_time">%1$s %2$s</string>
+    <string name="name_with_arabic">%1$s · %2$s</string>
+    <string name="list_separator">",\u0020"</string>
+    <string name="place_and_coordinates">%1$s · %2$s</string>
+    <string name="coordinates">%1$s, %2$s</string>
+    <string name="latitude_north">%s° с. ш.</string>
+    <string name="latitude_south">%s° ю. ш.</string>
+    <string name="longitude_east">%s° в. д.</string>
+    <string name="longitude_west">%s° з. д.</string>
+    <string name="place_note_city">Ближайший город по встроенной карте</string>
+    <string name="place_note_none">Нет городов в радиусе 20 км</string>
+
+    <!-- Today -->
+    <string name="next_prayer">Следующий намаз</string>
+    <string name="now_badge">Сейчас</string>
+    <string name="countdown_now">сейчас</string>
+    <string name="countdown_minutes">через %d мин</string>
+    <string name="countdown_hours_minutes">через %1$d ч %2$d мин</string>
+    <string name="location_change">Местоположение: %s. Изменить местоположение</string>
+    <string name="alert_open">%1$s, оповещение: %2$s. Открыть настройки оповещения</string>
+    <string name="extreme_note">* Рассчитано приблизительно: в это время года солнце здесь не опускается достаточно низко.</string>
+
+    <!-- How a prayer calls you -->
+    <string name="alert_off">Отключено</string>
+    <string name="alert_notification">Уведомление</string>
+    <string name="alert_chime">Сигнал</string>
+    <string name="alert_adhan">Азан</string>
+    <string name="alert_off_hint">Без оповещения</string>
+    <string name="alert_notification_hint">Звук уведомлений телефона</string>
+    <string name="alert_chime_hint">Короткий мягкий звук</string>
+    <string name="alert_adhan_hint">Призыв к намазу</string>
+    <string name="alert_adhan_fajr_hint">Призыв к намазу Фаджр</string>
+    <string name="adhan_sound">Звук азана</string>
+    <string name="fajr_adhan_sound">Звук азана для Фаджра</string>
+    <string name="sound_built_in">Встроенный азан</string>
+    <string name="sound_built_in_fajr">Встроенный азан для Фаджра</string>
+    <string name="sound_shared">%s — для всех намазов, кроме Фаджра</string>
+    <string name="sound_missing">Звук, которого больше нет на телефоне</string>
+    <string name="sound_unavailable">Не удаётся воспроизвести выбранный звук, поэтому вместо него звучит встроенный азан.</string>
+    <string name="choose_sound">Выбрать звук на телефоне</string>
+    <string name="play_preview">Прослушать</string>
+    <string name="stop_preview">Остановить прослушивание</string>
+    <string name="remind_before">Напомнить заранее</string>
+    <string name="remind_before_sunrise">Напомнить до конца Фаджра</string>
+    <string name="remind_before_hint">Отдельное уведомление заранее, независимо от оповещения выше</string>
+    <string name="reminder_off">Нет</string>
+    <string name="reminder_minutes">%d мин</string>
+    <string name="adjust_time">Поправка времени</string>
+    <string name="adjust_time_hint">Чтобы время совпадало с расписанием вашей мечети</string>
+    <string name="adjust_none">Нет</string>
+    <string name="adjust_minutes">%s мин</string>
+    <string name="one_minute_earlier">На минуту раньше</string>
+    <string name="one_minute_later">На минуту позже</string>
+
+    <!-- Qibla -->
+    <string name="qibla_facing">Лицом к кибле</string>
+    <string name="qibla_turn_right">Поверните на %d° вправо</string>
+    <string name="qibla_turn_left">Поверните на %d° влево</string>
+    <string name="qibla_no_compass">В этом телефоне нет компаса</string>
+    <!-- For example 119° ESE from true north -->
+    <string name="qibla_direction">%1$s° %2$s от истинного севера</string>
+    <string name="makkah">Мекка</string>
+    <string name="makkah_distance">%s км отсюда</string>
+    <string name="compass">Компас</string>
+    <string name="accuracy_good">Точность: хорошая</string>
+    <string name="accuracy_fair">Точность: средняя</string>
+    <string name="accuracy_low">Низкая точность компаса. Чтобы откалибровать его, поводите телефоном, описывая в воздухе восьмёрку.</string>
+    <string name="qibla_hint">Держите телефон горизонтально, подальше от металла и магнитов.</string>
+    <string name="compass_description">Компас. Телефон направлен на %1$d° от истинного севера, кибла — на %2$d°.</string>
+    <string name="compass_n">С</string>
+    <string name="compass_e">В</string>
+    <string name="compass_s">Ю</string>
+    <string name="compass_w">З</string>
+
+    <!-- Notifications -->
+    <string name="channel_reminder">Время намазов</string>
     <string name="channel_adhan">Азан</string>
+    <string name="channel_before">Перед намазом</string>
+    <string name="notification_prayer">Настало время намаза %s</string>
+    <string name="notification_sunrise">Время Фаджра закончилось</string>
+    <string name="notification_before">%1$s через %2$d мин</string>
+    <string name="notification_before_sunrise">Конец Фаджра через %d мин</string>
+    <string name="notification_at">В %s</string>
+
+    <!-- Settings -->
+    <string name="settings_location">Местоположение</string>
+    <string name="settings_prayer_times">Время намазов</string>
+    <string name="settings_alerts">Оповещения</string>
+    <string name="settings_display">Отображение</string>
+    <string name="settings_about">О приложении</string>
+    <string name="location">Местоположение</string>
+    <string name="location_summary">%1$s · %2$s</string>
+    <string name="auto_location">Обновлять автоматически</string>
+    <string name="auto_location_summary">Использует местоположение телефона при открытии приложения</string>
+    <string name="method">Метод расчёта</string>
+    <string name="method_summary">%1$s · %2$s</string>
+    <string name="method_angles">Фаджр %1$s°, Иша %2$s°</string>
+    <string name="method_angles_interval">Фаджр %1$s°, Иша через %2$d мин после Магриба</string>
+    <string name="method_mwl">Всемирная исламская лига</string>
+    <string name="method_isna">Исламское общество Северной Америки</string>
+    <string name="method_egypt">Египетское главное управление геодезии</string>
+    <string name="method_karachi">Университет исламских наук, Карачи</string>
+    <string name="method_ummalqura">Умм аль-Кура, Мекка</string>
+    <string name="method_gulf">Страны Залива</string>
+    <string name="method_kuwait">Кувейт</string>
+    <string name="method_qatar">Катар</string>
+    <string name="method_singapore">Сингапур, Малайзия и Индонезия</string>
+    <string name="method_diyanet">Диянет, Турция</string>
+    <string name="method_fixedisha">Иша ровно через 90 мин после Магриба</string>
+    <string name="asr_standard">Стандартный: шафиитский, маликитский, ханбалитский</string>
+    <string name="asr_standard_short">Стандартный</string>
+    <string name="asr_hanafi">Ханафитский</string>
+    <string name="high_latitude">Правило для высоких широт</string>
+    <string name="high_latitude_summary">%s · для намазов, отмеченных *</string>
+    <string name="high_latitude_seventh">Седьмая часть ночи</string>
+    <string name="high_latitude_good_day">Ближайший подходящий день</string>
+    <string name="high_latitude_latitude">Ближайшая широта (48,5°)</string>
+    <string name="adjust_times">Поправки времени</string>
+    <string name="adjust_times_none">Без поправок</string>
+    <string name="hijri_date_title">Дата по хиджре</string>
+    <string name="hijri_summary">%1$s · %2$s</string>
+    <string name="hijri_two_earlier">На два дня раньше</string>
+    <string name="hijri_one_earlier">На день раньше</string>
+    <string name="hijri_as_calculated">По расчёту</string>
+    <string name="hijri_one_later">На день позже</string>
+    <string name="hijri_two_later">На два дня позже</string>
+    <string name="prayer_alerts">Оповещения о намазах</string>
+    <string name="alert_group">%1$s: %2$s</string>
+    <string name="short_adhan">Короткий азан</string>
+    <string name="short_adhan_summary">Только начальное «Аллаху акбар»</string>
+    <string name="play_on_silent">Звучать в режиме «Без звука» или «Вибрация»</string>
+    <string name="play_on_silent_summary">Но не во время звонка</string>
+    <string name="bismillah_on_boot_up">Бисмилля при включении телефона</string>
+    <string name="bismillah_summary">Звучит, когда вы разблокируете телефон после перезагрузки</string>
+    <string name="test_adhan">Проверить азан</string>
+    <string name="test_adhan_summary">Включает азан сейчас, чтобы вы могли проверить громкость</string>
+    <string name="test_adhan_playing">Сейчас звучит. Нажмите, чтобы остановить</string>
+    <string name="alarm_check">Проверка оповещений</string>
+    <string name="alarm_check_ok">Оповещения сработают вовремя</string>
+    <plurals name="alarm_check_issues">
+        <item quantity="one">Нужно проверить %d настройку</item>
+        <item quantity="few">Нужно проверить %d настройки</item>
+        <item quantity="many">Нужно проверить %d настроек</item>
+        <item quantity="other">Нужно проверить %d настройки</item>
+    </plurals>
+    <string name="check_notifications">Уведомления</string>
+    <string name="check_allowed">Разрешены</string>
+    <string name="check_notifications_off">Отключены, поэтому оповещения о намазах не появятся</string>
+    <string name="check_exact">Будильники и напоминания</string>
+    <string name="check_exact_off">Не разрешены, поэтому оповещения могут опаздывать на несколько минут</string>
+    <string name="check_volume">Громкость будильника</string>
+    <string name="check_volume_ok">Включена. Азан и сигнал звучат с этой громкостью.</string>
+    <string name="check_volume_off">Без звука. Азан и сигнал звучат с громкостью будильника.</string>
+    <string name="check_battery">Батарея</string>
+    <string name="check_battery_ok">Без ограничений</string>
+    <string name="check_battery_off">Оптимизация включена. Некоторые телефоны отключают оповещения, чтобы экономить заряд.</string>
+    <string name="time_format">Формат времени</string>
+    <string name="time_format_system">Как на телефоне</string>
+    <string name="time_format_12">12-часовой</string>
+    <string name="time_format_24">24-часовой</string>
+    <string name="arabic_names">Арабские названия</string>
+    <string name="arabic_names_summary">В отдельном столбце рядом с каждым намазом</string>
+    <string name="theme">Тема</string>
+    <string name="theme_system">Как на телефоне</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Тёмная</string>
+    <string name="language">Язык</string>
+    <string name="language_system">Как на телефоне</string>
+    <string name="altitude">Высота</string>
+    <string name="altitude_summary">%s м</string>
+    <string name="pressure">Атмосферное давление</string>
+    <string name="pressure_summary">%s мбар</string>
+    <string name="temperature">Температура</string>
+    <string name="temperature_summary">%s °C</string>
+    <string name="rounding">Округление</string>
+    <string name="rounding_none">Без округления</string>
+    <string name="rounding_normal">До ближайшей минуты</string>
+    <string name="rounding_special">До ближайшей минуты, восход — в меньшую сторону</string>
+    <string name="rounding_aggressive">Намазы — в большую сторону, восход — в меньшую</string>
+    <string name="privacy_policy">Политика конфиденциальности</string>
+    <string name="privacy_summary">Приложение никогда не выходит в интернет и не передаёт ваши данные</string>
+    <string name="source_code">Исходный код</string>
+    <string name="credits">Благодарности</string>
+    <string name="credits_summary">Список городов: GeoNames, CC BY 4.0</string>
+    <string name="credits_text">Список городов: GeoNames (geonames.org), на условиях лицензии Creative Commons Attribution 4.0.\n\nВремя намазов: ITL, проект Islamic Tools and Libraries.\n\nКалендарь хиджры: hvjavacal.</string>
+    <string name="version">Версия</string>
+
+    <!-- Location -->
+    <string name="use_current_location">Использовать текущее местоположение</string>
+    <string name="search_city">Найти город</string>
+    <string name="enter_coordinates">Ввести координаты</string>
+    <string name="latitude">Широта</string>
+    <string name="longitude">Долгота</string>
+    <string name="latitude_range">От -90 до 90</string>
+    <string name="longitude_range">От -180 до 180</string>
+    <string name="location_unnamed">Ваше местоположение</string>
+    <string name="finding_location">Определение местоположения…</string>
+    <string name="location_unavailable">Не удалось определить местоположение. Попробуйте ещё раз у окна или найдите город через поиск.</string>
+    <string name="location_off">Определение местоположения на телефоне отключено. Включите его или найдите город через поиск.</string>
+    <string name="location_permission_needed">Разрешите доступ к местоположению или найдите город через поиск.</string>
+    <string name="no_results">Город не найден. Попробуйте другое написание или введите координаты.</string>
+    <string name="auto_location_off">Автоматическое обновление местоположения отключено, поэтому это место сохранится, пока вы его не измените.</string>
+
+    <!-- First run -->
+    <string name="setup_greeting">Ассаляму алейкум</string>
+    <string name="setup_welcome">Приложение «Азан» вовремя призовёт вас на намаз. Оно работает полностью на вашем телефоне и никогда не выходит в интернет.</string>
+    <string name="setup_where">Где вы находитесь?</string>
+    <string name="setup_where_text">От вашего местоположения зависят время намазов и направление на киблу.</string>
+    <string name="setup_method_title">Как рассчитывается время</string>
+    <string name="setup_method_text">Большинство мечетей в вашем регионе используют этот метод. Его можно изменить в любое время в настройках.</string>
+    <string name="setup_asr_text">Стандартный метод принят у шафиитов, маликитов и ханбалитов. У ханафитов Аср наступает позже.</string>
+    <string name="setup_alerts_title">Как вас оповещать?</string>
+    <string name="setup_alerts_text">Позже это можно изменить для каждого намаза, нажав на его значок на экране «Сегодня».</string>
+    <string name="setup_alerts_adhan">Азан</string>
+    <string name="setup_alerts_adhan_hint">Призыв к каждому намазу</string>
+    <string name="setup_alerts_chime">Сигнал</string>
+    <string name="setup_alerts_notification">Уведомление</string>
+    <!-- For example 1 of 3 -->
+    <string name="setup_step">%1$d из %2$d</string>
+    <string name="setup_start">Начать</string>
+
+    <!-- Widgets -->
+    <string name="widget_next_prayer">Следующий намаз</string>
+    <string name="widget_next_prayer_description">Следующий намаз и его время</string>
+    <string name="widget_today">Расписание на сегодня</string>
+    <string name="widget_today_description">Время всех намазов на сегодня</string>
+
+    <!-- The 16 points of the compass, clockwise from north -->
+    <string-array name="compass_points">
+        <item>С</item>
+        <item>ССВ</item>
+        <item>СВ</item>
+        <item>ВСВ</item>
+        <item>В</item>
+        <item>ВЮВ</item>
+        <item>ЮВ</item>
+        <item>ЮЮВ</item>
+        <item>Ю</item>
+        <item>ЮЮЗ</item>
+        <item>ЮЗ</item>
+        <item>ЗЮЗ</item>
+        <item>З</item>
+        <item>ЗСЗ</item>
+        <item>СЗ</item>
+        <item>ССЗ</item>
+    </string-array>
 </resources>

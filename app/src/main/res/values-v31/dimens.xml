@@ -1,0 +1,4 @@
+<resources>
+    <!-- The launcher's own widget corners -->
+    <dimen name="widget_radius">@android:dimen/system_app_widget_background_radius</dimen>
+</resources>

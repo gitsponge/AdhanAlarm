@@ -22,6 +22,9 @@ public class LocationHandler {
             Manifest.permission.ACCESS_COARSE_LOCATION
     };
 
+    /** A fix this old still counts as where the phone is now */
+    private static final long RECENT_MS = 2 * 60 * 1000;
+
     private Context mContext;
     private List<LocationListener> mCallbackList;
 
@@ -42,7 +45,24 @@ public class LocationHandler {
         return false;
     }
 
+    /**
+     * Location services can be off even with the permission granted
+     */
+    public static boolean isEnabled(Context context) {
+        return LocationManagerCompat.isLocationEnabled((LocationManager) context.getSystemService(Context.LOCATION_SERVICE));
+    }
+
+    /**
+     * The last fix any app got is good enough to keep the times right
+     */
     public void update() {
+        update(false);
+    }
+
+    /**
+     * @param recent When asked for where the phone is now, an old fix is only used if no new one comes
+     */
+    public void update(boolean recent) {
         boolean isFineGranted = PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION);
         boolean isCoarseGranted = PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION);
         if (!isFineGranted && !isCoarseGranted) {
@@ -62,15 +82,19 @@ public class LocationHandler {
                 }
             }
             String provider = getFreshFixProvider(providers);
-            if (currentLocation != null) {
-                notifyListeners(currentLocation);
+            final Location lastLocation = currentLocation;
+            boolean isRecent = lastLocation != null && System.currentTimeMillis() - lastLocation.getTime() < RECENT_MS;
+            if (lastLocation != null && (!recent || isRecent || provider == null)) {
+                notifyListeners(lastLocation);
             } else if (provider != null) {
-                // Nothing cached on the phone yet, so ask for a single fresh fix
+                // Ask for a single fresh fix
                 LocationManagerCompat.getCurrentLocation(locationManager, provider, new CancellationSignal(), ContextCompat.getMainExecutor(mContext), new Consumer<Location>() {
                     @Override
                     public void accept(Location location) {
                         if (location != null) {
                             notifyListeners(location);
+                        } else if (lastLocation != null) {
+                            notifyListeners(lastLocation);
                         }
                     }
                 });
@@ -87,7 +111,11 @@ public class LocationHandler {
         if (providers.contains(LocationManager.NETWORK_PROVIDER)) {
             return LocationManager.NETWORK_PROVIDER;
         }
-        return providers.isEmpty() ? null : providers.get(0);
+        if (providers.contains(LocationManager.GPS_PROVIDER)) {
+            return LocationManager.GPS_PROVIDER;
+        }
+        return null; // Only the passive provider, which waits for other apps
+
     }
 
     private void notifyListeners(Location currentLocation) {

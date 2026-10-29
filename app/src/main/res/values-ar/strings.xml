@@ -1,86 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">برنامج المنبه للأذان</string>
-    <string name="description">برنامج لعرض أوقات الصلاة مع امكانية التنبية اليومي لكل صلاة.</string>
-    <string name="adhan_next_time">الأذان: الوقت القادم</string>
-    <string name="adhan_timetable">الأذان: أوقات الصلاة</string>
-    <string name="previous">السابق</string>
-    <string name="next">التالي</string>
-    <string name="stop">ايقاف</string>
-    <string name="help">مساعدة</string>
-    <string name="help_text"><u>الأسئلة الشائعة</u>\n\nس:لماذا أوقات الصلاة غير مطابقة لأوقات الصلاة في مدينتي؟\n\nج: هناك عدة عوامل تؤثر على أوقات الصلاة على سبيل المثال المعلومات المدخلة (طريقة الحساب , خط العرض , خط الطول , ...),اختلاف الخوارزميات,الدقة التي قد تختلف من جهاز لآخر.\n\nس:لماذا البوصلة لا تدل على الاتجاة الصحيح للقبلة؟\n\nج:تأكد انك قمت بوضع خط الطول وخط العرض الصحيح لمدينتك وان جهازك بعيد عن أي تداخل كهرومغناطيسي.\n\nس: لماذا المميزات المفضلة لدي ليست مضافة على هذا البرنامج؟\n\nج: فضلا قم بزيارة صفحة مشروع البرنامج على github.com/gitsponge/AdhanAlarm\nوساعدنا على تطويره.</string>
-    <string name="information">حول البرنامج</string>
-    <string name="information_text">لمزيد من المعلومات حول البرنامج قم بزيارة:\ngithub.com/gitsponge/AdhanAlarm\n\nVersion: #</string>
-    <string name="privacy_policy">سياسة الخصوصية</string>
-    <string name="invalid_value">قيمة غير صالحة</string>
-    <string name="more_applications">برامج اخرى</string>
-    <string name="today">اليوم</string>
+    <string name="app_name">منبّه الأذان</string>
+    <string name="description">يعرض أوقات الصلاة اليومية ويدعوك إلى الصلاة.</string>
+
+    <!-- Prayers -->
     <string name="fajr">الفجر</string>
     <string name="sunrise">الشروق</string>
     <string name="dhuhr">الظهر</string>
     <string name="asr">العصر</string>
     <string name="maghrib">المغرب</string>
     <string name="ishaa">العشاء</string>
-    <string name="next_fajr">الفجر التالي</string>
-    <string name="next_time_marker">&gt;</string>
-    <string name="next_time_marker_reverse">&lt;</string>
-    <string name="sdefault">الافتراضي</string>
-    <string name="error_playing_alert">خطأ في تشغيل التنبيه</string>
-    <string name="error_playing_custom_file">خطأ في الملف المحدد</string>
-    <string name="location_not_set"><u>لم يتم ضبط الموقع</u>\n\nفضلا قم بتفعيل نظام الملاحة(gps) أو قم بوضع احداثية موقعك مباشرة عن طريق الاعدادات.</string>
-    <string name="allahu_akbar">الله أكبر</string>
-    <string name="time_for"> الوقت لـ</string>
-    <string name="latitude">خط العرض</string>
-    <string name="longitude">خط الطول</string>
-    <string name="extreme">Extreme</string>
-    <string name="qibla">القبلة</string>
-    <string name="compass_disclaimer">البوصلة تعمل في الوضع الطولي للجهاز.</string>
-    <string name="bearing_north">1) اتجاة الشمال = (1)°</string>
-    <string name="bearing_qibla">2) اتجاة القبلة = (1) (+/-) (2)° = (3)°</string>
-    <string name="settings">اعدادات</string>
-    <string name="bismillah_on_boot_up">تشغيل البسملة عند الاقلاع</string>
-    <string name="notification">التنبيهات</string>
-    <string name="none">بدون</string>
-    <string name="beep">صوت بيب</string>
-    <string name="recite">تلاوة</string>
-    <string name="custom">مخصص</string>
-    <string name="file_path">مسار الملف</string>
-    <string name="file_path_example">مسار الملف مثال: /sd/sound.mp3</string>
-    <string name="sinterface">الواجهة</string>
-    <string name="advanced">خيارات متقدمة</string>
-    <string name="extra_alerts">تنبيهات اضافية</string>
-    <string name="daylight_savings">التوقيت الصيفي</string>
-    <string name="lookup_gps">البحث بـ\nGPS</string>
-    <string name="system_time_zone">نظام المنطقة الزمني</string>
-    <string name="gmt">GMT</string>
-    <string name="save">حفظ</string>
-    <string name="reset">استعادة</string>
-    <string name="calculation">طريقة الحساب</string>
-    <string name="egypt_survey">الهيئة العامة المصرية للمساحة</string>
-    <string name="karachi_shaf">شافعي - جامعة العلوم الإسلامية بكراتشي </string>
-    <string name="karachi_hanaf">حنفي - جامعة العلوم الإسلامية بكراتشي </string>
-    <string name="north_america">أمريكا الشمالية - اسنا</string>
-    <string name="muslim_league">رابطة العالم الاسلامي</string>
-    <string name="umm_alqurra">تقويم ام القرى</string>
-    <string name="fixed_ishaa">فارق العشاء الزمني الثابت (90 دقيقة)</string>
-    <string name="time_format">نظام الوقت</string>
-    <string name="clock_24_hour">نظام 24 ساعة</string>
-    <string name="altitude">Altitude</string>
-    <string name="pressure">الضغط</string>
-    <string name="temperature">درجة الحرارة</string>
-    <string name="degrees_celsius">°C</string>
-    <string name="rounding">Rounding</string>
-    <string name="normal">Normal</string>
-    <string name="special">Special</string>
-    <string name="aggressive">Aggressive</string>
-    <string name="offset">أوفسيت</string>
-    <string name="minutes">دقائق</string>
-    <string name="language">اللغة</string>
-    <string name="theme">القالب</string>
-    <string name="brown">بني</string>
-    <string name="dialog">مربع حوار</string>
-    <string name="green">أخضر</string>
-    <string name="light">خفيف</string>
+    <string name="fajr_tomorrow">فجر الغد</string>
+    <string name="fajr_ends">نهاية الفجر</string>
+
+    <!-- Islamic months -->
     <string name="month0">محرم</string>
     <string name="month1">صفر</string>
     <string name="month2">ربيع الأول</string>
@@ -93,7 +26,271 @@
     <string name="month9">شوال</string>
     <string name="month10">ذو القعدة</string>
     <string name="month11">ذو الحجة</string>
-    <string name="anno_hegirae">هـ</string>
+    <!-- Day, month and year, for example 16 Jumādā al-Ūlā 1448 -->
+    <string name="hijri_date">%1$s %2$s %3$s هـ</string>
+
+    <!-- Shared -->
+    <string name="today">اليوم</string>
+    <string name="qibla">القبلة</string>
+    <string name="settings">الإعدادات</string>
+    <string name="stop">إيقاف</string>
+    <string name="close">إغلاق</string>
+    <string name="back">رجوع</string>
+    <string name="next">التالي</string>
+    <string name="done">تم</string>
+    <string name="reset">إعادة الضبط</string>
+    <string name="save">حفظ</string>
+    <string name="change">تغيير</string>
+    <string name="open_settings">فتح الإعدادات</string>
+    <string name="invalid_value">قيمة غير صالحة</string>
+    <!-- Two parts side by side, for example Wed 28 October · 16 Jumādā al-Ūlā 1448 -->
+    <string name="date_line">%1$s · %2$s</string>
+    <string name="name_and_time">%1$s %2$s</string>
+    <string name="name_with_arabic">%1$s · %2$s</string>
+    <string name="list_separator">"،\u0020"</string>
+    <string name="place_and_coordinates">%1$s · %2$s</string>
+    <string name="coordinates">%1$s، %2$s</string>
+    <string name="latitude_north">%s° ش</string>
+    <string name="latitude_south">%s° ج</string>
+    <string name="longitude_east">%s° ق</string>
+    <string name="longitude_west">%s° غ</string>
+    <string name="place_note_city">أقرب مدينة حسب بيانات الخرائط على هاتفك</string>
+    <string name="place_note_none">لا توجد مدينة في نطاق ٢٠ كم</string>
+
+    <!-- Today -->
+    <string name="next_prayer">الصلاة التالية</string>
+    <string name="now_badge">الآن</string>
+    <string name="countdown_now">الآن</string>
+    <string name="countdown_minutes">بعد %d د</string>
+    <string name="countdown_hours_minutes">بعد %1$d س و%2$d د</string>
+    <string name="location_change">الموقع: %s. تغيير الموقع</string>
+    <string name="alert_open">تنبيه %1$s: %2$s. فتح خيارات التنبيه</string>
+    <string name="extreme_note">* أوقات تقديرية، لأن الشمس لا تنخفض هنا بما يكفي في هذا الوقت من السنة.</string>
+
+    <!-- How a prayer calls you -->
+    <string name="alert_off">إيقاف</string>
+    <string name="alert_notification">إشعار</string>
+    <string name="alert_chime">نغمة</string>
+    <string name="alert_adhan">أذان</string>
+    <string name="alert_off_hint">بدون تنبيه</string>
+    <string name="alert_notification_hint">صوت الإشعارات في هاتفك</string>
+    <string name="alert_chime_hint">نغمة قصيرة هادئة</string>
+    <string name="alert_adhan_hint">النداء إلى الصلاة</string>
+    <string name="alert_adhan_fajr_hint">النداء إلى صلاة الفجر</string>
+    <string name="adhan_sound">صوت الأذان</string>
+    <string name="fajr_adhan_sound">صوت أذان الفجر</string>
+    <string name="sound_built_in">الأذان المدمج</string>
+    <string name="sound_built_in_fajr">أذان الفجر المدمج</string>
+    <string name="sound_shared">%s، لجميع الصلوات ما عدا الفجر</string>
+    <string name="sound_missing">صوت لم يعد موجودًا على هذا الهاتف</string>
+    <string name="sound_unavailable">يتعذّر تشغيل هذا الصوت، لذا يُشغَّل الأذان المدمج بدلًا منه.</string>
+    <string name="choose_sound">اختيار صوت من هاتفك</string>
+    <string name="play_preview">تشغيل معاينة</string>
+    <string name="stop_preview">إيقاف المعاينة</string>
+    <string name="remind_before">التذكير قبل الصلاة</string>
+    <string name="remind_before_sunrise">التذكير قبل نهاية الفجر</string>
+    <string name="remind_before_hint">إشعار مسبق، مستقل عن التنبيه أعلاه</string>
+    <string name="reminder_off">إيقاف</string>
+    <string name="reminder_minutes">%d د</string>
+    <string name="adjust_time">تعديل الوقت</string>
+    <string name="adjust_time_hint">لمطابقة جدول مواقيت مسجدك</string>
+    <string name="adjust_none">بدون</string>
+    <string name="adjust_minutes">%s د</string>
+    <string name="one_minute_earlier">تقديم دقيقة واحدة</string>
+    <string name="one_minute_later">تأخير دقيقة واحدة</string>
+
+    <!-- Qibla -->
+    <string name="qibla_facing">باتجاه القبلة</string>
+    <string name="qibla_turn_right">استدر %d° يمينًا</string>
+    <string name="qibla_turn_left">استدر %d° يسارًا</string>
+    <string name="qibla_no_compass">لا يحتوي هذا الهاتف على بوصلة</string>
+    <!-- For example 119° ESE from true north -->
+    <string name="qibla_direction">%1$s° %2$s من الشمال الحقيقي</string>
+    <string name="makkah">مكة المكرمة</string>
+    <string name="makkah_distance">على بُعد %s كم</string>
+    <string name="compass">البوصلة</string>
+    <string name="accuracy_good">الدقة جيدة</string>
+    <string name="accuracy_fair">الدقة متوسطة</string>
+    <string name="accuracy_low">دقة البوصلة منخفضة. حرّك هاتفك على شكل الرقم ٨ لمعايرتها.</string>
+    <string name="qibla_hint">أمسك الهاتف أفقيًا، بعيدًا عن المعادن والمغناطيس.</string>
+    <string name="compass_description">البوصلة. يشير الهاتف إلى %1$d° من الشمال الحقيقي، والقبلة عند %2$d°.</string>
+    <string name="compass_n">ش</string>
+    <string name="compass_e">ق</string>
+    <string name="compass_s">ج</string>
+    <string name="compass_w">غ</string>
+
+    <!-- Notifications -->
     <string name="channel_reminder">أوقات الصلاة</string>
     <string name="channel_adhan">الأذان</string>
+    <string name="channel_before">التذكير قبل الصلاة</string>
+    <string name="notification_prayer">حان وقت صلاة %s</string>
+    <string name="notification_sunrise">انتهى وقت الفجر</string>
+    <string name="notification_before">%1$s بعد %2$d د</string>
+    <string name="notification_before_sunrise">ينتهي الفجر بعد %d د</string>
+    <string name="notification_at">الساعة %s</string>
+
+    <!-- Settings -->
+    <string name="settings_location">الموقع</string>
+    <string name="settings_prayer_times">أوقات الصلاة</string>
+    <string name="settings_alerts">التنبيهات</string>
+    <string name="settings_display">العرض</string>
+    <string name="settings_about">حول التطبيق</string>
+    <string name="location">الموقع</string>
+    <string name="location_summary">%1$s · %2$s</string>
+    <string name="auto_location">التحديث تلقائيًا</string>
+    <string name="auto_location_summary">يستخدم موقع هاتفك عند فتح التطبيق</string>
+    <string name="method">طريقة الحساب</string>
+    <string name="method_summary">%1$s · %2$s</string>
+    <string name="method_angles">الفجر %1$s°، العشاء %2$s°</string>
+    <string name="method_angles_interval">الفجر %1$s°، العشاء بعد المغرب بـ%2$d دقيقة</string>
+    <string name="method_mwl">رابطة العالم الإسلامي</string>
+    <string name="method_isna">الجمعية الإسلامية لأمريكا الشمالية</string>
+    <string name="method_egypt">الهيئة المصرية العامة للمساحة</string>
+    <string name="method_karachi">جامعة العلوم الإسلامية بكراتشي</string>
+    <string name="method_ummalqura">أم القرى، مكة المكرمة</string>
+    <string name="method_gulf">منطقة الخليج</string>
+    <string name="method_kuwait">الكويت</string>
+    <string name="method_qatar">قطر</string>
+    <string name="method_singapore">سنغافورة وماليزيا وإندونيسيا</string>
+    <string name="method_diyanet">رئاسة الشؤون الدينية التركية</string>
+    <string name="method_fixedisha">وقت العشاء ثابت، بعد المغرب بـ٩٠ دقيقة</string>
+    <string name="asr_standard">الجمهور: الشافعي، المالكي، الحنبلي</string>
+    <string name="asr_standard_short">الجمهور</string>
+    <string name="asr_hanafi">الحنفي</string>
+    <string name="high_latitude">قاعدة خطوط العرض العليا</string>
+    <string name="high_latitude_summary">%s · للأوقات المميّزة بعلامة *</string>
+    <string name="high_latitude_seventh">سُبع الليل</string>
+    <string name="high_latitude_good_day">أقرب يوم معتاد</string>
+    <string name="high_latitude_latitude">أقرب خط عرض، ٤٨٫٥°</string>
+    <string name="adjust_times">تعديل الأوقات</string>
+    <string name="adjust_times_none">لا توجد تعديلات</string>
+    <string name="hijri_date_title">التاريخ الهجري</string>
+    <string name="hijri_summary">%1$s · %2$s</string>
+    <string name="hijri_two_earlier">إنقاص يومين</string>
+    <string name="hijri_one_earlier">إنقاص يوم واحد</string>
+    <string name="hijri_as_calculated">كما هو محسوب</string>
+    <string name="hijri_one_later">إضافة يوم واحد</string>
+    <string name="hijri_two_later">إضافة يومين</string>
+    <string name="prayer_alerts">تنبيهات الصلاة</string>
+    <string name="alert_group">%1$s: %2$s</string>
+    <string name="short_adhan">أذان مختصر</string>
+    <string name="short_adhan_summary">«الله أكبر» في مطلع الأذان فقط</string>
+    <string name="play_on_silent">التشغيل في وضع الصامت أو الاهتزاز</string>
+    <string name="play_on_silent_summary">لكن ليس أثناء المكالمات أبدًا</string>
+    <string name="bismillah_on_boot_up">البسملة عند تشغيل الهاتف</string>
+    <string name="bismillah_summary">تُشغَّل عند فتح القفل بعد إعادة التشغيل</string>
+    <string name="test_adhan">تجربة الأذان</string>
+    <string name="test_adhan_summary">يُشغَّل الآن لتتحقّق من مستوى الصوت</string>
+    <string name="test_adhan_playing">قيد التشغيل. انقر للإيقاف</string>
+    <string name="alarm_check">فحص المنبّهات</string>
+    <string name="alarm_check_ok">يمكن للمنبّهات أن ترنّ في وقتها</string>
+    <plurals name="alarm_check_issues">
+        <item quantity="zero">%d أمر بحاجة إلى مراجعة</item>
+        <item quantity="one">أمر واحد بحاجة إلى مراجعة (%d)</item>
+        <item quantity="two">أمران بحاجة إلى مراجعة (%d)</item>
+        <item quantity="few">%d أمور بحاجة إلى مراجعة</item>
+        <item quantity="many">%d أمرًا بحاجة إلى مراجعة</item>
+        <item quantity="other">%d أمر بحاجة إلى مراجعة</item>
+    </plurals>
+    <string name="check_notifications">الإشعارات</string>
+    <string name="check_allowed">مسموح بها</string>
+    <string name="check_notifications_off">غير مفعّلة، لذا لا يمكن أن تظهر تنبيهات الصلاة</string>
+    <string name="check_exact">المنبّهات الدقيقة</string>
+    <string name="check_exact_off">غير مسموح بها، لذا قد تتأخر التنبيهات بضع دقائق</string>
+    <string name="check_volume">مستوى صوت المنبّه</string>
+    <string name="check_volume_ok">مفعّل. يستخدمه الأذان والنغمة.</string>
+    <string name="check_volume_off">مكتوم. يستخدم الأذان والنغمة مستوى صوت المنبّه.</string>
+    <string name="check_battery">البطارية</string>
+    <string name="check_battery_ok">غير مقيّد</string>
+    <string name="check_battery_off">محسّن. توقِف بعض الهواتف المنبّهات لتوفير شحن البطارية.</string>
+    <string name="time_format">تنسيق الوقت</string>
+    <string name="time_format_system">حسب الهاتف</string>
+    <string name="time_format_12">١٢ ساعة</string>
+    <string name="time_format_24">٢٤ ساعة</string>
+    <string name="arabic_names">الأسماء العربية</string>
+    <string name="arabic_names_summary">في عمود خاص بجانب كل صلاة</string>
+    <string name="theme">المظهر</string>
+    <string name="theme_system">حسب الهاتف</string>
+    <string name="theme_light">فاتح</string>
+    <string name="theme_dark">داكن</string>
+    <string name="language">اللغة</string>
+    <string name="language_system">حسب الهاتف</string>
+    <string name="altitude">الارتفاع</string>
+    <string name="altitude_summary">%s م</string>
+    <string name="pressure">الضغط الجوي</string>
+    <string name="pressure_summary">%s مليبار</string>
+    <string name="temperature">درجة الحرارة</string>
+    <string name="temperature_summary">%s °م</string>
+    <string name="rounding">التقريب</string>
+    <string name="rounding_none">بدون</string>
+    <string name="rounding_normal">إلى أقرب دقيقة</string>
+    <string name="rounding_special">إلى أقرب دقيقة، مع تقريب الشروق لأسفل</string>
+    <string name="rounding_aggressive">تقريب الصلوات لأعلى، والشروق لأسفل</string>
+    <string name="privacy_policy">سياسة الخصوصية</string>
+    <string name="privacy_summary">لا يتصل التطبيق بالإنترنت أبدًا ولا يشارك بياناتك</string>
+    <string name="source_code">رمز المصدر</string>
+    <string name="credits">شكر وتقدير</string>
+    <string name="credits_summary">قائمة المدن: GeoNames، بترخيص CC BY 4.0</string>
+    <string name="credits_text">قائمة المدن: GeoNames (geonames.org)، بموجب رخصة المشاع الإبداعي نَسب المُصنَّف 4.0.\n\nأوقات الصلاة: مشروع الأدوات والمكتبات الإسلامية (ITL).\n\nالتقويم الهجري: hvjavacal.</string>
+    <string name="version">الإصدار</string>
+
+    <!-- Location -->
+    <string name="use_current_location">استخدام موقعي الحالي</string>
+    <string name="search_city">البحث عن مدينة</string>
+    <string name="enter_coordinates">إدخال الإحداثيات</string>
+    <string name="latitude">خط العرض</string>
+    <string name="longitude">خط الطول</string>
+    <string name="latitude_range">من -٩٠ إلى ٩٠</string>
+    <string name="longitude_range">من -١٨٠ إلى ١٨٠</string>
+    <string name="location_unnamed">موقعك</string>
+    <string name="finding_location">جارٍ تحديد موقعك…</string>
+    <string name="location_unavailable">تعذّر تحديد موقعك. حاول مرة أخرى بالقرب من نافذة، أو ابحث عن مدينة.</string>
+    <string name="location_off">الموقع الجغرافي غير مفعّل على هذا الهاتف. فعّله، أو ابحث عن مدينة.</string>
+    <string name="location_permission_needed">اسمح بالوصول إلى الموقع الجغرافي، أو ابحث عن مدينة بدلًا من ذلك.</string>
+    <string name="no_results">لا توجد مدن مطابقة. جرّب تهجئة أخرى، أو أدخل الإحداثيات.</string>
+    <string name="auto_location_off">تم إيقاف التحديث التلقائي للموقع، لذا سيبقى هذا المكان إلى أن تغيّره.</string>
+
+    <!-- First run -->
+    <string name="setup_greeting">السلام عليكم</string>
+    <string name="setup_welcome">يدعوك منبّه الأذان إلى الصلاة في وقتها. يعمل بالكامل على هاتفك ولا يتصل بالإنترنت أبدًا.</string>
+    <string name="setup_where">أين أنت؟</string>
+    <string name="setup_where_text">يحدّد موقعك أوقات الصلاة واتجاه القبلة.</string>
+    <string name="setup_method_title">طريقة حساب الأوقات</string>
+    <string name="setup_method_text">تتّبع معظم المساجد في منطقتك هذه الطريقة. يمكنك تغييرها في أي وقت من الإعدادات.</string>
+    <string name="setup_asr_text">«الجمهور» هو رأي المذاهب الشافعي والمالكي والحنبلي، و«الحنفي» يؤخّر وقت العصر.</string>
+    <string name="setup_alerts_title">كيف تريد أن يتم تنبيهك؟</string>
+    <string name="setup_alerts_text">يمكنك لاحقًا تغيير تنبيه كل صلاة من رمزها في شاشة «اليوم».</string>
+    <string name="setup_alerts_adhan">أذان</string>
+    <string name="setup_alerts_adhan_hint">الأذان في وقت كل صلاة</string>
+    <string name="setup_alerts_chime">نغمة</string>
+    <string name="setup_alerts_notification">إشعار</string>
+    <!-- For example 1 of 3 -->
+    <string name="setup_step">%1$d من %2$d</string>
+    <string name="setup_start">البدء</string>
+
+    <!-- Widgets -->
+    <string name="widget_next_prayer">الصلاة التالية</string>
+    <string name="widget_next_prayer_description">الصلاة التالية ووقتها</string>
+    <string name="widget_today">أوقات اليوم</string>
+    <string name="widget_today_description">جميع أوقات صلاة اليوم</string>
+
+    <!-- The 16 points of the compass, clockwise from north -->
+    <string-array name="compass_points">
+        <item>ش</item>
+        <item>ش ش ق</item>
+        <item>ش ق</item>
+        <item>ق ش ق</item>
+        <item>ق</item>
+        <item>ق ج ق</item>
+        <item>ج ق</item>
+        <item>ج ج ق</item>
+        <item>ج</item>
+        <item>ج ج غ</item>
+        <item>ج غ</item>
+        <item>غ ج غ</item>
+        <item>غ</item>
+        <item>غ ش غ</item>
+        <item>ش غ</item>
+        <item>ش ش غ</item>
+    </string-array>
 </resources>

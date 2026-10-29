@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Empty on purpose: it marks English as a language the app has, so a phone set to English first and,
+     say, Arabic second shows English instead of skipping ahead to the Arabic strings -->
 <resources />

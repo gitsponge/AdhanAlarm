@@ -2,21 +2,20 @@ package islam.adhanalarm.handler;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.text.format.DateFormat;
 
 import net.sourceforge.jitl.Jitl;
 import net.sourceforge.jitl.Method;
 import net.sourceforge.jitl.Prayer;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
 import islam.adhanalarm.CONSTANT;
+import islam.adhanalarm.Prefs;
 import islam.adhanalarm.R;
 
 public class ScheduleHandler {
@@ -26,29 +25,12 @@ public class ScheduleHandler {
 
     private GregorianCalendar[] mSchedule = new GregorianCalendar[7];
     private boolean[] mExtremes = new boolean[7];
+    private GregorianCalendar mPreviousIshaa; // The night before's, which comes before this schedule's fajr
     private fi.joensuu.joyds1.calendar.Calendar mHijriDate;
 
     public ScheduleHandler(SharedPreferences settings) {
         mCallbackList = new ArrayList<>();
         mSettings = settings;
-
-        // If there is no calculation method set, we select one based on the commonly used one in the country
-
-        if (!mSettings.contains("calculationMethodsIndex")) {
-            try {
-                String country = Locale.getDefault().getISO3Country().toUpperCase();
-
-                for (int i = 0; i < CONSTANT.CALCULATION_METHOD_COUNTRY_CODES.length; i++) {
-                    if (Arrays.asList(CONSTANT.CALCULATION_METHOD_COUNTRY_CODES[i]).contains(country)) {
-                        mSettings.edit().putString("calculationMethodsIndex", Integer.toString(i)).apply();
-                        break;
-                    }
-                }
-            } catch(Exception ex) {
-                // Wasn't set, oh well we'll use DEFAULT_CALCULATION_METHOD later
-            }
-        }
-
         update();
     }
 
@@ -60,18 +42,23 @@ public class ScheduleHandler {
      * Works out the times around the given moment, which tests can choose
      */
     void update(Calendar now) {
-        Method method = CONSTANT.CALCULATION_METHODS[getIndex("calculationMethodsIndex", CONSTANT.DEFAULT_CALCULATION_METHOD, CONSTANT.CALCULATION_METHODS.length)].copy();
-        method.setRound(CONSTANT.ROUNDING_TYPES[getIndex("roundingTypesIndex", CONSTANT.DEFAULT_ROUNDING_TYPE, CONSTANT.ROUNDING_TYPES.length)]);
+        int roundingIndex = getIndex(Prefs.ROUNDING, CONSTANT.DEFAULT_ROUNDING_TYPE, CONSTANT.ROUNDING_TYPES.length);
+        Method method = CONSTANT.createMethod(Prefs.getMethod(mSettings), Prefs.isHanafi(mSettings), Prefs.getHighLatitude(mSettings), CONSTANT.ROUNDING_TYPES[roundingIndex]);
 
         // Far north in summer Isha can come after midnight. It still belongs to the evening before, so keep that evening's times until it has passed.
         Calendar yesterday = (Calendar) now.clone();
         yesterday.add(Calendar.DAY_OF_MONTH, -1);
         setSchedule(yesterday, method);
+        GregorianCalendar previousIshaa = mSchedule[CONSTANT.ISHAA];
         if (!now.before(mSchedule[CONSTANT.ISHAA])) {
             setSchedule(now, method);
+            mPreviousIshaa = previousIshaa;
+        } else {
+            mPreviousIshaa = null;
         }
 
         mHijriDate = new fi.joensuu.joyds1.calendar.IslamicCalendar();
+        mHijriDate.addDays(Prefs.getHijriAdjust(mSettings));
 
         for (ScheduleListener callback : mCallbackList) {
             callback.onUpdated(this);
@@ -96,9 +83,25 @@ public class ScheduleHandler {
             mExtremes[i] = allTimes[i].isExtreme();
         }
 
-        int offset = getInt("offsetMinutes", 0);
-        for (GregorianCalendar time : mSchedule) {
-            time.add(Calendar.MINUTE, offset);
+        // The method's own minutes, then each prayer's adjustment to match a mosque's timetable
+        String methodName = Prefs.getMethod(mSettings);
+        int[] methodAdjustments = CONSTANT.getMethodAdjustments(methodName);
+        for (short i = CONSTANT.FAJR; i <= CONSTANT.NEXT_FAJR; i++) {
+            short prayer = i == CONSTANT.NEXT_FAJR ? CONSTANT.FAJR : i;
+            mSchedule[i].add(Calendar.MINUTE, methodAdjustments[prayer] + Prefs.getOffset(mSettings, prayer));
+            if (CONSTANT.METHOD_DIYANET.equals(methodName)) {
+                // As Diyanet's timetable does: to the nearest minute, but maghrib up, so a fast is never broken early
+                roundToMinute(mSchedule[i], i == CONSTANT.MAGHRIB);
+            }
+        }
+    }
+
+    private static void roundToMinute(Calendar time, boolean up) {
+        int seconds = time.get(Calendar.SECOND);
+        time.set(Calendar.SECOND, 0);
+        time.set(Calendar.MILLISECOND, 0);
+        if (seconds > 0 && (up || seconds >= 30)) {
+            time.add(Calendar.MINUTE, 1);
         }
     }
 
@@ -106,23 +109,26 @@ public class ScheduleHandler {
         return mExtremes[i];
     }
 
-    public String getFormattedTime(short i) {
-        boolean isAMPM = getInt("timeFormatIndex", CONSTANT.DEFAULT_TIME_FORMAT) == CONSTANT.DEFAULT_TIME_FORMAT;
-        if (mSchedule[i] == null) {
-            return "";
+    public GregorianCalendar getTime(short i) {
+        return mSchedule[i];
+    }
+
+    /**
+     * The time before the given one: the night before's isha comes before fajr
+     */
+    public GregorianCalendar getPreviousTime(short i) {
+        return i > CONSTANT.FAJR ? mSchedule[i - 1] : mPreviousIshaa;
+    }
+
+    public String getFormattedTime(short i, DateFormat format) {
+        return format.format(mSchedule[i].getTime()) + (getIsExtreme(i) ? " *" : "");
+    }
+
+    public boolean hasExtremeTimes() {
+        for (short i = CONSTANT.FAJR; i <= CONSTANT.ISHAA; i++) {
+            if (mExtremes[i]) return true;
         }
-        Date time = mSchedule[i].getTime();
-        if (time == null) {
-            return "";
-        }
-        String formattedTime = DateFormat.format(isAMPM ? "hh:mm a" : "HH:mm", time).toString();
-        if (isAMPM && (formattedTime.startsWith("0") || formattedTime.startsWith("٠"))) {
-            formattedTime = " " + formattedTime.substring(1);
-        }
-        if (getIsExtreme(i)) {
-            formattedTime += " *";
-        }
-        return formattedTime;
+        return false;
     }
 
     public short getNextTimeIndex() {
@@ -143,8 +149,22 @@ public class ScheduleHandler {
         return mSchedule[getNextTimeIndex()];
     }
 
+    /**
+     * The prayer whose time it is now, or -1 between sunrise and dhuhr and before fajr
+     */
+    public short getCurrentPrayerIndex() {
+        switch (getNextTimeIndex()) {
+            case CONSTANT.SUNRISE: return CONSTANT.FAJR;
+            case CONSTANT.ASR: return CONSTANT.DHUHR;
+            case CONSTANT.MAGHRIB: return CONSTANT.ASR;
+            case CONSTANT.ISHAA: return CONSTANT.MAGHRIB;
+            case CONSTANT.NEXT_FAJR: return CONSTANT.ISHAA;
+            default: return -1;
+        }
+    }
+
     public short getNotificationType(short i) {
-        return (short) getInt("notificationMethod" + i, CONSTANT.NOTIFICATION_DEFAULT);
+        return Prefs.getAlert(mSettings, i);
     }
 
     private boolean getIsCurrentlyAfterSunset() {
@@ -154,19 +174,23 @@ public class ScheduleHandler {
         return now.after(maghrib) && now.get(Calendar.YEAR) == maghrib.get(Calendar.YEAR) && now.get(Calendar.DAY_OF_YEAR) == maghrib.get(Calendar.DAY_OF_YEAR);
     }
 
-    public String getCurrentHijriDate(Context context) {
+    /**
+     * Today's Islamic date, which starts at sunset, for example "16 Jumādā al-Ūlā 1448"
+     */
+    public String getHijriDate(Context context) {
         boolean addedDay = false;
         if(getIsCurrentlyAfterSunset()) {
             addedDay = true;
             mHijriDate.addDays(1);
         }
-        String day = String.valueOf(mHijriDate.getDay());
+        // In the language's own digits, like the times beside it: ١٦ in Arabic
+        String day = String.format(Locale.getDefault(), "%d", mHijriDate.getDay());
         String month = context.getResources().getStringArray(R.array.hijri_months)[mHijriDate.getMonth() - 1];
-        String year = String.valueOf(mHijriDate.getYear());
+        String year = String.format(Locale.getDefault(), "%d", mHijriDate.getYear());
         if(addedDay) {
             mHijriDate.addDays(-1); // Revert to the day independent of sunset
         }
-        return day + " " + month + ", " + year + " " + context.getResources().getString(R.string.anno_hegirae);
+        return context.getString(R.string.hijri_date, day, month, year);
     }
 
     public net.sourceforge.jitl.astro.Location getLocation() {
@@ -175,14 +199,14 @@ public class ScheduleHandler {
 
     private net.sourceforge.jitl.astro.Location getLocation(double gmtOffset) {
         net.sourceforge.jitl.astro.Location location = new net.sourceforge.jitl.astro.Location(
-                getFloat("latitude", 43.67f),
-                getFloat("longitude", -79.417f),
+                getFloat(Prefs.LATITUDE, (float) Prefs.DEFAULT_LATITUDE),
+                getFloat(Prefs.LONGITUDE, (float) Prefs.DEFAULT_LONGITUDE),
                 gmtOffset,
                 0
         );
-        location.setSeaLevel(Math.max(0, getFloat("altitude", 0)));
-        location.setPressure(getFloat("pressure", 1010));
-        location.setTemperature(getFloat("temperature", 10));
+        location.setSeaLevel(Math.max(0, getFloat(Prefs.ALTITUDE, 0)));
+        location.setPressure(getFloat(Prefs.PRESSURE, 1010));
+        location.setTemperature(getFloat(Prefs.TEMPERATURE, 10));
         return location;
     }
 
@@ -197,27 +221,14 @@ public class ScheduleHandler {
         }
     }
 
-    private int getInt(String key, int defaultValue) {
-        String value = mSettings.getString(key, null);
-        try {
-            return value != null ? Integer.parseInt(value) : defaultValue;
-        } catch (NumberFormatException ex) {
-            return defaultValue;
-        }
-    }
-
     private int getIndex(String key, int defaultValue, int count) {
-        int index = getInt(key, defaultValue);
+        int index = Prefs.parseInt(mSettings.getString(key, null), defaultValue);
         return index >= 0 && index < count ? index : defaultValue;
     }
 
     private static double getGMTOffset(Calendar time) {
         int gmtOffset = time.getTimeZone().getOffset(time.getTimeInMillis());
         return gmtOffset / 3600000.0; // Not integer division, so half hour time zones like India's work
-    }
-    public static boolean getIsDaylightSavings() {
-        Calendar now = new GregorianCalendar();
-        return now.getTimeZone().inDaylightTime(now.getTime());
     }
 
     public void addListener(ScheduleListener callback) {

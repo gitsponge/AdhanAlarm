@@ -1,92 +1,291 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Pengingat Adzan</string>
-    <string name="description">Menampilkan dan mengingatkan anda pada waktu sembahyang.</string>
-    <string name="adhan_next_time">Adzan: Berikutnya</string>
-    <string name="adhan_timetable">Adzan: Jadwal</string>
-    <string name="previous">Sebelumnya</string>
-    <string name="next">Sesudahnya</string>
-    <string name="stop">Berhenti</string>
-    <string name="help">Bantuan</string>
-    <string name="help_text"><u>Pertanyaan Umum</u>\n\nT: Mengapa jadwal yang ada tidak sama dengan waktu setempat?\n\nJ: Ada banyak faktor yang mempengaruhi seperti parameter yang tertulis (mis. lintang, bujur, metoda perhitungan, ...), perbedaan algoritma dan ketepatan pengukuran karena perhitungan di perangkat berbeda.\n\nT: Mengapa penunjuk arah Kiblat tidak menunjukkan arah yang benar?\n\nJ: Pastikan bahwa aturan lintang dan bujur sudah sesuai di pengaturan dan telepon tidak berada di dekat sumber arus listrik.\n\nT: Mengapa fitur kesukaan saya tidak ada di dalam aplikasi ini?\n\nJ: Silahkan mampir ke situs proyek ini di github.com/gitsponge/AdhanAlarm dan bantu kami untuk memperbaiki aplikasi ini.</string>
-    <string name="information">Informasi</string>
-    <string name="information_text">Untuk informasi lanjut mengenai aplikasi ini, kunjungi"\ngithub.com/gitsponge/AdhanAlarm\n\nVersi: #</string>
-    <string name="privacy_policy">Kebijakan Privasi</string>
-    <string name="invalid_value">Nilai tidak valid</string>
-    <string name="more_applications">Aplikasi lain</string>
-    <string name="today">Hari Ini</string>
+    <string name="description">Menampilkan waktu salat harian dan memanggil Anda untuk salat.</string>
+
+    <!-- Prayers -->
     <string name="fajr">Subuh</string>
-    <string name="sunrise">Syuruq</string>
-    <string name="dhuhr">Zhuhur</string>
-    <string name="asr">Ashar</string>
+    <string name="sunrise">Terbit</string>
+    <string name="dhuhr">Zuhur</string>
+    <string name="asr">Asar</string>
+    <string name="maghrib">Magrib</string>
     <string name="ishaa">Isya</string>
-    <string name="next_fajr">Subuh Esok</string>
-    <string name="error_playing_alert">Gagal Menggunakan Alert</string>
-    <string name="error_playing_custom_file">Gagal Membuka File</string>
-    <string name="location_not_set"><u>Lokasi Belum Dipilih</u>\n\nHarap menyalakan GPS di perangkat, atau masukkan lokasi anda melalui pengaturan.</string>
-    <string name="allahu_akbar">Allah Maha Besar</string>
-    <string name="time_for">Waktu untuk</string>
-    <string name="latitude">Lintang</string>
-    <string name="longitude">Bujur</string>
-    <string name="extreme">Ekstrim</string>
-    <string name="qibla">Kiblat</string>
-    <string name="compass_disclaimer">Penunjuk Arah bekerja dalam posisi memanjang.</string>
-    <string name="bearing_north">1) Arah Utara = (1)°</string>
-    <string name="bearing_qibla">2) Arah Kiblat = (1) (+/-) (2)° = (3)°</string>
-    <string name="settings">Pengaturan</string>
-    <string name="bismillah_on_boot_up">Bismillah Saat Mulai</string>
-    <string name="notification">Pengingat</string>
-    <string name="none">Kosong</string>
-    <string name="beep">Bunyian</string>
-    <string name="recite">Adzan</string>
-    <string name="custom">Lainnya</string>
-    <string name="file_path">Lokasi File</string>
-    <string name="file_path_example">Lokasi mis. /sdcard/sound.mp3</string>
-    <string name="sinterface">Tampilan</string>
-    <string name="advanced">Lebih Lanjut</string>
-    <string name="extra_alerts">Pengingat Tambahan</string>
-    <string name="daylight_savings">Waktu Siang DST</string>
-    <string name="lookup_gps">Periksa\nGPS</string>
-    <string name="system_time_zone">Daerah Waktu Sistem</string>
-    <string name="save">Simpan</string>
-    <string name="reset">Hapus</string>
-    <string name="calculation">Perhitungan</string>
-    <string name="egypt_survey">Mesir - Otoritas Survei Umum</string>
-    <string name="karachi_shaf">Shafii - Universitas Ilmu KeIslaman Karachi</string>
-    <string name="karachi_hanaf">Hanafi - Universitas Ilmu KeIslaman Karachi</string>
-    <string name="north_america">Persatuan Islam Amerika Utara</string>
-    <string name="muslim_league">Perkumpulan Umat Muslim Dunia</string>
-    <string name="umm_alqurra">Ummul Qura, Arab Saudi</string>
-    <string name="fixed_ishaa">Jeda Tetap Isya\' (selalu 90)</string>
-    <string name="time_format">Tampilan Waktu</string>
-    <string name="clock_24_hour">Tampilan 24 Jam</string>
-    <string name="altitude">Ketinggian</string>
-    <string name="pressure">Tekanan Udara</string>
-    <string name="temperature">Suhu</string>
-    <string name="rounding">Pembulatan</string>
-    <string name="special">Khusus</string>
-    <string name="aggressive">Agresif</string>
-    <string name="offset">Perbedaan</string>
-    <string name="minutes">menit</string>
-    <string name="language">Bahasa</string>
-    <string name="theme">Tema</string>
-    <string name="brown">Coklat</string>
-    <string name="dialog">Dialog</string>
-    <string name="green">Hijau</string>
-    <string name="light">Terang</string>
-    <string name="month0">Muharram</string>
-    <string name="month1">Syafar</string>
-    <string name="month2">Rabi\'ul Awal</string>
-    <string name="month3">Rabi\'ul Akir</string>
-    <string name="month4">Jumadil Awal</string>
-    <string name="month5">Jumadil Akir</string>
+    <string name="fajr_tomorrow">Subuh besok</string>
+    <string name="fajr_ends">Subuh berakhir</string>
+
+    <!-- Islamic months -->
+    <string name="month0">Muharam</string>
+    <string name="month1">Safar</string>
+    <string name="month2">Rabiulawal</string>
+    <string name="month3">Rabiulakhir</string>
+    <string name="month4">Jumadilawal</string>
+    <string name="month5">Jumadilakhir</string>
     <string name="month6">Rajab</string>
-    <string name="month7">Sya\'ban</string>
-    <string name="month8">Ramadhan</string>
+    <string name="month7">Syakban</string>
+    <string name="month8">Ramadan</string>
     <string name="month9">Syawal</string>
-    <string name="month10">Dzulqa\'idah</string>
-    <string name="month11">Dzulhijjah</string>
-    <string name="anno_hegirae">H</string>
+    <string name="month10">Zulkaidah</string>
+    <string name="month11">Zulhijah</string>
+    <!-- Day, month and year, for example 16 Jumādā al-Ūlā 1448 -->
+    <string name="hijri_date">%1$s %2$s %3$s H</string>
+
+    <!-- Shared -->
+    <string name="today">Hari ini</string>
+    <string name="qibla">Kiblat</string>
+    <string name="settings">Setelan</string>
+    <string name="stop">Hentikan</string>
+    <string name="close">Tutup</string>
+    <string name="back">Kembali</string>
+    <string name="next">Berikutnya</string>
+    <string name="done">Selesai</string>
+    <string name="reset">Reset</string>
+    <string name="save">Simpan</string>
+    <string name="change">Ubah</string>
+    <string name="open_settings">Buka setelan</string>
+    <string name="invalid_value">Nilai tidak valid</string>
+    <!-- Two parts side by side, for example Wed 28 October · 16 Jumādā al-Ūlā 1448 -->
+    <string name="date_line">%1$s · %2$s</string>
+    <string name="name_and_time">%1$s %2$s</string>
+    <string name="name_with_arabic">%1$s · %2$s</string>
+    <string name="list_separator">",\u0020"</string>
+    <string name="place_and_coordinates">%1$s · %2$s</string>
+    <string name="coordinates">%1$s, %2$s</string>
+    <string name="latitude_north">%s° LU</string>
+    <string name="latitude_south">%s° LS</string>
+    <string name="longitude_east">%s° BT</string>
+    <string name="longitude_west">%s° BB</string>
+    <string name="place_note_city">Kota terdekat menurut data peta di ponsel</string>
+    <string name="place_note_none">Tidak ada kota dalam radius 20 km</string>
+
+    <!-- Today -->
+    <string name="next_prayer">Salat berikutnya</string>
+    <string name="now_badge">Sekarang</string>
+    <string name="countdown_now">sekarang</string>
+    <string name="countdown_minutes">%d menit lagi</string>
+    <string name="countdown_hours_minutes">%1$d jam %2$d menit lagi</string>
+    <string name="location_change">Lokasi: %s. Ubah lokasi</string>
+    <string name="alert_open">Pengingat %1$s: %2$s. Buka opsi pengingat</string>
+    <string name="extreme_note">* Diperkirakan, karena pada musim ini matahari di sini tidak turun cukup rendah.</string>
+
+    <!-- How a prayer calls you -->
+    <string name="alert_off">Nonaktif</string>
+    <string name="alert_notification">Notifikasi</string>
+    <string name="alert_chime">Denting</string>
+    <string name="alert_adhan">Adzan</string>
+    <string name="alert_off_hint">Tanpa pengingat</string>
+    <string name="alert_notification_hint">Suara notifikasi ponsel Anda</string>
+    <string name="alert_chime_hint">Denting singkat yang lembut</string>
+    <string name="alert_adhan_hint">Panggilan salat</string>
+    <string name="alert_adhan_fajr_hint">Panggilan salat Subuh</string>
+    <string name="adhan_sound">Suara adzan</string>
+    <string name="fajr_adhan_sound">Suara adzan Subuh</string>
+    <string name="sound_built_in">Adzan bawaan</string>
+    <string name="sound_built_in_fajr">Adzan Subuh bawaan</string>
+    <string name="sound_shared">%s, dipakai untuk semua salat kecuali Subuh</string>
+    <string name="sound_missing">Suara yang sudah tidak ada di ponsel ini</string>
+    <string name="sound_unavailable">Suara itu tidak dapat diputar, jadi adzan bawaan diputar sebagai gantinya.</string>
+    <string name="choose_sound">Pilih suara dari ponsel Anda</string>
+    <string name="play_preview">Putar pratinjau</string>
+    <string name="stop_preview">Hentikan pratinjau</string>
+    <string name="remind_before">Ingatkan saya sebelumnya</string>
+    <string name="remind_before_sunrise">Ingatkan saya sebelum Subuh berakhir</string>
+    <string name="remind_before_hint">Notifikasi lebih awal, terpisah dari pengingat di atas</string>
+    <string name="reminder_off">Nonaktif</string>
+    <string name="reminder_minutes">%d menit</string>
+    <string name="adjust_time">Sesuaikan waktu</string>
+    <string name="adjust_time_hint">Agar sesuai dengan jadwal masjid Anda</string>
+    <string name="adjust_none">Tidak ada</string>
+    <string name="adjust_minutes">%s menit</string>
+    <string name="one_minute_earlier">Satu menit lebih awal</string>
+    <string name="one_minute_later">Satu menit lebih lambat</string>
+
+    <!-- Qibla -->
+    <string name="qibla_facing">Menghadap kiblat</string>
+    <string name="qibla_turn_right">Putar %d° ke kanan</string>
+    <string name="qibla_turn_left">Putar %d° ke kiri</string>
+    <string name="qibla_no_compass">Ponsel ini tidak memiliki kompas</string>
+    <!-- For example 119° ESE from true north -->
+    <string name="qibla_direction">%1$s° %2$s dari utara sejati</string>
+    <string name="makkah">Mekah</string>
+    <string name="makkah_distance">%s km dari sini</string>
+    <string name="compass">Kompas</string>
+    <string name="accuracy_good">Akurasi baik</string>
+    <string name="accuracy_fair">Akurasi sedang</string>
+    <string name="accuracy_low">Akurasi kompas rendah. Gerakkan ponsel membentuk angka 8 untuk kalibrasi.</string>
+    <string name="qibla_hint">Pegang ponsel mendatar, jauh dari logam dan magnet.</string>
+    <string name="compass_description">Kompas. Ponsel mengarah %1$d° dari utara sejati dan kiblat berada di %2$d°.</string>
+    <string name="compass_n">U</string>
+    <string name="compass_e">T</string>
+    <string name="compass_s">S</string>
+    <string name="compass_w">B</string>
+
+    <!-- Notifications -->
     <string name="channel_reminder">Waktu salat</string>
     <string name="channel_adhan">Adzan</string>
+    <string name="channel_before">Sebelum salat</string>
+    <string name="notification_prayer">Waktunya salat %s</string>
+    <string name="notification_sunrise">Waktu Subuh telah berakhir</string>
+    <string name="notification_before">%1$s %2$d menit lagi</string>
+    <string name="notification_before_sunrise">Subuh berakhir %d menit lagi</string>
+    <string name="notification_at">Pukul %s</string>
+
+    <!-- Settings -->
+    <string name="settings_location">Lokasi</string>
+    <string name="settings_prayer_times">Waktu salat</string>
+    <string name="settings_alerts">Pengingat</string>
+    <string name="settings_display">Tampilan</string>
+    <string name="settings_about">Tentang</string>
+    <string name="location">Lokasi</string>
+    <string name="location_summary">%1$s · %2$s</string>
+    <string name="auto_location">Perbarui otomatis</string>
+    <string name="auto_location_summary">Menggunakan lokasi ponsel Anda saat aplikasi dibuka</string>
+    <string name="method">Metode perhitungan</string>
+    <string name="method_summary">%1$s · %2$s</string>
+    <string name="method_angles">Subuh %1$s°, Isya %2$s°</string>
+    <string name="method_angles_interval">Subuh %1$s°, Isya %2$d menit setelah Magrib</string>
+    <string name="method_mwl">Liga Muslim Dunia</string>
+    <string name="method_isna">Masyarakat Islam Amerika Utara</string>
+    <string name="method_egypt">Otoritas Survei Umum Mesir</string>
+    <string name="method_karachi">Universitas Ilmu Keislaman, Karachi</string>
+    <string name="method_ummalqura">Ummul Qura, Mekah</string>
+    <string name="method_gulf">Kawasan Teluk</string>
+    <string name="method_kuwait">Kuwait</string>
+    <string name="method_qatar">Qatar</string>
+    <string name="method_singapore">Singapura, Malaysia, dan Indonesia</string>
+    <string name="method_diyanet">Diyanet, Turki</string>
+    <string name="method_fixedisha">Isya tetap, 90 menit setelah Magrib</string>
+    <string name="asr_standard">Standar: Syafi\'i, Maliki, Hambali</string>
+    <string name="asr_standard_short">Standar</string>
+    <string name="asr_hanafi">Hanafi</string>
+    <string name="high_latitude">Aturan lintang tinggi</string>
+    <string name="high_latitude_summary">%s · untuk waktu bertanda *</string>
+    <string name="high_latitude_seventh">Sepertujuh malam</string>
+    <string name="high_latitude_good_day">Hari normal terdekat</string>
+    <string name="high_latitude_latitude">Lintang terdekat, 48,5°</string>
+    <string name="adjust_times">Sesuaikan waktu</string>
+    <string name="adjust_times_none">Tidak ada penyesuaian</string>
+    <string name="hijri_date_title">Tanggal Hijriah</string>
+    <string name="hijri_summary">%1$s · %2$s</string>
+    <string name="hijri_two_earlier">Dua hari lebih awal</string>
+    <string name="hijri_one_earlier">Satu hari lebih awal</string>
+    <string name="hijri_as_calculated">Sesuai perhitungan</string>
+    <string name="hijri_one_later">Satu hari lebih lambat</string>
+    <string name="hijri_two_later">Dua hari lebih lambat</string>
+    <string name="prayer_alerts">Pengingat salat</string>
+    <string name="alert_group">%1$s: %2$s</string>
+    <string name="short_adhan">Adzan singkat</string>
+    <string name="short_adhan_summary">Hanya Allahu Akbar di awal adzan</string>
+    <string name="play_on_silent">Putar saat mode senyap atau getar</string>
+    <string name="play_on_silent_summary">Tetap tidak diputar selama panggilan telepon</string>
+    <string name="bismillah_on_boot_up">Bismillah saat ponsel dinyalakan</string>
+    <string name="bismillah_summary">Diputar saat Anda membuka kunci setelah ponsel dimulai ulang</string>
+    <string name="test_adhan">Coba putar adzan</string>
+    <string name="test_adhan_summary">Memutar adzan sekarang agar Anda dapat memeriksa volumenya</string>
+    <string name="test_adhan_playing">Sedang diputar. Ketuk untuk menghentikan</string>
+    <string name="alarm_check">Pemeriksaan alarm</string>
+    <string name="alarm_check_ok">Alarm dapat berbunyi tepat waktu</string>
+    <plurals name="alarm_check_issues">
+        <item quantity="other">%d hal yang perlu diperiksa</item>
+    </plurals>
+    <string name="check_notifications">Notifikasi</string>
+    <string name="check_allowed">Diizinkan</string>
+    <string name="check_notifications_off">Dinonaktifkan, jadi pengingat salat tidak dapat muncul</string>
+    <string name="check_exact">Alarm tepat waktu</string>
+    <string name="check_exact_off">Tidak diizinkan, jadi pengingat mungkin terlambat beberapa menit</string>
+    <string name="check_volume">Volume alarm</string>
+    <string name="check_volume_ok">Aktif. Adzan dan denting menggunakan volume ini.</string>
+    <string name="check_volume_off">Dibisukan. Adzan dan denting menggunakan volume alarm.</string>
+    <string name="check_battery">Baterai</string>
+    <string name="check_battery_ok">Tidak dibatasi</string>
+    <string name="check_battery_off">Dioptimalkan. Beberapa ponsel menghentikan alarm untuk menghemat baterai.</string>
+    <string name="time_format">Format waktu</string>
+    <string name="time_format_system">Ikuti ponsel</string>
+    <string name="time_format_12">12 jam</string>
+    <string name="time_format_24">24 jam</string>
+    <string name="arabic_names">Nama dalam bahasa Arab</string>
+    <string name="arabic_names_summary">Dalam kolom tersendiri di samping setiap salat</string>
+    <string name="theme">Tema</string>
+    <string name="theme_system">Ikuti ponsel</string>
+    <string name="theme_light">Terang</string>
+    <string name="theme_dark">Gelap</string>
+    <string name="language">Bahasa</string>
+    <string name="language_system">Ikuti ponsel</string>
+    <string name="altitude">Ketinggian</string>
+    <string name="altitude_summary">%s m</string>
+    <string name="pressure">Tekanan udara</string>
+    <string name="pressure_summary">%s mbar</string>
+    <string name="temperature">Suhu</string>
+    <string name="temperature_summary">%s °C</string>
+    <string name="rounding">Pembulatan</string>
+    <string name="rounding_none">Tidak ada</string>
+    <string name="rounding_normal">Ke menit terdekat</string>
+    <string name="rounding_special">Menit terdekat, waktu terbit dibulatkan ke bawah</string>
+    <string name="rounding_aggressive">Waktu salat dibulatkan ke atas, terbit ke bawah</string>
+    <string name="privacy_policy">Kebijakan privasi</string>
+    <string name="privacy_summary">Pengingat Adzan tidak pernah terhubung ke internet atau membagikan data Anda</string>
+    <string name="source_code">Kode sumber</string>
+    <string name="credits">Kredit</string>
+    <string name="credits_summary">Daftar kota: GeoNames, CC BY 4.0</string>
+    <string name="credits_text">Daftar kota: GeoNames (geonames.org), dengan lisensi Creative Commons Attribution 4.0.\n\nWaktu salat: ITL, proyek Islamic Tools and Libraries.\n\nKalender Hijriah: hvjavacal.</string>
+    <string name="version">Versi</string>
+
+    <!-- Location -->
+    <string name="use_current_location">Gunakan lokasi saya saat ini</string>
+    <string name="search_city">Cari kota</string>
+    <string name="enter_coordinates">Masukkan koordinat</string>
+    <string name="latitude">Lintang</string>
+    <string name="longitude">Bujur</string>
+    <string name="latitude_range">Dari -90 sampai 90</string>
+    <string name="longitude_range">Dari -180 sampai 180</string>
+    <string name="location_unnamed">Lokasi Anda</string>
+    <string name="finding_location">Mencari lokasi Anda…</string>
+    <string name="location_unavailable">Lokasi Anda tidak dapat ditemukan. Coba lagi di dekat jendela, atau cari kota.</string>
+    <string name="location_off">Lokasi dinonaktifkan di ponsel ini. Aktifkan lokasi, atau cari kota.</string>
+    <string name="location_permission_needed">Izinkan akses lokasi, atau cari kota saja.</string>
+    <string name="no_results">Tidak ada kota yang cocok. Coba ejaan lain, atau masukkan koordinat.</string>
+    <string name="auto_location_off">Pembaruan lokasi otomatis dinonaktifkan, jadi tempat ini tetap dipakai sampai Anda menggantinya.</string>
+
+    <!-- First run -->
+    <string name="setup_greeting">Assalamualaikum</string>
+    <string name="setup_welcome">Pengingat Adzan memanggil Anda untuk salat tepat waktu. Aplikasi ini bekerja sepenuhnya di ponsel Anda dan tidak pernah terhubung ke internet.</string>
+    <string name="setup_where">Di mana Anda berada?</string>
+    <string name="setup_where_text">Lokasi Anda menentukan waktu salat dan arah kiblat.</string>
+    <string name="setup_method_title">Cara waktu salat dihitung</string>
+    <string name="setup_method_text">Sebagian besar masjid di tempat Anda menggunakan metode ini. Anda dapat mengubahnya kapan saja di Setelan.</string>
+    <string name="setup_asr_text">Standar mengikuti mazhab Syafi\'i, Maliki, dan Hambali. Hanafi menetapkan waktu Asar lebih lambat.</string>
+    <string name="setup_alerts_title">Bagaimana Anda ingin diingatkan?</string>
+    <string name="setup_alerts_text">Nanti Anda dapat mengubah pengingat tiap salat melalui ikonnya di layar Hari ini.</string>
+    <string name="setup_alerts_adhan">Adzan</string>
+    <string name="setup_alerts_adhan_hint">Adzan berkumandang di setiap waktu salat</string>
+    <string name="setup_alerts_chime">Denting</string>
+    <string name="setup_alerts_notification">Notifikasi</string>
+    <!-- For example 1 of 3 -->
+    <string name="setup_step">%1$d dari %2$d</string>
+    <string name="setup_start">Mulai</string>
+
+    <!-- Widgets -->
+    <string name="widget_next_prayer">Salat berikutnya</string>
+    <string name="widget_next_prayer_description">Salat berikutnya dan waktunya</string>
+    <string name="widget_today">Jadwal hari ini</string>
+    <string name="widget_today_description">Semua waktu salat hari ini</string>
+
+    <!-- The 16 points of the compass, clockwise from north -->
+    <string-array name="compass_points">
+        <item>U</item>
+        <item>UTL</item>
+        <item>TL</item>
+        <item>TTL</item>
+        <item>T</item>
+        <item>TTG</item>
+        <item>TG</item>
+        <item>STG</item>
+        <item>S</item>
+        <item>SBD</item>
+        <item>BD</item>
+        <item>BBD</item>
+        <item>B</item>
+        <item>BBL</item>
+        <item>BL</item>
+        <item>UBL</item>
+    </string-array>
 </resources>

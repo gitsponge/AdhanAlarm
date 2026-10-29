@@ -17,13 +17,13 @@ import islam.adhanalarm.service.AdhanService;
  * Sets a real prayer alarm a few seconds from now, so the whole path (exact alarm, notification and
  * adhan service) can be tested without waiting for a prayer time. Debug builds only, for example:
  *
- * adb shell am broadcast -a islam.adhanalarm.debug.TEST_ALARM -n islam.adhanalarm/.debug.TestAlarmReceiver --es prayer fajr --es type play --ei delay 10
- * adb shell am broadcast -a islam.adhanalarm.debug.STOP_ADHAN -n islam.adhanalarm/.debug.TestAlarmReceiver
+ * adb shell am broadcast -a islam.adhanalarm.debug.TEST_ALARM -n islam.adhanalarm.dev/islam.adhanalarm.debug.TestAlarmReceiver --es prayer fajr --es type adhan --ei delay 10
+ * adb shell am broadcast -a islam.adhanalarm.debug.STOP_ADHAN -n islam.adhanalarm.dev/islam.adhanalarm.debug.TestAlarmReceiver
  */
 public class TestAlarmReceiver extends BroadcastReceiver {
 
     private static final List<String> PRAYERS = Arrays.asList("fajr", "sunrise", "dhuhr", "asr", "maghrib", "ishaa");
-    private static final List<String> TYPES = Arrays.asList("none", "default", "beep", "play"); // CONSTANT.NOTIFICATION_*
+    private static final List<String> TYPES = Arrays.asList("none", "notification", "chime", "adhan"); // CONSTANT.NOTIFICATION_*
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -32,17 +32,20 @@ public class TestAlarmReceiver extends BroadcastReceiver {
             return;
         }
         short timeIndex = (short) Math.max(0, PRAYERS.indexOf(getExtra(intent, "prayer", "dhuhr")));
-        short notificationType = (short) Math.max(0, TYPES.indexOf(getExtra(intent, "type", "play")));
+        String type = getExtra(intent, "type", "adhan").replace("default", "notification").replace("beep", "chime").replace("play", "adhan"); // Also the 3.x names
+        short notificationType = (short) Math.max(0, TYPES.indexOf(type));
         int delaySeconds = intent.getIntExtra("delay", 10);
+        long time = System.currentTimeMillis() + delaySeconds * 1000L;
 
         Intent alarmIntent = new Intent(context, StartNotificationReceiver.class);
         alarmIntent.setAction(CONSTANT.ACTION_NOTIFY_PRAYER_TIME);
         alarmIntent.putExtra(CONSTANT.EXTRA_TIME_INDEX, timeIndex);
         alarmIntent.putExtra(CONSTANT.EXTRA_NOTIFICATION_TYPE, notificationType);
+        alarmIntent.putExtra(CONSTANT.EXTRA_ACTUAL_TIME, time);
 
         // Its own request code, so the real next prayer alarm is left alone
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 1000, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-        StartNotificationReceiver.setAlarm(context, System.currentTimeMillis() + delaySeconds * 1000L, pendingIntent);
+        StartNotificationReceiver.setAlarm(context, time, pendingIntent);
         Log.i("AdhanAlarm", "Test alarm set: " + PRAYERS.get(timeIndex) + ", " + TYPES.get(notificationType) + ", in " + delaySeconds + "s");
     }
 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#C4CC8F</color>
+    <color name="on_primary">#2E3300</color>
+    <color name="primary_container">#434A1C</color>
+    <color name="on_primary_container">#E0E7B0</color>
+    <color name="secondary">#C6C9AC</color>
+    <color name="on_secondary">#2F321D</color>
+    <color name="secondary_container">#464934</color>
+    <color name="on_secondary_container">#E3E4CB</color>
+    <color name="tertiary">#FFB59E</color>
+    <color name="on_tertiary">#55200E</color>
+    <color name="tertiary_container">#71361F</color>
+    <color name="on_tertiary_container">#FFDBCF</color>
+    <color name="error">#FFB4AB</color>
+    <color name="on_error">#690005</color>
+    <color name="error_container">#93000A</color>
+    <color name="on_error_container">#FFDAD6</color>
+    <color name="surface">#13140E</color>
+    <color name="on_surface">#E5E3D6</color>
+    <color name="on_surface_variant">#C9C8B6</color>
+    <color name="surface_container_lowest">#0E0F09</color>
+    <color name="surface_container_low">#1B1C15</color>
+    <color name="surface_container">#1F2019</color>
+    <color name="surface_container_high">#2A2A23</color>
+    <color name="surface_container_highest">#34352D</color>
+    <color name="outline">#929283</color>
+    <color name="outline_variant">#47483B</color>
+    <color name="inverse_surface">#E5E3D6</color>
+    <color name="inverse_on_surface">#31312A</color>
+    <color name="inverse_primary">#5A6131</color>
+
+    <color name="past">#9C9C8C</color>
+    <color name="next_row">#2C3014</color>
+    <color name="progress_track">#5E6634</color>
+    <color name="hero_caption">#D0D79E</color>
+    <color name="brand">#C4CC8F</color>
+</resources>

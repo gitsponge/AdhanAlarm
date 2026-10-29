@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <!-- values-en is empty on purpose (its comment says why): English is the default strings, not missing ones -->
+    <issue id="MissingTranslation">
+        <ignore regexp="is not translated in &quot;en&quot; \(English\)$" />
+    </issue>
+</lint>

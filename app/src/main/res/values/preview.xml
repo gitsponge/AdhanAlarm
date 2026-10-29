@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Sample times for the widgets' previews in the widget picker, an October day in London -->
+    <string name="preview_fajr" translatable="false">05:16</string>
+    <string name="preview_sunrise" translatable="false">06:59</string>
+    <string name="preview_dhuhr" translatable="false">11:49</string>
+    <string name="preview_asr" translatable="false">14:20</string>
+    <string name="preview_maghrib" translatable="false">16:41</string>
+    <string name="preview_ishaa" translatable="false">18:17</string>
+</resources>
