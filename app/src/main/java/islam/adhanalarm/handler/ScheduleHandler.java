@@ -193,6 +193,21 @@ public class ScheduleHandler {
         return context.getString(R.string.hijri_date, day, month, year);
     }
 
+    /**
+     * Today's day of the Islamic month, which starts at sunset
+     */
+    public int getHijriDay() {
+        boolean afterSunset = getIsCurrentlyAfterSunset();
+        if (afterSunset) {
+            mHijriDate.addDays(1);
+        }
+        int day = mHijriDate.getDay();
+        if (afterSunset) {
+            mHijriDate.addDays(-1);
+        }
+        return day;
+    }
+
     public net.sourceforge.jitl.astro.Location getLocation() {
         return getLocation(getGMTOffset(new GregorianCalendar()));
     }

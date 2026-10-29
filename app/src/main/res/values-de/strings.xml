@@ -269,6 +269,8 @@
     <string name="widget_next_prayer_description">Das nächste Gebet und seine Uhrzeit</string>
     <string name="widget_today">Heutige Zeiten</string>
     <string name="widget_today_description">Alle Gebetszeiten von heute</string>
+    <string name="widget_dial">Gebetsuhr</string>
+    <string name="widget_dial_description">Die heutigen Gebetszeiten auf einem 24-Stunden-Zifferblatt</string>
 
     <!-- The 16 points of the compass, clockwise from north -->
     <string-array name="compass_points">

@@ -28,6 +28,11 @@ Debug builds include a receiver that sets a real alarm a few seconds ahead, so t
 
 The adhan and chime never play during a call. On silent or vibrate they only play if Play On Silent Or Vibrate is on in the settings.
 
+What's new in 4.0.1
+
+- A Prayer dial widget that sits among your apps like an icon: today on a 24-hour clock, with noon at the top and daylight across it. Each prayer's window runs around the rim at its true length, and the short ones, usually Fajr and Maghrib, are in copper so they're prayed on time. The sun on the hand shows the time, and the moon at the centre the day of the Islamic month.
+- The 1×1 Next prayer widget no longer cuts off the time: the prayer's name sits above its time, which shrinks to fit.
+
 What's new in 4.0
 
 A new design throughout, in light and dark, and still entirely offline.

@@ -269,6 +269,8 @@
     <string name="widget_next_prayer_description">Sonraki namaz ve vakti</string>
     <string name="widget_today">Bugünün vakitleri</string>
     <string name="widget_today_description">Bugünün tüm namaz vakitleri</string>
+    <string name="widget_dial">Vakit kadranı</string>
+    <string name="widget_dial_description">Bugünün namaz vakitleri 24 saatlik bir kadranda</string>
 
     <!-- The 16 points of the compass, clockwise from north -->
     <string-array name="compass_points">

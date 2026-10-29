@@ -270,6 +270,8 @@
     <string name="widget_next_prayer_description">La próxima oración y su hora</string>
     <string name="widget_today">Horarios de hoy</string>
     <string name="widget_today_description">Todos los horarios de oración de hoy</string>
+    <string name="widget_dial">Reloj de oraciones</string>
+    <string name="widget_dial_description">Los horarios de oración de hoy en una esfera de 24 horas</string>
 
     <!-- The 16 points of the compass, clockwise from north -->
     <string-array name="compass_points">

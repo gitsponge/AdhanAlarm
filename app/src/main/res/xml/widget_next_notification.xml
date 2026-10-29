@@ -4,7 +4,7 @@
     android:initialLayout="@layout/widget_next_prayer"
     android:minWidth="250dp"
     android:minHeight="40dp"
-    android:minResizeWidth="110dp"
+    android:minResizeWidth="40dp"
     android:minResizeHeight="40dp"
     android:previewLayout="@layout/widget_next_prayer"
     android:resizeMode="horizontal|vertical"

@@ -271,6 +271,8 @@
     <string name="widget_next_prayer_description">Следующий намаз и его время</string>
     <string name="widget_today">Расписание на сегодня</string>
     <string name="widget_today_description">Время всех намазов на сегодня</string>
+    <string name="widget_dial">Циферблат намазов</string>
+    <string name="widget_dial_description">Время намазов на сегодня на 24-часовом циферблате</string>
 
     <!-- The 16 points of the compass, clockwise from north -->
     <string-array name="compass_points">

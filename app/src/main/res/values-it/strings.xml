@@ -270,6 +270,8 @@
     <string name="widget_next_prayer_description">La prossima preghiera e il suo orario</string>
     <string name="widget_today">Orari di oggi</string>
     <string name="widget_today_description">Tutti gli orari di preghiera di oggi</string>
+    <string name="widget_dial">Quadrante delle preghiere</string>
+    <string name="widget_dial_description">Gli orari di preghiera di oggi su un quadrante di 24 ore</string>
 
     <!-- The 16 points of the compass, clockwise from north -->
     <string-array name="compass_points">

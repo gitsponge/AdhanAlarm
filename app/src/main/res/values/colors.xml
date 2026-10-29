@@ -32,6 +32,20 @@
     <color name="inverse_primary">#C4CC8F</color>
 
     <!-- The app's own -->
+    <!-- The prayer dial, the same in light and dark like an app icon: its face, the rim's two colours and
+         the hairline where no prayer is due, the sun above and below the horizon, the hub and the moon
+         inside it, and the launcher-style label under it -->
+    <color name="dial_day">#7D8549</color>
+    <color name="dial_night">#4A5025</color>
+    <color name="dial_cream">#F4F0DA</color>
+    <color name="dial_copper">#E8A07A</color>
+    <color name="dial_track">#8C926A</color>
+    <color name="dial_sun">#F9E6A3</color>
+    <color name="dial_sun_set">#A99C5E</color>
+    <color name="dial_moon">#E9E6D6</color>
+    <color name="dial_hub">#1B1D0E</color>
+    <color name="widget_label">#FFFFFF</color>
+    <color name="widget_label_shadow">#99000000</color>
     <color name="past">#6A6B5C</color>
     <color name="next_row">#EEF1D6</color>
     <color name="progress_track">#C3CA94</color>

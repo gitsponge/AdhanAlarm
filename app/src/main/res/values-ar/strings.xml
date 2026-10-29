@@ -273,6 +273,8 @@
     <string name="widget_next_prayer_description">الصلاة التالية ووقتها</string>
     <string name="widget_today">أوقات اليوم</string>
     <string name="widget_today_description">جميع أوقات صلاة اليوم</string>
+    <string name="widget_dial">ساعة الصلاة</string>
+    <string name="widget_dial_description">أوقات الصلاة اليوم على قرص من ٢٤ ساعة</string>
 
     <!-- The 16 points of the compass, clockwise from north -->
     <string-array name="compass_points">

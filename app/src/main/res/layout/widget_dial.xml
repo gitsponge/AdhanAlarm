@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Set out like an app icon: the dial where the launcher puts an icon, the app's name below it in the
+     launcher's label size and position (measured against the labels beside it).
+     The dial is a drawn bitmap, which a widget can only show in an ImageView, not as a compound drawable.
+     Marked as the widget's own background, so the launcher doesn't round its corners into the label. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@android:id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToOutline="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingTop="5dp"
+    tools:ignore="UseCompoundDrawables,UnusedAttribute">
+
+    <ImageView
+        android:id="@+id/dial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
+        android:src="@drawable/widget_dial_preview" />
+
+    <TextView
+        android:id="@+id/widget_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8.5dp"
+        android:ellipsize="end"
+        android:importantForAccessibility="no"
+        android:maxLines="1"
+        android:shadowColor="@color/widget_label_shadow"
+        android:shadowDy="1"
+        android:shadowRadius="3"
+        android:text="@string/app_name"
+        android:textColor="@color/widget_label"
+        android:textSize="14sp" />
+</LinearLayout>

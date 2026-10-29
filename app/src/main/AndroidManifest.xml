@@ -62,6 +62,12 @@
             </intent-filter>
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_next_notification" />
         </receiver>
+        <receiver android:name=".widget.PrayerDialWidgetProvider" android:exported="false" android:label="@string/widget_dial">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_dial" />
+        </receiver>
         <!-- Direct boot aware, so after a restart the alarm is set and the adhan plays even before the phone is unlocked -->
         <receiver android:name=".receiver.StartNotificationReceiver" android:exported="false" android:directBootAware="true">
             <!-- Anything that can move the next prayer time reschedules the alarm -->

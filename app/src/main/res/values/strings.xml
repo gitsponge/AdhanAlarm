@@ -277,4 +277,6 @@
     <string name="widget_next_prayer_description">The next prayer and its time</string>
     <string name="widget_today">Today\'s times</string>
     <string name="widget_today_description">All of today\'s prayer times</string>
+    <string name="widget_dial">Prayer dial</string>
+    <string name="widget_dial_description">Today\'s prayer times on a 24-hour dial</string>
 </resources>

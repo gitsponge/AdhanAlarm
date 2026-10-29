@@ -268,6 +268,8 @@
     <string name="widget_next_prayer_description">Salat berikutnya dan waktunya</string>
     <string name="widget_today">Jadwal hari ini</string>
     <string name="widget_today_description">Semua waktu salat hari ini</string>
+    <string name="widget_dial">Jam salat</string>
+    <string name="widget_dial_description">Jadwal salat hari ini pada jam 24 jam</string>
 
     <!-- The 16 points of the compass, clockwise from north -->
     <string-array name="compass_points">

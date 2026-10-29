@@ -14,6 +14,7 @@ import java.util.List;
 import islam.adhanalarm.handler.NotificationHandler;
 import islam.adhanalarm.receiver.StartNotificationReceiver;
 import islam.adhanalarm.widget.NextNotificationWidgetProvider;
+import islam.adhanalarm.widget.PrayerDialWidgetProvider;
 import islam.adhanalarm.widget.TimetableWidgetProvider;
 
 public class App extends Application {
@@ -30,6 +31,7 @@ public class App extends Application {
         if (UserManagerCompat.isUserUnlocked(sInstance)) { // Widgets aren't available until the phone has been unlocked since it started
             TimetableWidgetProvider.updateAll(sInstance);
             NextNotificationWidgetProvider.updateAll(sInstance);
+            PrayerDialWidgetProvider.updateAll(sInstance);
         }
         for (PrayerTimeListener listener : new ArrayList<>(sListeners)) {
             listener.onPrayerTimeUpdated();

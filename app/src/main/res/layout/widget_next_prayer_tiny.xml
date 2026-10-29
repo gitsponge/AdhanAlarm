@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The 1 by 1 tile: the name, the time and, in 12-hour time, a.m. or p.m. on a line of its own -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_accent_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <TextView
+        android:id="@+id/widget_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:maxLines="1"
+        android:text="@string/maghrib"
+        android:textColor="@color/on_primary_container"
+        android:textSize="13sp" />
+
+    <!-- Shrinks to fit narrower cells, down to 16sp, on Android 8 and later; older ones keep 28sp -->
+    <TextView
+        android:id="@+id/widget_time"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:autoSizeMaxTextSize="30sp"
+        android:autoSizeMinTextSize="16sp"
+        android:autoSizeTextType="uniform"
+        android:fontFeatureSettings="tnum"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="@string/preview_maghrib"
+        android:textColor="@color/on_primary_container"
+        android:textSize="28sp"
+        tools:ignore="UnusedAttribute" />
+
+    <TextView
+        android:id="@+id/widget_period"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:maxLines="1"
+        android:textColor="@color/on_surface_variant"
+        android:textSize="11sp"
+        android:visibility="gone" />
+</LinearLayout>
