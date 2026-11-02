@@ -279,4 +279,6 @@
     <string name="widget_today_description">All of today\'s prayer times</string>
     <string name="widget_dial">Prayer dial</string>
     <string name="widget_dial_description">Today\'s prayer times on a 24-hour dial</string>
+    <!-- Read out after a prayer and its time, for a window under two hours, which the dial shows in copper -->
+    <string name="dial_short_window">%1$s, a short window</string>
 </resources>

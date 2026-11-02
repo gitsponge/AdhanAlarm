@@ -135,7 +135,10 @@ public class ScheduleHandler {
         return getNextTimeIndex(new GregorianCalendar());
     }
 
-    short getNextTimeIndex(Calendar now) {
+    /**
+     * The next time after the given moment: a prayer's, sunrise, or tomorrow's fajr
+     */
+    public short getNextTimeIndex(Calendar now) {
         if(now.before(mSchedule[CONSTANT.FAJR])) return CONSTANT.FAJR;
         for(short i = CONSTANT.FAJR; i < CONSTANT.NEXT_FAJR; i++) {
             if(!now.before(mSchedule[i]) && now.before(mSchedule[i + 1])) {

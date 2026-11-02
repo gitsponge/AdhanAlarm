@@ -28,6 +28,16 @@ Debug builds include a receiver that sets a real alarm a few seconds ahead, so t
 
 The adhan and chime never play during a call. On silent or vibrate they only play if Play On Silent Or Vibrate is on in the settings.
 
+Debug builds can also draw the Prayer dial widget at any sizes, in dp, into the app's files, to look at without placing and resizing widgets. time is the time of day to draw it at:
+
+  adb shell am broadcast -a islam.adhanalarm.debug.DIAL_SNAPSHOT -n islam.adhanalarm.dev/islam.adhanalarm.widget.DialSnapshotReceiver --es sizes 164x191,246x287,328x382 --es time 16:40
+  adb exec-out run-as islam.adhanalarm.dev cat files/dial/164x191.png > dial.png
+
+What's new in 4.1
+
+- The Prayer dial widget grows with the room you give it. At an app icon's size it's as before. From about 2×2 it sits on an olive tile and names each prayer on a pointer to its window; bigger, it adds their times, and at the largest sizes the Islamic date in small type underneath. The next prayer's name is highlighted, and on a tile the hand moves every 5 minutes.
+- Screen readers hear the next prayer, every prayer's time and which windows are short.
+
 What's new in 4.0.1
 
 - A Prayer dial widget that sits among your apps like an icon: today on a 24-hour clock, with noon at the top and daylight across it. Each prayer's window runs around the rim at its true length, and the short ones, usually Fajr and Maghrib, are in copper so they're prayed on time. The sun on the hand shows the time, and the moon at the centre the day of the Islamic month.

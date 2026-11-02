@@ -34,7 +34,9 @@
     <!-- The app's own -->
     <!-- The prayer dial, the same in light and dark like an app icon: its face, the rim's two colours and
          the hairline where no prayer is due, the sun above and below the horizon, the hub and the moon
-         inside it, and the launcher-style label under it -->
+         inside it, and the launcher-style label under it. On its tile, the times and date are the cream at
+         85% over the olive (4.7:1, the faintest that still reads at small sizes), and the next prayer's name
+         sits on a patch a step darker than the tile (cream on it is 8:1). -->
     <color name="dial_day">#7D8549</color>
     <color name="dial_night">#4A5025</color>
     <color name="dial_cream">#F4F0DA</color>
@@ -44,6 +46,8 @@
     <color name="dial_sun_set">#A99C5E</color>
     <color name="dial_moon">#E9E6D6</color>
     <color name="dial_hub">#1B1D0E</color>
+    <color name="dial_ink_secondary">#DDDBC1</color>
+    <color name="dial_pill">#454B22</color>
     <color name="widget_label">#FFFFFF</color>
     <color name="widget_label_shadow">#99000000</color>
     <color name="past">#6A6B5C</color>

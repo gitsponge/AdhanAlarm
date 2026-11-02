@@ -270,6 +270,7 @@
     <string name="widget_today_description">Semua waktu salat hari ini</string>
     <string name="widget_dial">Jam salat</string>
     <string name="widget_dial_description">Jadwal salat hari ini pada jam 24 jam</string>
+    <string name="dial_short_window">%1$s, waktunya singkat</string>
 
     <!-- The 16 points of the compass, clockwise from north -->
     <string-array name="compass_points">

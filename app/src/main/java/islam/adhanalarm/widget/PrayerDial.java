@@ -25,8 +25,8 @@ import islam.adhanalarm.handler.ScheduleHandler;
 final class PrayerDial {
 
     /** Each prayer's window, from its time to the time that ends it; isha's ends at the next fajr */
-    private static final short[] STARTS = {CONSTANT.FAJR, CONSTANT.DHUHR, CONSTANT.ASR, CONSTANT.MAGHRIB, CONSTANT.ISHAA};
-    private static final short[] ENDS = {CONSTANT.SUNRISE, CONSTANT.ASR, CONSTANT.MAGHRIB, CONSTANT.ISHAA, CONSTANT.NEXT_FAJR};
+    static final short[] STARTS = {CONSTANT.FAJR, CONSTANT.DHUHR, CONSTANT.ASR, CONSTANT.MAGHRIB, CONSTANT.ISHAA};
+    static final short[] ENDS = {CONSTANT.SUNRISE, CONSTANT.ASR, CONSTANT.MAGHRIB, CONSTANT.ISHAA, CONSTANT.NEXT_FAJR};
 
     /** A window shorter than this is one to pray promptly */
     static final long SHORT_MS = 2 * 60 * 60 * 1000;
@@ -36,6 +36,9 @@ final class PrayerDial {
 
     /** The dial is drawn in sixtieths of its width, each about a dp at the size of an app icon, so it scales as a whole */
     private static final float UNITS = 60;
+
+    /** The rim's outer edge sits at this share of the dial's radius, leaving a margin of 1.5 sixtieths */
+    static final float RIM_SHARE = 0.95f;
 
     private PrayerDial() {
     }
@@ -49,6 +52,30 @@ final class PrayerDial {
 
     private static float angle(Calendar time) {
         return angle(time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE));
+    }
+
+    /**
+     * Degrees clockwise from the top at the middle of a prayer's window
+     */
+    static float middleAngle(ScheduleHandler schedule, int window) {
+        long start = schedule.getTime(STARTS[window]).getTimeInMillis(), end = schedule.getTime(ENDS[window]).getTimeInMillis();
+        Calendar middle = Calendar.getInstance();
+        middle.setTimeInMillis(start + (end - start) / 2);
+        return angle(middle);
+    }
+
+    static boolean isShort(ScheduleHandler schedule, int window) {
+        return isShort(schedule.getTime(ENDS[window]).getTimeInMillis() - schedule.getTime(STARTS[window]).getTimeInMillis());
+    }
+
+    /**
+     * The size of one sixtieth for a dial whose rim has the given radius. Up to an app icon's size the dial
+     * scales as a whole; past it its marks grow only with the square root, so a big dial gets finer rather
+     * than chunkier.
+     */
+    static float unitFor(float rimRadius, float pixelsPerDp) {
+        float width = 2 * rimRadius / RIM_SHARE, icon = UNITS * pixelsPerDp;
+        return width <= icon ? width / UNITS : pixelsPerDp * (float) Math.sqrt(width / icon);
     }
 
     static boolean isShort(long windowMs) {
@@ -70,24 +97,33 @@ final class PrayerDial {
         return (hijriDay < LUNAR_MONTH / 2) == (latitude >= 0);
     }
 
+    /** The dial on its own as a square bitmap, for the widget at an app icon's size */
     static Bitmap draw(Context context, ScheduleHandler schedule, Calendar now, int sizePx) {
-        float unit = sizePx / UNITS;
         Bitmap bitmap = Bitmap.createBitmap(sizePx, sizePx, Bitmap.Config.ARGB_8888);
         bitmap.setDensity(context.getResources().getDisplayMetrics().densityDpi); // Shown at exactly this size
-        Canvas canvas = new Canvas(bitmap);
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         float centre = sizePx / 2f;
+        paint(context, new Canvas(bitmap), centre, centre, centre * RIM_SHARE, sizePx / UNITS, schedule, now, true);
+        return bitmap;
+    }
 
-        paint.setColor(ContextCompat.getColor(context, R.color.ic_launcher_background));
-        canvas.drawCircle(centre, centre, centre, paint);
+    /**
+     * Paints the dial centred on (x, y) with the rim's outer edge at the given radius, its marks measured in
+     * the given unit, and the olive disc behind it only where it stands alone like an icon
+     */
+    static void paint(Context context, Canvas canvas, float x, float y, float rim, float unit, ScheduleHandler schedule, Calendar now, boolean disc) {
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        if (disc) {
+            paint.setColor(ContextCompat.getColor(context, R.color.ic_launcher_background));
+            canvas.drawCircle(x, y, rim + 1.5f * unit, paint);
+        }
 
         // The face: night all round, daylight across the top
         float ringWidth = 5 * unit;
-        float ringRadius = centre - 1.5f * unit - ringWidth / 2;
+        float ringRadius = rim - ringWidth / 2;
         float face = ringRadius - ringWidth / 2 - 1.2f * unit;
-        RectF faceBounds = new RectF(centre - face, centre - face, centre + face, centre + face);
+        RectF faceBounds = new RectF(x - face, y - face, x + face, y + face);
         paint.setColor(ContextCompat.getColor(context, R.color.dial_night));
-        canvas.drawCircle(centre, centre, face, paint);
+        canvas.drawCircle(x, y, face, paint);
         paint.setColor(ContextCompat.getColor(context, R.color.dial_day));
         canvas.drawArc(faceBounds, angle(schedule.getTime(CONSTANT.SUNRISE)) - 90, sweep(schedule, CONSTANT.SUNRISE, CONSTANT.MAGHRIB), true, paint);
 
@@ -96,15 +132,14 @@ final class PrayerDial {
         ring.setStyle(Paint.Style.STROKE);
         ring.setStrokeWidth(1.2f * unit);
         ring.setColor(ContextCompat.getColor(context, R.color.dial_track));
-        canvas.drawCircle(centre, centre, ringRadius, ring);
-        RectF ringBounds = new RectF(centre - ringRadius, centre - ringRadius, centre + ringRadius, centre + ringRadius);
+        canvas.drawCircle(x, y, ringRadius, ring);
+        RectF ringBounds = new RectF(x - ringRadius, y - ringRadius, x + ringRadius, y + ringRadius);
         float gap = (float) Math.toDegrees(1.5f * unit / ringRadius);
         ring.setStrokeWidth(ringWidth);
         int copper = ContextCompat.getColor(context, R.color.dial_copper);
         int cream = ContextCompat.getColor(context, R.color.dial_cream);
         for (int i = 0; i < STARTS.length; i++) {
-            long length = schedule.getTime(ENDS[i]).getTimeInMillis() - schedule.getTime(STARTS[i]).getTimeInMillis();
-            ring.setColor(isShort(length) ? copper : cream);
+            ring.setColor(isShort(schedule, i) ? copper : cream);
             canvas.drawArc(ringBounds, angle(schedule.getTime(STARTS[i])) - 90 + gap / 2, Math.max(0, sweep(schedule, STARTS[i], ENDS[i]) - gap), false, ring);
         }
 
@@ -118,28 +153,27 @@ final class PrayerDial {
         hand.setStrokeWidth(1.3f * unit);
         hand.setStrokeCap(Paint.Cap.ROUND);
         float reach = sunDistance - sunRadius - 0.8f * unit;
-        canvas.drawLine(centre, centre, centre + reach * cos, centre + reach * sin, hand);
+        canvas.drawLine(x, y, x + reach * cos, y + reach * sin, hand);
         boolean daytime = !now.before(schedule.getTime(CONSTANT.SUNRISE)) && now.before(schedule.getTime(CONSTANT.MAGHRIB));
         paint.setColor(ContextCompat.getColor(context, daytime ? R.color.dial_sun : R.color.dial_sun_set));
-        canvas.drawCircle(centre + sunDistance * cos, centre + sunDistance * sin, sunRadius, paint);
+        canvas.drawCircle(x + sunDistance * cos, y + sunDistance * sin, sunRadius, paint);
 
         // The dark hub the hand turns on, with the moon inside it, smaller than the sun
         paint.setColor(ContextCompat.getColor(context, R.color.dial_hub));
-        canvas.drawCircle(centre, centre, 4.4f * unit, paint);
-        drawMoon(canvas, centre, 3 * unit, schedule.getHijriDay(), schedule.getLocation().getDegreeLat(), ContextCompat.getColor(context, R.color.dial_moon));
-        return bitmap;
+        canvas.drawCircle(x, y, 4.4f * unit, paint);
+        drawMoon(canvas, x, y, 3 * unit, schedule.getHijriDay(), schedule.getLocation().getDegreeLat(), ContextCompat.getColor(context, R.color.dial_moon));
     }
 
     /**
      * The lit part of the moon as it is on the given day of the Islamic month; the hub behind it is its dark side
      */
-    private static void drawMoon(Canvas canvas, float centre, float radius, int hijriDay, double latitude, int colour) {
+    private static void drawMoon(Canvas canvas, float x, float y, float radius, int hijriDay, double latitude, int colour) {
         // Half the disc's edge on the lit side, then back along the shadow's edge: half an ellipse, bulging
         // toward the lit side while the moon is a crescent and away from it once it's more than half
         float lit = lit(hijriDay);
         float edge = Math.abs(1 - 2 * lit) * radius;
-        RectF disc = new RectF(centre - radius, centre - radius, centre + radius, centre + radius);
-        RectF shadow = new RectF(centre - edge, centre - radius, centre + edge, centre + radius);
+        RectF disc = new RectF(x - radius, y - radius, x + radius, y + radius);
+        RectF shadow = new RectF(x - edge, y - radius, x + edge, y + radius);
         float back = lit < 0.5f ? -180 : 180;
         Path path = new Path();
         if (isLitOnRight(hijriDay, latitude)) {

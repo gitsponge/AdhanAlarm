@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The prayer dial's tile, in the app icon's olive, rounded like the launcher's other widgets -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="@dimen/widget_radius" />
+    <solid android:color="@color/ic_launcher_background" />
+</shape>

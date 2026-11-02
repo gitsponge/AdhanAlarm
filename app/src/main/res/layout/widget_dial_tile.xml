@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- From about 2 by 2 up: the dial and its labels on an olive tile. The tile is the widget's own
+     background, so it fills the widget and is rounded like the others; the picture on it is drawn to the
+     widget's size. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@android:id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_dial_tile"
+    android:clipToOutline="true"
+    tools:ignore="UnusedAttribute">
+
+    <ImageView
+        android:id="@+id/dial"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no"
+        android:scaleType="fitCenter" />
+</FrameLayout>

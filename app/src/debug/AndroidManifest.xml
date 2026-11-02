@@ -10,5 +10,12 @@
                 <action android:name="islam.adhanalarm.debug.STOP_ADHAN" />
             </intent-filter>
         </receiver>
+        <receiver android:name=".widget.DialSnapshotReceiver"
+            android:exported="true"
+            android:permission="android.permission.DUMP">
+            <intent-filter>
+                <action android:name="islam.adhanalarm.debug.DIAL_SNAPSHOT" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>
