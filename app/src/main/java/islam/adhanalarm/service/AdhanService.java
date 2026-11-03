@@ -20,6 +20,9 @@ import android.os.PowerManager;
 import androidx.core.app.ServiceCompat;
 import androidx.core.content.ContextCompat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import islam.adhanalarm.App;
 import islam.adhanalarm.CONSTANT;
 import islam.adhanalarm.Prefs;
@@ -43,6 +46,16 @@ public class AdhanService extends Service implements MediaPlayer.OnCompletionLis
     private static final int FADE_MS = 1500, FADE_STEP_MS = 100;
 
     private static boolean sKeepNotification = true;
+
+    /**
+     * Told on the main thread when a sound starts and stops, so the prayer clock can offer to stop it
+     */
+    public interface PlaybackListener {
+        void onPlaybackChanged(boolean playing);
+    }
+
+    private static final List<PlaybackListener> sPlaybackListeners = new ArrayList<>();
+    private static boolean sPlaying;
 
     private MediaPlayer mPlayer;
     private AudioFocusRequest mFocusRequest;
@@ -84,6 +97,26 @@ public class AdhanService extends Service implements MediaPlayer.OnCompletionLis
         context.stopService(new Intent(context, AdhanService.class));
     }
 
+    public static boolean isPlaying() {
+        return sPlaying;
+    }
+
+    public static void addPlaybackListener(PlaybackListener listener) {
+        sPlaybackListeners.add(listener);
+    }
+
+    public static void removePlaybackListener(PlaybackListener listener) {
+        sPlaybackListeners.remove(listener);
+    }
+
+    private static void setPlaying(boolean playing) {
+        if (sPlaying == playing) return;
+        sPlaying = playing;
+        for (PlaybackListener listener : new ArrayList<>(sPlaybackListeners)) {
+            listener.onPlaybackChanged(playing);
+        }
+    }
+
     /**
      * The phone sound chosen for this prayer's adhan, or null for the built-in one
      */
@@ -107,7 +140,9 @@ public class AdhanService extends Service implements MediaPlayer.OnCompletionLis
         sKeepNotification = mTimeIndex != BISMILLAH;
         Notification notification = mTimeIndex == BISMILLAH ? NotificationHandler.buildBismillah(this) : NotificationHandler.buildPlaying(this, mTimeIndex, mTime);
         ServiceCompat.startForeground(this, NotificationHandler.NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
-        if (!startPlayback(intent.getIntExtra(EXTRA_SOUND, SOUND_ADHAN))) {
+        if (startPlayback(intent.getIntExtra(EXTRA_SOUND, SOUND_ADHAN))) {
+            setPlaying(true);
+        } else {
             stopSelf();
         }
         return START_NOT_STICKY;
@@ -242,6 +277,7 @@ public class AdhanService extends Service implements MediaPlayer.OnCompletionLis
 
     @Override
     public void onDestroy() {
+        setPlaying(false);
         releasePlayer();
         abandonAudioFocus();
         ServiceCompat.stopForeground(this, sKeepNotification ? ServiceCompat.STOP_FOREGROUND_DETACH : ServiceCompat.STOP_FOREGROUND_REMOVE);

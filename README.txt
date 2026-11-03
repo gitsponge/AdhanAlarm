@@ -33,6 +33,19 @@ Debug builds can also draw the Prayer dial widget at any sizes, in dp, into the 
   adb shell am broadcast -a islam.adhanalarm.debug.DIAL_SNAPSHOT -n islam.adhanalarm.dev/islam.adhanalarm.widget.DialSnapshotReceiver --es sizes 164x191,246x287,328x382 --es time 16:40
   adb exec-out run-as islam.adhanalarm.dev cat files/dial/164x191.png > dial.png
 
+What's new in 4.2
+
+- A prayer clock: the Prayer dial full screen with the time, the next prayer and the date, opened from Today, for a phone on a stand, a tablet or a Chromebook. The screen stays on only while it charges, and from the middle of the night until Fajr it dims right down; a tap brings it back up for a minute. It's also a screen saver, chosen under Screen saver in the phone's display settings.
+- From about 2×2 up, the dial's moon looks like the moon: a ball with its seas, traced from NASA's map of the moon, and its night side faintly lit, so even the first night's crescent sits in a whole round moon. South of the equator it's turned over, as it's seen there.
+- The sun is bigger and marks the exact minute: a dot at its centre, and a needle across the prayer ring that ends in a cream tip past it.
+- The dial names noon, midnight and 6 o'clock in your language, as 6 a.m. and 6 p.m. or 06:00 and 18:00, the way your times are written. A name is left out while the sun passes over it.
+- With room to spare, as on a tablet or the clock on its side, the prayers' names run around the dial.
+- A crescent before the Islamic date on Today shows the moon's phase.
+- After travelling, the times follow you: when the app opens it updates your location, with a fresh fix if the last one is more than 10 minutes old.
+- Android Auto: today's prayers on the car's screen, and the adhan through its speakers.
+- On Android TV the app opens straight into the prayer clock, and OK opens the rest of the app.
+- Devices without a touchscreen or GPS, such as Chromebooks and TVs, can install it.
+
 What's new in 4.1
 
 - The Prayer dial widget grows with the room you give it. At an app icon's size it's as before. From about 2×2 it sits on an olive tile and names each prayer on a pointer to its window; bigger, it adds their times, and at the largest sizes the Islamic date in small type underneath. The next prayer's name is highlighted, and on a tile the hand moves every 5 minutes.

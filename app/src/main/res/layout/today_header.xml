@@ -10,11 +10,13 @@
         android:orientation="vertical"
         android:paddingStart="20dp"
         android:paddingTop="8dp"
-        android:paddingEnd="56dp">
+        android:paddingEnd="16dp">
 
+        <!-- The title keeps clear of the buttons beside it; the date runs on under them -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/today_title_end"
             android:text="@string/today"
             android:textAppearance="@style/Text.Header.Title" />
 

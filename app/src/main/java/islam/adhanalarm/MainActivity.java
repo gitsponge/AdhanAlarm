@@ -12,6 +12,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -27,6 +29,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.pm.ShortcutInfoCompat;
+import androidx.core.content.pm.ShortcutManagerCompat;
+import androidx.core.graphics.drawable.IconCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.os.ConfigurationCompat;
 import androidx.core.view.OnApplyWindowInsetsListener;
@@ -48,10 +53,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import islam.adhanalarm.clock.ClockActivity;
 import islam.adhanalarm.handler.CityDatabase;
 import islam.adhanalarm.handler.CompassHandler;
 import islam.adhanalarm.handler.LocationHandler;
 import islam.adhanalarm.handler.ScheduleHandler;
+import islam.adhanalarm.view.MoonSpan;
 import islam.adhanalarm.view.QiblaCompassView;
 
 public class MainActivity extends AppCompatActivity implements App.PrayerTimeListener, CompassHandler.Listener {
@@ -134,6 +141,18 @@ public class MainActivity extends AppCompatActivity implements App.PrayerTimeLis
             View button = findViewById(id);
             if (button != null) button.setOnClickListener(openSettings);
         }
+        findViewById(R.id.clock_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ClockActivity.class));
+            }
+        });
+        // The prayer clock, from a long press on the app's icon, named in the language in use
+        ShortcutManagerCompat.pushDynamicShortcut(this, new ShortcutInfoCompat.Builder(this, "clock")
+                .setShortLabel(getString(R.string.prayer_clock))
+                .setIcon(IconCompat.createWithResource(this, R.drawable.ic_shortcut_clock))
+                .setIntent(new Intent(Intent.ACTION_VIEW, null, this, ClockActivity.class))
+                .build());
         findViewById(R.id.location_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -269,7 +288,19 @@ public class MainActivity extends AppCompatActivity implements App.PrayerTimeLis
         Locale locale = ConfigurationCompat.getLocales(getResources().getConfiguration()).get(0);
         if (locale == null) locale = Locale.getDefault();
         String date = new SimpleDateFormat(android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEdMMMM"), locale).format(new Date());
-        ((TextView) findViewById(R.id.today_date)).setText(getString(R.string.date_line, date, mScheduleHandler.getHijriDate(this)));
+        // The day in both calendars, with tonight's moon before the Islamic date it stands for. It's only a
+        // picture of that date, so a screen reader hears the words alone.
+        String hijri = mScheduleHandler.getHijriDate(this);
+        String dateLine = getString(R.string.date_line, date, hijri);
+        SpannableStringBuilder withMoon = new SpannableStringBuilder(dateLine);
+        int at = dateLine.lastIndexOf(hijri);
+        if (at >= 0) {
+            withMoon.insert(at, "\uFFFC ");
+            withMoon.setSpan(new MoonSpan(this, mScheduleHandler.getHijriDay(), mScheduleHandler.getLocation().getDegreeLat()), at, at + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        TextView today = findViewById(R.id.today_date);
+        today.setText(withMoon);
+        today.setContentDescription(dateLine);
 
         String place = Formats.place(this, mSettings);
         MaterialButton location = findViewById(R.id.location_button);

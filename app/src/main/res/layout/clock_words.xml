@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The prayer clock's words: the time, light and large; what's next, keyed by a dot in its window's colour;
+     and the day in both calendars, quietest of all -->
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/clock_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:includeFontPadding="false"
+            android:textColor="@color/dial_cream"
+            android:textSize="@dimen/clock_time"
+            tools:text="4:40" />
+
+        <TextView
+            android:id="@+id/clock_period"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/dial_ink_secondary"
+            android:textSize="@dimen/clock_period"
+            tools:text="p.m." />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/clock_dot"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:background="@drawable/clock_dot" />
+
+        <TextView
+            android:id="@+id/clock_headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/dial_cream"
+            android:textSize="@dimen/clock_headline"
+            tools:text="Maghrib in 1 h 17 min" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/clock_sub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/dial_ink_secondary"
+        android:textSize="@dimen/clock_sub"
+        tools:text="5:57 p.m., a short window" />
+
+    <TextView
+        android:id="@+id/clock_dates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/dial_ink_secondary"
+        android:textSize="@dimen/clock_dates"
+        tools:text="Thursday 29 October · 17 Jumādā al-Ūlā 1448" />
+
+    <!-- On a TV, for a few seconds: how to reach the rest of the app with the remote -->
+    <TextView
+        android:id="@+id/clock_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:alpha="0"
+        android:text="@string/clock_tv_hint"
+        android:textColor="@color/dial_ink_secondary"
+        android:textSize="@dimen/clock_dates"
+        android:visibility="gone" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/clock_stop"
+        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/stop"
+        android:textColor="@color/dial_cream"
+        android:visibility="gone"
+        app:icon="@drawable/ic_stop"
+        app:iconTint="@color/dial_cream"
+        app:strokeColor="@color/dial_ink_secondary" />
+</merge>

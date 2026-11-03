@@ -35,4 +35,7 @@
     <color name="progress_track">#5E6634</color>
     <color name="hero_caption">#D0D79E</color>
     <color name="brand">#C4CC8F</color>
+    <color name="moon_lit">#E9E6D6</color>
+    <color name="moon_shadow">#343629</color>
+    <color name="moon_outline">#8C8D7E</color>
 </resources>

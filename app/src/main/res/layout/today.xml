@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/today"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,16 +25,33 @@
                 <include layout="@layout/today_header" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/settings_button"
-                style="@style/Widget.App.IconButton"
+            <!-- The prayer clock and settings, level with the title -->
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|top"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="6dp"
                 android:layout_marginEnd="4dp"
-                android:contentDescription="@string/settings"
-                app:icon="@drawable/ic_settings" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/clock_button"
+                    style="@style/Widget.App.IconButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/prayer_clock"
+                    android:tooltipText="@string/prayer_clock"
+                    tools:ignore="UnusedAttribute"
+                    app:icon="@drawable/ic_fullscreen" />
+
+                <Button
+                    android:id="@+id/settings_button"
+                    style="@style/Widget.App.IconButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/settings"
+                    app:icon="@drawable/ic_settings" />
+            </LinearLayout>
         </FrameLayout>
 
         <LinearLayout

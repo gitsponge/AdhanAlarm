@@ -2,4 +2,14 @@
     <dimen name="arabic_column">60dp</dimen>
     <dimen name="time_column">72dp</dimen>
     <dimen name="widget_radius">24dp</dimen>
+    <!-- Room beside Today's title for the prayer clock and settings buttons; in landscape they're on the rail -->
+    <dimen name="today_title_end">100dp</dimen>
+    <!-- The prayer clock's words, and the margins round it on its side -->
+    <dimen name="clock_time">84sp</dimen>
+    <dimen name="clock_period">22sp</dimen>
+    <dimen name="clock_headline">22sp</dimen>
+    <dimen name="clock_sub">15sp</dimen>
+    <dimen name="clock_dates">14sp</dimen>
+    <dimen name="clock_land_across">32dp</dimen>
+    <dimen name="clock_land_down">20dp</dimen>
 </resources>

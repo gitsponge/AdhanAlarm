@@ -4,4 +4,6 @@
     <issue id="MissingTranslation">
         <ignore regexp="is not translated in &quot;en&quot; \(English\)$" />
     </issue>
+    <!-- The TV banner comes at xhdpi only, the density a TV's home screen uses -->
+    <issue id="IconMissingDensityFolder" severity="ignore" />
 </lint>

@@ -235,7 +235,7 @@
     <string name="source_code_summary" translatable="false">github.com/gitsponge/AdhanAlarm</string>
     <string name="credits">Credits</string>
     <string name="credits_summary">City list: GeoNames, CC BY 4.0</string>
-    <string name="credits_text">City list: GeoNames (geonames.org), under the Creative Commons Attribution 4.0 licence.\n\nPrayer times: ITL, the Islamic Tools and Libraries project.\n\nHijri calendar: hvjavacal.</string>
+    <string name="credits_text">City list: GeoNames (geonames.org), under the Creative Commons Attribution 4.0 licence.\n\nPrayer times: ITL, the Islamic Tools and Libraries project.\n\nHijri calendar: hvjavacal.\n\nMoon map: NASA\'s Scientific Visualization Studio.</string>
     <string name="version">Version</string>
 
     <!-- Location -->
@@ -281,4 +281,16 @@
     <string name="widget_dial_description">Today\'s prayer times on a 24-hour dial</string>
     <!-- Read out after a prayer and its time, for a window under two hours, which the dial shows in copper -->
     <string name="dial_short_window">%1$s, a short window</string>
+    <!-- On the prayer dial's face, at the top and the bottom of its 24 hours: 12 noon and 12 midnight. Keep them short, as they sit inside the dial, and unlike the noon prayer's name -->
+    <string name="dial_noon">Noon</string>
+    <string name="dial_midnight">Midnight</string>
+    <!-- The dial full screen, for a phone on a stand, and the name of its screen saver -->
+    <string name="prayer_clock">Prayer clock</string>
+    <!-- For example "Maghrib ends in 52 min": a prayer's name, then the countdown as in countdown_minutes -->
+    <string name="clock_ends">%1$s ends %2$s</string>
+    <!-- For example "until `Ishaa' at 7:14 p.m.": what ends the window, and its time -->
+    <string name="clock_until">until %1$s at %2$s</string>
+    <string name="settings_screen_saver">Screen saver</string>
+    <string name="settings_screen_saver_summary">Show the prayer clock while your phone charges or sits in a dock</string>
+    <string name="clock_tv_hint">Press OK for today\'s times and settings</string>
 </resources>

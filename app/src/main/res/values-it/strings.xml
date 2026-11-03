@@ -228,7 +228,7 @@
     <string name="source_code">Codice sorgente</string>
     <string name="credits">Crediti</string>
     <string name="credits_summary">Elenco delle città: GeoNames, CC BY 4.0</string>
-    <string name="credits_text">Elenco delle città: GeoNames (geonames.org), con licenza Creative Commons Attribuzione 4.0.\n\nOrari di preghiera: ITL, il progetto Islamic Tools and Libraries.\n\nCalendario dell\'Egira: hvjavacal.</string>
+    <string name="credits_text">Elenco delle città: GeoNames (geonames.org), con licenza Creative Commons Attribuzione 4.0.\n\nOrari di preghiera: ITL, il progetto Islamic Tools and Libraries.\n\nCalendario dell\'Egira: hvjavacal.\n\nMappa della Luna: NASA\'s Scientific Visualization Studio.</string>
     <string name="version">Versione</string>
 
     <!-- Location -->
@@ -273,6 +273,14 @@
     <string name="widget_dial">Quadrante delle preghiere</string>
     <string name="widget_dial_description">Gli orari di preghiera di oggi su un quadrante di 24 ore</string>
     <string name="dial_short_window">%1$s, una finestra breve</string>
+    <string name="dial_noon">Mezzogiorno</string>
+    <string name="dial_midnight">Mezzanotte</string>
+    <string name="prayer_clock">Orologio delle preghiere</string>
+    <string name="clock_ends">%1$s termina %2$s</string>
+    <string name="clock_until">fino a %1$s alle %2$s</string>
+    <string name="settings_screen_saver">Salvaschermo</string>
+    <string name="settings_screen_saver_summary">Mostra l’orologio delle preghiere mentre il telefono è in carica o sul dock</string>
+    <string name="clock_tv_hint">Premi OK per gli orari di oggi e le impostazioni</string>
 
     <!-- The 16 points of the compass, clockwise from north -->
     <string-array name="compass_points">

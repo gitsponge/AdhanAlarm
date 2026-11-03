@@ -28,7 +28,7 @@ import islam.adhanalarm.handler.ScheduleHandler;
  * can be checked on a phone without placing and resizing widgets. A size too small for a tile comes out
  * as the icon-sized dial. Debug builds only, for example:
  *
- * adb shell am broadcast -a islam.adhanalarm.debug.DIAL_SNAPSHOT -n islam.adhanalarm.dev/islam.adhanalarm.widget.DialSnapshotReceiver --es sizes 164x191,246x287 --es time 16:40
+ * adb shell am broadcast -a islam.adhanalarm.debug.DIAL_SNAPSHOT -n islam.adhanalarm.dev/islam.adhanalarm.widget.DialSnapshotReceiver --es sizes 164x191,246x287 --es time 16:40 --ei hijri 3
  * adb exec-out run-as islam.adhanalarm.dev cat files/dial/164x191.png > dial.png
  */
 public class DialSnapshotReceiver extends BroadcastReceiver {
@@ -44,7 +44,14 @@ public class DialSnapshotReceiver extends BroadcastReceiver {
             now.set(Calendar.MINUTE, Integer.parseInt(time.substring(time.indexOf(':') + 1)));
         }
         SharedPreferences settings = App.getSettings(context);
-        ScheduleHandler schedule = new ScheduleHandler(settings);
+        // A day of the Islamic month to show the moon on, in place of today's: --ei hijri 3
+        int hijri = intent.getIntExtra("hijri", 0);
+        ScheduleHandler schedule = hijri < 1 ? new ScheduleHandler(settings) : new ScheduleHandler(settings) {
+            @Override
+            public int getHijriDay() {
+                return hijri;
+            }
+        };
         DateFormat format = Prefs.getTimeFormat(context, settings);
         File folder = new File(context.getFilesDir(), "dial");
         if (!folder.isDirectory() && !folder.mkdirs()) return;

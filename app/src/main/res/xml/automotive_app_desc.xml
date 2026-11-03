@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- In Android Auto the app is a media app: today's prayers to browse, and the adhan to play -->
+<automotiveApp>
+    <uses name="media" />
+</automotiveApp>

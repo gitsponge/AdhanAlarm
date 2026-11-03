@@ -212,6 +212,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                 showAlarmCheck();
             }
         });
+        onClick("screenSaver", new Runnable() {
+            @Override
+            public void run() {
+                openSettings(new Intent(Settings.ACTION_DREAM_SETTINGS));
+            }
+        });
         onClick("privacyPolicy", new Runnable() {
             @Override
             public void run() {

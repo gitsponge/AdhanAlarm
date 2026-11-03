@@ -227,7 +227,7 @@
     <string name="source_code">Kaynak kodu</string>
     <string name="credits">Emeği geçenler</string>
     <string name="credits_summary">Şehir listesi: GeoNames, CC BY 4.0</string>
-    <string name="credits_text">Şehir listesi: GeoNames (geonames.org), Creative Commons Atıf 4.0 lisansı kapsamında.\n\nNamaz vakitleri: ITL, Islamic Tools and Libraries projesi.\n\nHicri takvim: hvjavacal.</string>
+    <string name="credits_text">Şehir listesi: GeoNames (geonames.org), Creative Commons Atıf 4.0 lisansı kapsamında.\n\nNamaz vakitleri: ITL, Islamic Tools and Libraries projesi.\n\nHicri takvim: hvjavacal.\n\nAy haritası: NASA\'s Scientific Visualization Studio.</string>
     <string name="version">Sürüm</string>
 
     <!-- Location -->
@@ -272,6 +272,14 @@
     <string name="widget_dial">Vakit kadranı</string>
     <string name="widget_dial_description">Bugünün namaz vakitleri 24 saatlik bir kadranda</string>
     <string name="dial_short_window">%1$s, kısa bir vakit</string>
+    <string name="dial_noon">Gün ortası</string>
+    <string name="dial_midnight">Gece yarısı</string>
+    <string name="prayer_clock">Namaz saati</string>
+    <string name="clock_ends">%1$s %2$s bitiyor</string>
+    <string name="clock_until">%1$s vaktine kadar, saat %2$s</string>
+    <string name="settings_screen_saver">Ekran koruyucu</string>
+    <string name="settings_screen_saver_summary">Telefon şarj olurken veya yuvadayken namaz saatini göster</string>
+    <string name="clock_tv_hint">Bugünün vakitleri ve ayarlar için Tamam\'a basın</string>
 
     <!-- The 16 points of the compass, clockwise from north -->
     <string-array name="compass_points">

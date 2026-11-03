@@ -102,7 +102,7 @@ public class NextNotificationWidgetProvider extends AppWidgetProvider {
      * "1:01" and "p.m." apart, so the 1 by 1 tile can set them on two lines. In 24-hour time, or a
      * pattern this can't take apart, the time comes back whole with no period.
      */
-    static String[] splitTime(DateFormat format, Date time) {
+    public static String[] splitTime(DateFormat format, Date time) {
         if (format instanceof SimpleDateFormat) {
             SimpleDateFormat clock = (SimpleDateFormat) format.clone();
             String pattern = clock.toPattern();

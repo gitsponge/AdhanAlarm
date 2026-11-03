@@ -45,13 +45,13 @@ public class PrayerDialTest {
 
     @Test
     public void theNextPrayersNameIsHighlighted() {
-        assertEquals(0, DialTile.nextWindow(CONSTANT.FAJR));
-        assertEquals(1, DialTile.nextWindow(CONSTANT.SUNRISE)); // Through fajr's window, dhuhr is the next prayer
-        assertEquals(3, DialTile.nextWindow(CONSTANT.MAGHRIB));
-        assertEquals(0, DialTile.nextWindow(CONSTANT.NEXT_FAJR));
-        assertEquals(CONSTANT.NEXT_FAJR, DialTile.startOf(0, CONSTANT.NEXT_FAJR)); // After isha, fajr's name goes with tomorrow's time
-        assertEquals(CONSTANT.FAJR, DialTile.startOf(0, CONSTANT.FAJR));
-        assertEquals(CONSTANT.ISHAA, DialTile.startOf(4, CONSTANT.NEXT_FAJR));
+        assertEquals(0, DialArt.nextWindow(CONSTANT.FAJR));
+        assertEquals(1, DialArt.nextWindow(CONSTANT.SUNRISE)); // Through fajr's window, dhuhr is the next prayer
+        assertEquals(3, DialArt.nextWindow(CONSTANT.MAGHRIB));
+        assertEquals(0, DialArt.nextWindow(CONSTANT.NEXT_FAJR));
+        assertEquals(CONSTANT.NEXT_FAJR, DialArt.startOf(0, CONSTANT.NEXT_FAJR)); // After isha, fajr's name goes with tomorrow's time
+        assertEquals(CONSTANT.FAJR, DialArt.startOf(0, CONSTANT.FAJR));
+        assertEquals(CONSTANT.ISHAA, DialArt.startOf(4, CONSTANT.NEXT_FAJR));
     }
 
     @Test
@@ -75,5 +75,70 @@ public class PrayerDialTest {
         assertFalse(PrayerDial.isLitOnRight(20, 30)); // Shrinking
         assertFalse(PrayerDial.isLitOnRight(5, -30)); // The other way round from the south
         assertTrue(PrayerDial.isLitOnRight(20, -30));
+    }
+
+    @Test
+    public void bigEnoughToRecogniseTheMoonGrowsWithTheFace() {
+        float dp = 2.625f;
+        // A 2x2 widget's face is about 57 dp from the centre; its moon used to be 9 dp across
+        assertTrue(2 * PrayerDial.moonRadius(56.8f * dp) / dp >= 16);
+        // The prayer clock's is about 164 dp, for a moon about 49 dp across where it used to be 15
+        assertEquals(49, 2 * PrayerDial.moonRadius(163.9f * dp) / dp, 0.5);
+    }
+
+    @Test
+    public void theNeedlesTipStaysWithinTheRoomLeftRoundTheDial() {
+        float dp = 2.625f;
+        for (float rim = 30; rim <= 700; rim += 5) { // From a small widget's dial to a tablet's clock, in dp
+            float unit = PrayerDial.unitFor(rim * dp, dp);
+            assertTrue(rim + " dp", PrayerDial.tipReach(unit, dp) <= (DialArt.OVERHANG - 1) * dp + 0.001f);
+        }
+        float unit = PrayerDial.unitFor(90 * dp, dp); // A 3x3 widget's dial keeps the whole arrow
+        assertEquals(PrayerDial.TIP_REACH * unit, PrayerDial.tipReach(unit, dp), 0.001);
+    }
+
+    @Test
+    public void aNameWaitsWhileTheSunPassesOverIt() {
+        // "Midnight" in a box 40 wide and 10 high, centred 70 below the centre
+        assertTrue(PrayerDial.covers(0, 70, 10, -20, 65, 20, 75)); // The sun right on it
+        assertTrue(PrayerDial.covers(26, 70, 10, -20, 65, 20, 75)); // Over its last letters
+        assertFalse(PrayerDial.covers(35, 70, 10, -20, 65, 20, 75)); // Gone past
+        assertFalse(PrayerDial.covers(27, 80, 8, -20, 65, 20, 75)); // Near its corner, but clear of it
+    }
+
+    @Test
+    public void theSeasStayOnTheMoonAndAreClosed() {
+        for (String data : new String[] {MoonFace.SEAS, MoonFace.DARKEST_SEAS}) {
+            float x = 0, y = 0;
+            int opened = 0, closed = 0;
+            for (float[] step : MoonFace.steps(data)) {
+                switch ((char) step[0]) {
+                    case 'M': x = step[1]; y = step[2]; opened++; break;
+                    case 'c': x += step[5]; y += step[6]; break;
+                    case 'l': x += step[1]; y += step[2]; break;
+                    default: closed++;
+                }
+                assertTrue(x + "," + y, Math.hypot(x, y) <= 100);
+            }
+            assertTrue(opened > 0);
+            assertEquals(opened, closed);
+        }
+        // Kept light: a few kilobytes of path data, no pictures
+        assertTrue(MoonFace.SEAS.length() + MoonFace.DARKEST_SEAS.length() < 4000);
+    }
+
+    @Test
+    public void aQuartersNameSitsAsFarOutAsItGoesInsideTheFace() {
+        // "Midnight" under the hub: its bottom corners on the edge, so a long name comes in a little
+        float below = PrayerDial.reachInside(100, 0, 1, 30, 4);
+        assertEquals(Math.sqrt(100 * 100 - 30 * 30) - 4, below, 0.01);
+        // "6 a.m." beside it: its outer corners on the edge
+        float beside = PrayerDial.reachInside(100, -1, 0, 15, 4);
+        assertEquals(Math.sqrt(100 * 100 - 4 * 4) - 15, beside, 0.01);
+        // Any way round, the far corner just touches the edge
+        double radians = Math.toRadians(35);
+        float cos = (float) Math.cos(radians), sin = (float) Math.sin(radians);
+        float r = PrayerDial.reachInside(100, cos, sin, 20, 6);
+        assertEquals(100, Math.hypot(r * cos + 20, r * sin + 6), 0.01);
     }
 }

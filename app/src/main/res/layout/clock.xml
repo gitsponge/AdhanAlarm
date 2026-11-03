@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The prayer clock, upright: the dial above, then the time, what's next and the day. Black, for a dark room
+     and a screen whose black pixels are off. Painted here too, as the screen saver's window isn't. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clock"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingHorizontal="20dp"
+    android:paddingTop="40dp"
+    android:paddingBottom="32dp"
+    tools:ignore="Overdraw">
+
+    <islam.adhanalarm.clock.PrayerClockView
+        android:id="@+id/clock_dial"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/clock_words"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="24dp">
+
+        <include layout="@layout/clock_words" />
+    </LinearLayout>
+</LinearLayout>

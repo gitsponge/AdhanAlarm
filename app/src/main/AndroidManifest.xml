@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- Phones, tablets, Chromebooks and TVs alike: none of these is needed, so none keeps the app off a device -->
+    <uses-feature android:name="android.software.leanback" android:required="false" />
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <uses-feature android:name="android.hardware.location" android:required="false" />
+    <uses-feature android:name="android.hardware.location.gps" android:required="false" />
+    <uses-feature android:name="android.hardware.location.network" android:required="false" />
+
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -12,6 +20,8 @@
     <!-- The adhan plays from a foreground service so Android doesn't cut it off -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <!-- The app never goes online. The car's player library asks to watch the network; it copes without, so that's taken out -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" tools:node="remove" />
     <application
         android:name=".App"
         android:allowBackup="false"
@@ -22,7 +32,8 @@
         android:enableOnBackInvokedCallback="true"
         android:localeConfig="@xml/locales_config"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:banner="@drawable/tv_banner">
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -41,6 +52,43 @@
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".SetupActivity"
             android:exported="false" />
+        <!-- Open to the launcher's shortcut and to adb, for testing; it only shows the clock -->
+        <activity android:name=".clock.ClockActivity"
+            android:exported="true"
+            android:theme="@style/ClockTheme">
+            <!-- On a TV the app opens straight into the prayer clock -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+            </intent-filter>
+            <!-- "Play the adhan on Adhān Alarm": the clock opens and the adhan plays -->
+            <intent-filter>
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- Android Auto: today's prayers on the car's screen, and the adhan through its speakers -->
+        <meta-data android:name="com.google.android.gms.car.application" android:resource="@xml/automotive_app_desc" />
+        <service android:name=".auto.AutoMediaService"
+            android:exported="true"
+            android:foregroundServiceType="mediaPlayback"
+            tools:ignore="ExportedService">
+            <intent-filter>
+                <action android:name="androidx.media3.session.MediaLibraryService" />
+                <action android:name="android.media.browse.MediaBrowserService" />
+            </intent-filter>
+        </service>
+        <!-- The prayer clock as a screen saver, chosen under Screen saver in the phone's display settings -->
+        <service android:name=".clock.PrayerClockDream"
+            android:exported="true"
+            android:label="@string/prayer_clock"
+            android:permission="android.permission.BIND_DREAM_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.dreams.DreamService" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="android.service.dream" android:resource="@xml/dream_prayer_clock" />
+        </service>
         <!-- Keeps the language chosen in the app on Android 12 and older -->
         <service
             android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"

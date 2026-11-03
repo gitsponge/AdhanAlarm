@@ -30,9 +30,9 @@ import java.util.concurrent.Executors;
 
 import islam.adhanalarm.App;
 import islam.adhanalarm.CONSTANT;
-import islam.adhanalarm.MainActivity;
 import islam.adhanalarm.Prefs;
 import islam.adhanalarm.R;
+import islam.adhanalarm.clock.ClockActivity;
 import islam.adhanalarm.handler.ScheduleHandler;
 
 /**
@@ -158,7 +158,8 @@ public class PrayerDialWidgetProvider extends AppWidgetProvider {
             views.setImageViewBitmap(R.id.dial, PrayerDial.draw(context, schedule, now, sizePx));
             views.setContentDescription(android.R.id.background, describeNext(context, schedule, format));
         }
-        views.setOnClickPendingIntent(android.R.id.background, PendingIntent.getActivity(context, 0, new Intent(context, MainActivity.class), PendingIntent.FLAG_IMMUTABLE));
+        // Opens the dial full screen, as the prayer clock
+        views.setOnClickPendingIntent(android.R.id.background, PendingIntent.getActivity(context, 0, new Intent(context, ClockActivity.class), PendingIntent.FLAG_IMMUTABLE));
         return views;
     }
 
@@ -252,11 +253,11 @@ public class PrayerDialWidgetProvider extends AppWidgetProvider {
     }
 
     /** Read out on a tile: the next prayer, every prayer's time and which are short, and the Islamic date */
-    private static String describeAll(Context context, ScheduleHandler schedule, DateFormat format, Calendar now) {
+    public static String describeAll(Context context, ScheduleHandler schedule, DateFormat format, Calendar now) {
         short nextTime = schedule.getNextTimeIndex(now);
         String separator = context.getString(R.string.list_separator);
         StringBuilder text = new StringBuilder(context.getString(R.string.next_prayer)).append(separator)
-                .append(nameAndTime(context, schedule, format, DialTile.nextWindow(nextTime), nextTime));
+                .append(nameAndTime(context, schedule, format, DialArt.nextWindow(nextTime), nextTime));
         for (int i = 0; i < PrayerDial.STARTS.length; i++) {
             String prayer = nameAndTime(context, schedule, format, i, nextTime);
             text.append(separator).append(PrayerDial.isShort(schedule, i) ? context.getString(R.string.dial_short_window, prayer) : prayer);
@@ -265,7 +266,7 @@ public class PrayerDialWidgetProvider extends AppWidgetProvider {
     }
 
     private static String nameAndTime(Context context, ScheduleHandler schedule, DateFormat format, int window, short nextTime) {
-        short start = DialTile.startOf(window, nextTime);
+        short start = DialArt.startOf(window, nextTime);
         return context.getString(R.string.name_and_time, context.getString(CONSTANT.TIME_NAMES[start]), format.format(schedule.getTime(start).getTime()));
     }
 }

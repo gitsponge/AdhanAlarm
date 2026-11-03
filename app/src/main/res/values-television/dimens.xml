@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A TV is read from across the room, and its edges may be cut off, so the words are bigger and kept inside its safe area -->
+<resources>
+    <dimen name="clock_time">112sp</dimen>
+    <dimen name="clock_period">28sp</dimen>
+    <dimen name="clock_headline">28sp</dimen>
+    <dimen name="clock_sub">20sp</dimen>
+    <dimen name="clock_dates">18sp</dimen>
+    <dimen name="clock_land_across">56dp</dimen>
+    <dimen name="clock_land_down">32dp</dimen>
+</resources>

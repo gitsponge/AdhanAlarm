@@ -231,7 +231,7 @@
     <string name="source_code">رمز المصدر</string>
     <string name="credits">شكر وتقدير</string>
     <string name="credits_summary">قائمة المدن: GeoNames، بترخيص CC BY 4.0</string>
-    <string name="credits_text">قائمة المدن: GeoNames (geonames.org)، بموجب رخصة المشاع الإبداعي نَسب المُصنَّف 4.0.\n\nأوقات الصلاة: مشروع الأدوات والمكتبات الإسلامية (ITL).\n\nالتقويم الهجري: hvjavacal.</string>
+    <string name="credits_text">قائمة المدن: GeoNames (geonames.org)، بموجب رخصة المشاع الإبداعي نَسب المُصنَّف 4.0.\n\nأوقات الصلاة: مشروع الأدوات والمكتبات الإسلامية (ITL).\n\nالتقويم الهجري: hvjavacal.\n\nخريطة القمر: NASA\'s Scientific Visualization Studio.</string>
     <string name="version">الإصدار</string>
 
     <!-- Location -->
@@ -276,6 +276,14 @@
     <string name="widget_dial">ساعة الصلاة</string>
     <string name="widget_dial_description">أوقات الصلاة اليوم على قرص من ٢٤ ساعة</string>
     <string name="dial_short_window">%1$s، وقتها قصير</string>
+    <string name="dial_noon">منتصف النهار</string>
+    <string name="dial_midnight">منتصف الليل</string>
+    <string name="prayer_clock">ساعة الصلاة</string>
+    <string name="clock_ends">%1$s ينتهي %2$s</string>
+    <string name="clock_until">حتى %1$s الساعة %2$s</string>
+    <string name="settings_screen_saver">شاشة التوقف</string>
+    <string name="settings_screen_saver_summary">اعرض ساعة الصلاة أثناء شحن الهاتف أو وضعه على قاعدته</string>
+    <string name="clock_tv_hint">اضغط موافق لعرض أوقات اليوم والإعدادات</string>
 
     <!-- The 16 points of the compass, clockwise from north -->
     <string-array name="compass_points">

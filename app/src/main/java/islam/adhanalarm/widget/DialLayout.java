@@ -8,12 +8,15 @@ package islam.adhanalarm.widget;
  */
 final class DialLayout {
 
-    static final int TOP = 0, BOTTOM = 1, LEFT = 2, RIGHT = 3;
+    /** Where a label sits: in a row or column on a pointer, or AROUND, just outside its window with no pointer */
+    static final int TOP = 0, BOTTOM = 1, LEFT = 2, RIGHT = 3, AROUND = 4;
 
     // In dp. A leader starts a little off the rim and runs straight out from it before turning for its
     // label, and stops a little short of the label. Rows keep a gap from the rim and space between their
     // labels; columns a gap from the rim and space between theirs.
     private static final float RIM_GAP = 1.5f, STUB = 3, END_GAP = 1.5f;
+    /** How far out from the rim a leader turns for its label, in dp: beside a dial as wide as the box, that's past the box's edge */
+    static final float ELBOW = RIM_GAP + STUB;
     private static final float ROW_GAP = 8, ROW_SPACE = 11, COLUMN_GAP = 12, COLUMN_SPACE = 6;
     /** The highlight round the next prayer's name. Room for it is kept round every label, so the layout stays put as the day goes on. */
     static final float PILL_X = 5, PILL_Y = 2.5f;
@@ -21,10 +24,16 @@ final class DialLayout {
     private static final float LEADER_INSET = 5;
     /** The smallest dial's radius worth looking for, in dp */
     private static final float MIN_RADIUS = 20;
-    /** How much bigger the dial has to get for each name moved into a side column. Rows keep the dial in the middle of the tile, as at the other sizes. */
-    private static final float COLUMN_COST = 0.04f;
+    /**
+     * How much bigger the dial has to get for each name moved into a side column, in a squarish space, where
+     * rows keep the dial in the middle as at the other sizes. The cost fades away as the space widens to 1.3
+     * times its height, where columns beside the dial are the natural place for the names.
+     */
+    private static final float COLUMN_COST = 0.04f, WIDE_FROM = 1.0f, WIDE = 1.3f;
     /** The search steps down this far at a time, then back up in quarters of it */
     private static final float STEP = 2;
+    /** Around the ring: the gap from the rim to a label, in dp, and how far round, in degrees, a label may edge from its window's middle to clear its neighbours */
+    private static final float AROUND_GAP = 10, AROUND_SLIDE = 22;
 
     static final class Label {
         /** Degrees clockwise from the top, at the middle of its window */
@@ -75,7 +84,7 @@ final class DialLayout {
             for (int slot : slots) {
                 if (slot == LEFT || slot == RIGHT) columns++;
             }
-            float share = 1 - COLUMN_COST * columns;
+            float share = 1 - columnCost(right - left, bottom - top) * columns;
             // Only a dial big enough to beat or match the best so far is worth looking for
             float floor = Math.max(MIN_RADIUS * dp, best == null ? 0 : (bestScore - 0.5f) * dp / share - dp);
             if (rowsFit(labels, slots, right - left)) {
@@ -101,6 +110,101 @@ final class DialLayout {
         }
         if (best == null) return false;
         return tryRadius(labels, best, left, top, right, bottom, bestRadius); // Leaves everything placed
+    }
+
+    /**
+     * Places each label just outside the middle of its window, upright and with no pointer, neighbours eased
+     * apart round the circle, for the biggest dial that leaves room. On a big screen being next to its arc is
+     * enough to show which window a name belongs to. False if no useful dial fits that way.
+     */
+    boolean fitAround(float left, float top, float right, float bottom, Label[] labels) {
+        float r = Math.min(right - left, bottom - top) / 2;
+        for (; r > MIN_RADIUS * dp; r -= STEP * dp) {
+            if (tryAround(labels, left, top, right, bottom, r)) break;
+        }
+        if (r <= MIN_RADIUS * dp) return false;
+        for (float up = r + STEP * dp * 0.75f; up > r; up -= STEP * dp / 4) {
+            if (tryAround(labels, left, top, right, bottom, up)) return true;
+        }
+        return tryAround(labels, left, top, right, bottom, r);
+    }
+
+    private boolean tryAround(Label[] labels, float left, float top, float right, float bottom, float r) {
+        float x = (left + right) / 2, y = (top + bottom) / 2;
+        float[] angles = placeAround(labels, x, y, r);
+        float minX = x - r, maxX = x + r, minY = y - r, maxY = y + r;
+        for (Label label : labels) {
+            minX = Math.min(minX, label.left);
+            maxX = Math.max(maxX, label.right);
+            minY = Math.min(minY, label.top);
+            maxY = Math.max(maxY, label.bottom);
+        }
+        x += (left + right) / 2 - (minX + maxX) / 2;
+        y += (top + bottom) / 2 - (minY + maxY) / 2;
+        angles = placeAround(labels, x, y, r);
+        centreX = x;
+        centreY = y;
+        radius = r;
+        for (int i = 0; i < labels.length; i++) {
+            float slide = Math.abs(angles[i] - labels[i].theta);
+            if (Math.min(slide, 360 - slide) > AROUND_SLIDE) return false; // Too far from its window to tell which it names
+        }
+        return isClean(labels, left, top, right, bottom);
+    }
+
+    /** Sets each label beside its window, then eases neighbours that touch apart round the circle; returns where each ended up */
+    private float[] placeAround(Label[] labels, float x, float y, float r) {
+        int count = labels.length;
+        float[] angles = new float[count];
+        Integer[] order = new Integer[count];
+        for (int i = 0; i < count; i++) {
+            angles[i] = labels[i].theta;
+            order[i] = i;
+        }
+        java.util.Arrays.sort(order, (a, b) -> Float.compare(labels[a].theta, labels[b].theta));
+        float px = PILL_X * dp, py = PILL_Y * dp;
+        for (int round = 0; round < 160; round++) {
+            for (int i = 0; i < count; i++) {
+                setAround(labels[i], x, y, r, angles[i]);
+            }
+            boolean moved = false;
+            for (int k = 0; k < count; k++) {
+                Label a = labels[order[k]], b = labels[order[(k + 1) % count]];
+                if (a.left - px - dp < b.right && b.left < a.right + px + dp && a.top - py - dp < b.bottom && b.top < a.bottom + py + dp) {
+                    angles[order[k]] -= 0.5f;
+                    angles[order[(k + 1) % count]] += 0.5f;
+                    moved = true;
+                }
+            }
+            if (!moved) break;
+        }
+        return angles;
+    }
+
+    /** One label just outside the rim at the given angle, its nearest corner a set gap from the rim */
+    private void setAround(Label label, float x, float y, float r, float angle) {
+        double radians = Math.toRadians(angle);
+        float ux = (float) Math.sin(radians), uy = (float) -Math.cos(radians);
+        float halfWidth = label.width / 2 + PILL_X * dp, halfHeight = label.height / 2 + PILL_Y * dp;
+        float reach = Math.min(Math.abs(ux) > 1e-4f ? halfWidth / Math.abs(ux) : Float.MAX_VALUE, Math.abs(uy) > 1e-4f ? halfHeight / Math.abs(uy) : Float.MAX_VALUE);
+        float distance = r + AROUND_GAP * dp + reach;
+        for (int step = 0; step < 40; step++) {
+            float cx = x + distance * ux, cy = y + distance * uy;
+            label.left = cx - label.width / 2;
+            label.right = cx + label.width / 2;
+            label.top = cy - label.height / 2;
+            label.bottom = cy + label.height / 2;
+            if (rectToPoint(label.left - PILL_X * dp, label.top - PILL_Y * dp, label.right + PILL_X * dp, label.bottom + PILL_Y * dp, x, y) >= r + AROUND_GAP * dp) break;
+            distance += dp;
+        }
+        label.slot = AROUND;
+        // No pointer: the leader shrinks to a point on the rim
+        label.rimX = label.elbowX = label.endX = x + (r + RIM_GAP * dp) * ux;
+        label.rimY = label.elbowY = label.endY = y + (r + RIM_GAP * dp) * uy;
+    }
+
+    static float columnCost(float width, float height) {
+        return COLUMN_COST * clamp((WIDE - width / height) / (WIDE - WIDE_FROM), 0, 1);
     }
 
     /**
@@ -178,8 +282,8 @@ final class DialLayout {
             float sin = (float) Math.sin(radians), cos = (float) Math.cos(radians);
             label.rimX = x + (r + RIM_GAP * dp) * sin;
             label.rimY = y - (r + RIM_GAP * dp) * cos;
-            label.elbowX = x + (r + (RIM_GAP + STUB) * dp) * sin;
-            label.elbowY = y - (r + (RIM_GAP + STUB) * dp) * cos;
+            label.elbowX = x + (r + ELBOW * dp) * sin;
+            label.elbowY = y - (r + ELBOW * dp) * cos;
         }
         Label[] group = new Label[labels.length];
         for (int row = TOP; row <= BOTTOM; row++) {

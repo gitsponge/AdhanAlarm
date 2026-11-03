@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The prayer clock's shortcut: the dial in small, on the app icon's olive -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:fillColor="@color/ic_launcher_background"
+        android:pathData="M24,0a24,24 0,1 1,0 48a24,24 0,1 1,0 -48z" />
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M24,10a14,14 0,1 1,0 28a14,14 0,1 1,0 -28z"
+        android:strokeWidth="3"
+        android:strokeColor="@color/dial_cream" />
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M24,24L31,19"
+        android:strokeLineCap="round"
+        android:strokeWidth="2"
+        android:strokeColor="@color/dial_cream" />
+    <path
+        android:fillColor="@color/dial_sun"
+        android:pathData="M32.5,18a2.5,2.5 0,1 1,-0.01 0z" />
+    <path
+        android:fillColor="@color/dial_hub"
+        android:pathData="M24,21.5a2.5,2.5 0,1 1,0 5a2.5,2.5 0,1 1,0 -5z" />
+</vector>

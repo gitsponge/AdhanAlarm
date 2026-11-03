@@ -106,6 +106,7 @@ public class DialLayoutTest {
         assertTrue(what + ": dial inside", x - r >= left - e && x + r <= right + e && y - r >= top - e && y + r <= bottom + e);
         for (DialLayout.Label a : labels) {
             assertTrue(what + ": label inside", a.left >= left - e && a.right <= right + e && a.top >= top - e && a.bottom <= bottom + e);
+            assertWithinReach(what, a, left, top, right, bottom, DENSITY);
             assertTrue(what + ": label off the dial", DialLayout.rectToPoint(a.left, a.top, a.right, a.bottom, x, y) >= r);
             assertEquals(what + ": pointer starts at the rim", r + 1.5f * DENSITY, Math.hypot(a.rimX - x, a.rimY - y), 0.5);
             assertTrue(what + ": pointer clear of the dial", DialLayout.segmentToPoint(a.elbowX, a.elbowY, a.endX, a.endY, x, y) >= r);
@@ -117,6 +118,52 @@ public class DialLayoutTest {
             }
         }
         return 2 * r / DENSITY;
+    }
+
+    /**
+     * The highlight round a label, and its pointer at the line's full width, reach no further past the box than
+     * DialArt.OVERHANG, which the prayer clock keeps clear round its box so nothing is cut off at the screen's edge
+     */
+    private static void assertWithinReach(String what, DialLayout.Label a, float left, float top, float right, float bottom, float density) {
+        float reach = DialArt.OVERHANG * density, px = DialLayout.PILL_X * density, py = DialLayout.PILL_Y * density;
+        assertTrue(what + ": highlight on the screen", a.left - px >= left - reach && a.right + px <= right + reach
+                && a.top - py >= top - reach && a.bottom + py <= bottom + reach);
+        float stroke = DialArt.LEADER_WIDTH / 2 * density;
+        for (float[] point : new float[][] {{a.rimX, a.rimY}, {a.elbowX, a.elbowY}, {a.endX, a.endY}}) {
+            assertTrue(what + ": pointer on the screen", point[0] - stroke >= left - reach && point[0] + stroke <= right + reach
+                    && point[1] - stroke >= top - reach && point[1] + stroke <= bottom + reach);
+        }
+    }
+
+    @Test
+    public void onAPhonesClockTheDialFillsTheWidthWithNothingCutOff() {
+        // The prayer clock upright on a phone: the dial's space, less the clock's own margin
+        float width = 412 - 2 * 20, height = 560;
+        float reach = DialArt.OVERHANG * DENSITY;
+        int full = 0, total = 0;
+        for (Object[] place : PLACES) {
+            TimeZone.setDefault(TimeZone.getTimeZone((String) place[0]));
+            for (int day = 0; day < 365; day += 29) {
+                Calendar noon = new GregorianCalendar(2026, Calendar.JANUARY, 1, 12, 0);
+                noon.add(Calendar.DAY_OF_YEAR, day);
+                ScheduleHandler schedule = Schedules.at(noon, "latitude", place[1], "longitude", place[2], "method", "mwl");
+                for (int next = 0; next < 5; next++) {
+                    DialLayout.Label[] labels = labels(schedule, NAMES.get("values"), new String[] {"5:12 a.m.", "11:40 a.m.", "2:28 p.m.", "4:51 p.m.", "6:09 p.m."}, 16, next);
+                    DialLayout layout = new DialLayout(DENSITY);
+                    float left = reach, top = reach, right = width * DENSITY - reach, bottom = height * DENSITY - reach;
+                    String what = place[0] + " day " + day + " next " + next;
+                    assertTrue(what + ": fits", layout.fit(left, top, right, bottom, labels));
+                    for (DialLayout.Label a : labels) {
+                        // Within the view itself, which is what clips the drawing
+                        assertWithinReach(what, a, left, top, right, bottom, DENSITY);
+                    }
+                    total++;
+                    if (2 * layout.radius / DENSITY > width - 2 * DialArt.OVERHANG - 1) full++;
+                }
+            }
+        }
+        // Mostly the dial touches the sides, where the highlight and the pointers would be cut off without the margin
+        assertTrue("The dial as wide as it goes: " + full + " of " + total, full >= total * 0.8);
     }
 
     private static String clock(Calendar time, boolean twelveHour) {
@@ -157,13 +204,13 @@ public class DialLayoutTest {
                         float full = layOut(w, h, labels(schedule, language.getValue(), times, sp, 3), what + " times");
                         float shortTimes = twelveHour ? layOut(w, h, labels(schedule, language.getValue(), clocks, sp, 3), what + " short") : -1;
                         layouts += twelveHour ? 3 : 2;
-                        int level = DialTile.chooseLevel(full, shortTimes, names);
+                        int level = DialArt.chooseLevel(full, shortTimes, names);
                         if (sizes[s][0] == 2) {
-                            assertTrue(what + ": names fit, dial " + names, level >= DialTile.NAMES);
+                            assertTrue(what + ": names fit, dial " + names, level >= DialArt.NAMES);
                         } else {
-                            assertTrue(what + ": times fit, dial " + full + "/" + shortTimes, level >= DialTile.SHORT_TIMES);
+                            assertTrue(what + ": times fit, dial " + full + "/" + shortTimes, level >= DialArt.SHORT_TIMES);
                         }
-                        float chosen = level == DialTile.NAMES ? names : level == DialTile.SHORT_TIMES ? shortTimes : full;
+                        float chosen = level == DialArt.NAMES ? names : level == DialArt.SHORT_TIMES ? shortTimes : full;
                         smallest[s] = Math.min(smallest[s], chosen);
                     }
                 }
@@ -175,14 +222,54 @@ public class DialLayoutTest {
     }
 
     @Test
+    public void onABigScreenTheNamesSitBesideTheirWindowsWithNoPointers() {
+        // A 1080p TV's dial area, at its density, with names and times in TV-sized type
+        float tvDensity = 2f, width = 560, height = 500;
+        int fitted = 0, total = 0;
+        for (Object[] place : PLACES) {
+            TimeZone.setDefault(TimeZone.getTimeZone((String) place[0]));
+            for (int day = 0; day < 365; day += 13) {
+                Calendar noon = new GregorianCalendar(2026, Calendar.JANUARY, 1, 12, 0);
+                noon.add(Calendar.DAY_OF_YEAR, day);
+                ScheduleHandler schedule = Schedules.at(noon, "latitude", place[1], "longitude", place[2], "method", "mwl");
+                for (String[] names : NAMES.values()) {
+                    DialLayout.Label[] labels = new DialLayout.Label[5];
+                    for (int i = 0; i < 5; i++) {
+                        float w = Math.max(width(names[i], 17), width("12:40 p.m.", 16)) * tvDensity / DENSITY;
+                        float h = (17 + 16) * 1.22f * tvDensity;
+                        labels[i] = new DialLayout.Label(PrayerDial.middleAngle(schedule, i), w, h, i == 3);
+                    }
+                    DialLayout layout = new DialLayout(tvDensity);
+                    total++;
+                    if (!layout.fitAround(0, 0, width * tvDensity, height * tvDensity, labels)) continue;
+                    fitted++;
+                    String what = place[0] + " day " + day + " " + names[0];
+                    for (DialLayout.Label a : labels) {
+                        assertEquals(what + ": no pointer", DialLayout.AROUND, a.slot);
+                        assertTrue(what + ": just outside the rim", DialLayout.rectToPoint(a.left, a.top, a.right, a.bottom, layout.centreX, layout.centreY) >= layout.radius + 8 * tvDensity);
+                        assertTrue(what + ": on the screen", a.left >= -1 && a.top >= -1 && a.right <= width * tvDensity + 1 && a.bottom <= height * tvDensity + 1);
+                        assertWithinReach(what, a, 0, 0, width * tvDensity, height * tvDensity, tvDensity);
+                        for (DialLayout.Label b : labels) {
+                            if (a != b) assertFalse(what + ": apart", a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom);
+                        }
+                    }
+                    assertTrue(what + ": a big dial, " + 2 * layout.radius / tvDensity, 2 * layout.radius / tvDensity >= DialArt.AROUND_DIAL);
+                }
+            }
+        }
+        System.out.println("Around the ring fitted " + fitted + " of " + total);
+        assertTrue("Around the ring fits nearly always on a TV: " + fitted + " of " + total, fitted >= total * 0.95);
+    }
+
+    @Test
     public void aSingleCellOrAStripHasNoRoomForNames() {
         TimeZone.setDefault(TimeZone.getTimeZone("Europe/London"));
         ScheduleHandler schedule = Schedules.at(new GregorianCalendar(2026, Calendar.MARCH, 20, 12, 0), "latitude", "51.51", "longitude", "-0.13", "method", "mwl");
         String[] names = NAMES.get("values");
         for (float[] cells : new float[][]{{2, 1}, {1, 2}, {3, 1}, {4, 1}}) {
             float w = cells[0] * CELL_WIDTH, h = cells[1] * CELL_HEIGHT;
-            float dial = Math.min(w, h) < DialTile.NAMES_DIAL ? 0 : layOut(w, h, labels(schedule, names, null, nameSp(w, h), 0), cells[0] + "x" + cells[1]);
-            assertEquals(cells[0] + "x" + cells[1] + " stays an icon, dial " + dial, DialTile.NONE, DialTile.chooseLevel(0, -1, dial));
+            float dial = Math.min(w, h) < DialArt.NAMES_DIAL ? 0 : layOut(w, h, labels(schedule, names, null, nameSp(w, h), 0), cells[0] + "x" + cells[1]);
+            assertEquals(cells[0] + "x" + cells[1] + " stays an icon, dial " + dial, DialArt.NONE, DialArt.chooseLevel(0, -1, dial));
         }
     }
 
@@ -232,11 +319,11 @@ public class DialLayoutTest {
 
     @Test
     public void detailComesAndGoesWithTheDialsSize() {
-        assertEquals(DialTile.TIMES, DialTile.chooseLevel(170, 172, 190)); // Full times cost the dial little
-        assertEquals(DialTile.SHORT_TIMES, DialTile.chooseLevel(143, 169, 196)); // Dropping a.m. and p.m. buys a much bigger dial
-        assertEquals(DialTile.TIMES, DialTile.chooseLevel(120, -1, 140)); // 24-hour times have nothing to drop
-        assertEquals(DialTile.NAMES, DialTile.chooseLevel(0, 80, 115)); // Too small for times
-        assertEquals(DialTile.NONE, DialTile.chooseLevel(0, 0, 70)); // Too small for names: set out like an icon
+        assertEquals(DialArt.TIMES, DialArt.chooseLevel(170, 172, 190)); // Full times cost the dial little
+        assertEquals(DialArt.SHORT_TIMES, DialArt.chooseLevel(143, 169, 196)); // Dropping a.m. and p.m. buys a much bigger dial
+        assertEquals(DialArt.TIMES, DialArt.chooseLevel(120, -1, 140)); // 24-hour times have nothing to drop
+        assertEquals(DialArt.NAMES, DialArt.chooseLevel(0, 80, 115)); // Too small for times
+        assertEquals(DialArt.NONE, DialArt.chooseLevel(0, 0, 70)); // Too small for names: set out like an icon
         assertNotNull(DialLayout.slotsFor(45));
     }
 

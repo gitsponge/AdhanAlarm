@@ -227,7 +227,7 @@
     <string name="source_code">Quellcode</string>
     <string name="credits">Danksagungen</string>
     <string name="credits_summary">Städteliste: GeoNames, CC BY 4.0</string>
-    <string name="credits_text">Städteliste: GeoNames (geonames.org), unter der Lizenz Creative Commons Namensnennung 4.0.\n\nGebetszeiten: ITL, das Projekt Islamic Tools and Libraries.\n\nIslamischer Kalender: hvjavacal.</string>
+    <string name="credits_text">Städteliste: GeoNames (geonames.org), unter der Lizenz Creative Commons Namensnennung 4.0.\n\nGebetszeiten: ITL, das Projekt Islamic Tools and Libraries.\n\nIslamischer Kalender: hvjavacal.\n\nMondkarte: NASA\'s Scientific Visualization Studio.</string>
     <string name="version">Version</string>
 
     <!-- Location -->
@@ -272,6 +272,14 @@
     <string name="widget_dial">Gebetsuhr</string>
     <string name="widget_dial_description">Die heutigen Gebetszeiten auf einem 24-Stunden-Zifferblatt</string>
     <string name="dial_short_window">%1$s, ein kurzes Zeitfenster</string>
+    <string name="dial_noon">Mittag</string>
+    <string name="dial_midnight">Mitternacht</string>
+    <string name="prayer_clock">Gebetsuhr</string>
+    <string name="clock_ends">%1$s endet %2$s</string>
+    <string name="clock_until">bis %1$s um %2$s</string>
+    <string name="settings_screen_saver">Bildschirmschoner</string>
+    <string name="settings_screen_saver_summary">Die Gebetsuhr zeigen, während das Telefon lädt oder angedockt ist</string>
+    <string name="clock_tv_hint">OK drücken für die heutigen Zeiten und die Einstellungen</string>
 
     <!-- The 16 points of the compass, clockwise from north -->
     <string-array name="compass_points">

@@ -10,8 +10,8 @@ android {
         applicationId = 'islam.adhanalarm'
         minSdk = 23
         targetSdk = 37
-        versionCode = 122 // Google Play needs every upload above the last one, which was 121 (4.0.1)
-        versionName = '4.1'
+        versionCode = 123 // Google Play needs every upload above the last one, which was 122 (4.1)
+        versionName = '4.2'
     }
 
     signingConfigs {
@@ -59,6 +59,9 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.8.0'
     implementation 'androidx.core:core:1.19.1'
     implementation 'androidx.preference:preference:1.2.1'
+    // For Android Auto: today's prayers to browse, and the adhan to play in the car
+    implementation 'androidx.media3:media3-session:1.11.1'
+    implementation 'androidx.media3:media3-exoplayer:1.11.1'
     implementation 'com.google.android.material:material:1.14.0'
     testImplementation 'junit:junit:4.13.2'
 }

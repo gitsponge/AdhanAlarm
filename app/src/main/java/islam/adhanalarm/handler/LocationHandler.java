@@ -24,6 +24,8 @@ public class LocationHandler {
 
     /** A fix this old still counts as where the phone is now */
     private static final long RECENT_MS = 2 * 60 * 1000;
+    /** As the app opens, a fix older than this may be from before a journey, so a fresh one is asked for too */
+    private static final long STALE_MS = 10 * 60 * 1000;
 
     private Context mContext;
     private List<LocationListener> mCallbackList;
@@ -53,7 +55,8 @@ public class LocationHandler {
     }
 
     /**
-     * The last fix any app got is good enough to keep the times right
+     * Keeps the place current as the app opens: the last fix any app got, straight away, and when that one is
+     * old, as after a journey, a fresh one as well
      */
     public void update() {
         update(false);
@@ -62,7 +65,7 @@ public class LocationHandler {
     /**
      * @param recent When asked for where the phone is now, an old fix is only used if no new one comes
      */
-    public void update(boolean recent) {
+    public void update(final boolean recent) {
         boolean isFineGranted = PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION);
         boolean isCoarseGranted = PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION);
         if (!isFineGranted && !isCoarseGranted) {
@@ -83,18 +86,20 @@ public class LocationHandler {
             }
             String provider = getFreshFixProvider(providers);
             final Location lastLocation = currentLocation;
-            boolean isRecent = lastLocation != null && System.currentTimeMillis() - lastLocation.getTime() < RECENT_MS;
-            if (lastLocation != null && (!recent || isRecent || provider == null)) {
+            long age = lastLocation == null ? Long.MAX_VALUE : System.currentTimeMillis() - lastLocation.getTime();
+            boolean askFresh = needsFreshFix(recent, age, provider != null);
+            if (lastLocation != null && (!recent || !askFresh)) {
                 notifyListeners(lastLocation);
-            } else if (provider != null) {
-                // Ask for a single fresh fix
+            }
+            if (askFresh) {
+                // A single fresh fix
                 LocationManagerCompat.getCurrentLocation(locationManager, provider, new CancellationSignal(), ContextCompat.getMainExecutor(mContext), new Consumer<Location>() {
                     @Override
                     public void accept(Location location) {
                         if (location != null) {
                             notifyListeners(location);
-                        } else if (lastLocation != null) {
-                            notifyListeners(lastLocation);
+                        } else if (recent && lastLocation != null) {
+                            notifyListeners(lastLocation); // None came, so the old one will have to do
                         }
                     }
                 });
@@ -102,6 +107,15 @@ public class LocationHandler {
         } catch(Exception ex) {
             // GPS and wireless networks are disabled
         }
+    }
+
+    /**
+     * Whether to ask for a fresh fix: when asked for where the phone is now, unless the last fix is from the last
+     * couple of minutes; as the app opens, once the last fix is old enough that the phone may have been carried
+     * somewhere else
+     */
+    static boolean needsFreshFix(boolean recent, long ageMs, boolean canAsk) {
+        return canAsk && ageMs >= (recent ? RECENT_MS : STALE_MS);
     }
 
     private static String getFreshFixProvider(List<String> providers) {
