@@ -4,7 +4,7 @@ import islam.adhanalarm.CONSTANT;
 import islam.adhanalarm.widget.DialArt;
 
 /**
- * What the prayer clock says under the time: the next prayer and how long until it, or, inside a short
+ * What the prayer dial full screen says under the time: the next prayer and how long until it, or, inside a short
  * window, how long that prayer's time has left, since praying those on time is what the dial is for. Also
  * whether it's the quiet part of the night, from halfway between sunset and fajr (when isha's preferred time
  * ends) until fajr, when the clock dims. Pure arithmetic on the day's times, so it can be tested without a

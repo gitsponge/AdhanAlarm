@@ -21,9 +21,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
 
+import islam.adhanalarm.R;
+
 /**
  * The places of 5,000 people or more, from GeoNames, bundled so that naming and finding a place never
- * needs the internet. Built by tools/make_cities.py.
+ * needs the internet. Built by tools/make_cities.py, which also changes a few disputed places.
  */
 public final class CityDatabase {
 
@@ -39,8 +41,38 @@ public final class CityDatabase {
     private static final Pattern NOT_LETTERS = Pattern.compile("[^\\p{L}\\p{N}]+");
     private static final Pattern ARABIC_AL = Pattern.compile("(^|\\s)\u0627\u0644(?=\\p{L})");
 
-    // Names people search for that GeoNames lists under another: it has Makkah and Madinah, but Jerusalem
-    private static final String[][] ALIASES = {{"mecca", "makkah"}, {"medina", "madinah"}, {"al quds", "jerusalem"}, {"quds", "jerusalem"}};
+    // Names people search for that GeoNames lists under another, whole, as normalize() leaves them
+    static final String[][] ALIASES = {
+            // The holy cities as the app's languages write them. GeoNames has Makkah and Madinah, but Jerusalem.
+            {"mecca", "makkah"}, {"mekka", "makkah"}, {"mekke", "makkah"}, {"mekah", "makkah"}, {"mecque", "makkah"}, {"la mecque", "makkah"},
+            {"makkah al", "makkah"}, {"medina", "madinah"}, {"medine", "madinah"}, {"al madinah", "madinah"}, {"madinah al", "madinah"},
+            {"al quds", "jerusalem"}, {"quds", "jerusalem"}, {"bayt al maqdis", "jerusalem"}, {"baitul maqdis", "jerusalem"}, {"baitulmaqdis", "jerusalem"},
+            // Palestine's towns in Arabic, and as English usually spells them
+            {"al khalil", "hebron"}, {"el khalil", "hebron"}, {"bayt lahm", "bethlehem"}, {"ariha", "jericho"}, {"ghazza", "gaza"},
+            {"jenin", "janin"}, {"tulkarem", "tulkarm"}, {"jabalia", "jabalya"}, {"jabaliya", "jabalya"}, {"khan younis", "khan yunis"},
+            {"khan yunus", "khan yunis"}, {"dayr el balah", "dayr al balah"}, {"bayt hanoun", "bayt hanun"}, {"bayt lahia", "bayt lahya"},
+            {"bayt lahiya", "bayt lahya"}, {"bayt sahour", "bayt sahur"}, {"nuseirat", "an nusayrat"}, {"bureij", "al burayj"},
+            {"al bireh", "al birah"}, {"el bireh", "al birah"}, {"shuafat", "shu fat"}, {"shufat", "shu fat"}, {"sur baher", "sur bahir"},
+            {"eizariya", "al ayzariyah"}, {"al eizariya", "al ayzariyah"}, {"azariya", "al ayzariyah"},
+            // Towns in Israel by their Arabic names
+            {"akka", "acre"}, {"nasira", "nazareth"}, {"an nasira", "nazareth"}, {"yafa", "tel aviv"}, {"jaffa", "tel aviv"}, {"lydd", "lod"},
+            {"al lydd", "lod"}, {"tabariya", "tiberias"}, {"safad", "safed"}, {"bir al saba", "beersheba"}, {"bir as saba", "beersheba"},
+            {"beer sheva", "beersheba"}, {"hayfa", "haifa"}, {"umm al fahm", "umm el fahm"}, {"shefa amr", "shefar am"}, {"shafa amr", "shefar am"},
+            {"baqa al", "baqa el"}, {"tayibe", "taiyiba"}, {"taibe", "taiyiba"},
+            // Former names: India's renamed cities, and others people still use
+            {"allahabad", "prayagraj"}, {"osmanabad", "dharashiv"}, {"ahmednagar", "ahilyanagar"}, {"ahmadnagar", "ahilyanagar"},
+            {"faizabad", "ayodhya"}, {"gurgaon", "gurugram"}, {"bombay", "mumbai"}, {"madras", "chennai"}, {"calcutta", "kolkata"},
+            {"bangalore", "bengaluru"}, {"poona", "pune"}, {"baroda", "vadodara"}, {"benares", "varanasi"}, {"banaras", "varanasi"},
+            {"cawnpore", "kanpur"}, {"trivandrum", "thiruvananthapuram"}, {"rangoon", "yangon"}, {"chittagong", "chattogram"},
+            {"kiev", "kyiv"}, {"dnepropetrovsk", "dnipro"}, {"kirovograd", "kropyvnytskyi"}, {"saigon", "ho chi minh"}, {"peking", "beijing"},
+            // Northern Cyprus and Kosovo, by the names GeoNames had for them (tools/make_cities.py)
+            {"morphou", "guzelyurt"}, {"lefkosa", "nicosia"}, {"magusa", "gazimagusa"}, {"srbica", "skenderaj"}, {"glogovac", "drenas"}};
+
+    // Arabic and Hebrew place names are written Beit, Bayt or Bet, and Deir, Dayr or Dair: the same word each way
+    private static final String[][] SPELLINGS = {{"beit", "bayt", "bet"}, {"deir", "dayr", "dair"}};
+
+    // Jerusalem, and a neighbourhood of it that GeoNames lists as a town of its own
+    static final String[] JERUSALEM = {"Jerusalem", "Qiryat HaYovel"};
 
     private final String[] mNames;
     private final int[] mLatitudes, mLongitudes; // In 1/10000 degrees
@@ -64,15 +96,32 @@ public final class CityDatabase {
             this.distanceKm = distanceKm;
         }
 
-        /** For example "England, United Kingdom" */
-        public String getPlace() {
+        /** For example "England, United Kingdom", "West Bank, Palestine", or for Jerusalem "Al-Quds" */
+        public String getPlace(Context context) {
+            return getPlace(context.getString(R.string.palestine), context.getString(R.string.al_quds));
+        }
+
+        /**
+         * Android's own list of countries calls Palestine "Palestinian Territories". Jerusalem has no country: its
+         * status is unresolved, as the UN holds. tools/make_cities.py has the rest of the disputed places.
+         */
+        String getPlace(String palestine, String alQuds) {
+            if (isInJerusalem()) return alQuds;
             String countryName;
-            try {
-                countryName = new Locale.Builder().setRegion(country).build().getDisplayCountry();
-            } catch (IllformedLocaleException ex) {
-                countryName = country;
+            if ("PS".equals(country)) {
+                countryName = palestine;
+            } else {
+                try {
+                    countryName = new Locale.Builder().setRegion(country).build().getDisplayCountry();
+                } catch (IllformedLocaleException ex) {
+                    countryName = country;
+                }
             }
             return region.isEmpty() || region.equals(countryName) ? countryName : region + ", " + countryName;
+        }
+
+        boolean isInJerusalem() {
+            return ("IL".equals(country) || "PS".equals(country)) && (name.equals(JERUSALEM[0]) || name.equals(JERUSALEM[1]));
         }
     }
 
@@ -257,10 +306,8 @@ public final class CityDatabase {
         List<City> results = new ArrayList<>();
         String key = normalize(query);
         if (!isSearchable(query)) return results;
-        List<String> aliases = new ArrayList<>();
-        for (String[] pair : ALIASES) {
-            if (key.length() >= 3 && (pair[0].startsWith(key) || key.startsWith(pair[0]))) aliases.add(pair[1]);
-        }
+        List<String> spellings = spellings(key);
+        List<String> aliases = aliases(key, spellings);
         String[] searchNames = getSearchNames();
         String[] searchOtherNames = getSearchOtherNames();
         String wordKey = " " + key;
@@ -269,8 +316,11 @@ public final class CityDatabase {
             if (search != 0 && (i & 4095) == 0 && search != SEARCHES.get()) return null;
             String name = searchNames[i];
             boolean found = name.startsWith(key) || name.contains(wordKey);
+            for (int s = 0; !found && s < spellings.size(); s++) {
+                found = matches(name, spellings.get(s));
+            }
             for (int a = 0; !found && a < aliases.size(); a++) {
-                found = matches(name, aliases.get(a));
+                found = hasWords(name, aliases.get(a));
             }
             while (other < mOtherNameCities.length && mOtherNameCities[other] < i) other++;
             for (int o = other; !found && o < mOtherNameCities.length && mOtherNameCities[o] == i; o++) {
@@ -291,6 +341,48 @@ public final class CityDatabase {
 
     private static boolean matches(String name, String key) {
         return name.startsWith(key) || name.contains(" " + key);
+    }
+
+    /** The query with Beit as Bayt and Bet, and so on (SPELLINGS) */
+    static List<String> spellings(String key) {
+        List<String> spellings = new ArrayList<>();
+        String padded = " " + key + " ";
+        for (String[] group : SPELLINGS) {
+            for (String word : group) {
+                if (!padded.contains(" " + word + " ")) continue;
+                for (String other : group) {
+                    if (!other.equals(word)) spellings.add(padded.replace(" " + word + " ", " " + other + " ").trim());
+                }
+            }
+        }
+        return spellings;
+    }
+
+    /**
+     * The names GeoNames lists the query under, however it's spelled (ALIASES), once it's all but typed out: typing
+     * Mad on the way to Madrid shouldn't bring up Chennai
+     */
+    static List<String> aliases(String key, List<String> spellings) {
+        List<String> aliases = new ArrayList<>();
+        List<String> typed = new ArrayList<>(spellings);
+        typed.add(0, key);
+        for (String spelling : typed) {
+            for (String[] pair : ALIASES) {
+                boolean typing = pair[0].startsWith(spelling) && spelling.length() >= Math.max(4, pair[0].length() - 1);
+                boolean whole = spelling.equals(pair[0]) || spelling.startsWith(pair[0] + " "); // Makkah al-Mukarramah
+                if ((typing || whole) && !aliases.contains(pair[1])) aliases.add(pair[1]);
+            }
+        }
+        return aliases;
+    }
+
+    /** Whether the name has these whole words, so that Lydd finds Lod but not Lodi */
+    static boolean hasWords(String name, String words) {
+        for (int at = name.indexOf(words); at >= 0; at = name.indexOf(words, at + 1)) {
+            int end = at + words.length();
+            if ((at == 0 || name.charAt(at - 1) == ' ') && (end == name.length() || name.charAt(end) == ' ')) return true;
+        }
+        return false;
     }
 
     private synchronized String[] getSearchNames() {

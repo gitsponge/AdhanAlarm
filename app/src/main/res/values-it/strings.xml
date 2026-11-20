@@ -56,6 +56,8 @@
     <string name="longitude_west">%s° O</string>
     <string name="place_note_city">Città più vicina, dalla mappa sul telefono</string>
     <string name="place_note_none">Nessuna città entro 20 km</string>
+    <string name="palestine">Palestina</string>
+    <string name="al_quds">Al-Quds</string>
 
     <!-- Today -->
     <string name="next_prayer">Prossima preghiera</string>
@@ -227,8 +229,8 @@
     <string name="privacy_summary">Adhan Alarm non si collega mai a internet né condivide i tuoi dati</string>
     <string name="source_code">Codice sorgente</string>
     <string name="credits">Crediti</string>
-    <string name="credits_summary">Elenco delle città: GeoNames, CC BY 4.0</string>
-    <string name="credits_text">Elenco delle città: GeoNames (geonames.org), con licenza Creative Commons Attribuzione 4.0.\n\nOrari di preghiera: ITL, il progetto Islamic Tools and Libraries.\n\nCalendario dell\'Egira: hvjavacal.\n\nMappa della Luna: NASA\'s Scientific Visualization Studio.</string>
+    <string name="credits_summary">Elenco delle città: GeoNames, CC BY 4.0, con modifiche</string>
+    <string name="credits_text">Elenco delle città: GeoNames (geonames.org), con licenza Creative Commons Attribuzione 4.0, con modifiche per alcuni luoghi contesi.\n\nOrari di preghiera: ITL, il progetto Islamic Tools and Libraries.\n\nCalendario dell\'Egira: hvjavacal.\n\nMappa della Luna: NASA\'s Scientific Visualization Studio.</string>
     <string name="version">Versione</string>
 
     <!-- Location -->
@@ -270,16 +272,16 @@
     <string name="widget_next_prayer_description">La prossima preghiera e il suo orario</string>
     <string name="widget_today">Orari di oggi</string>
     <string name="widget_today_description">Tutti gli orari di preghiera di oggi</string>
-    <string name="widget_dial">Quadrante delle preghiere</string>
+    <string name="prayer_dial">Quadrante delle preghiere</string>
+    <string name="open_dial">aprire il quadrante delle preghiere</string>
     <string name="widget_dial_description">Gli orari di preghiera di oggi su un quadrante di 24 ore</string>
     <string name="dial_short_window">%1$s, una finestra breve</string>
     <string name="dial_noon">Mezzogiorno</string>
     <string name="dial_midnight">Mezzanotte</string>
-    <string name="prayer_clock">Orologio delle preghiere</string>
     <string name="clock_ends">%1$s termina %2$s</string>
     <string name="clock_until">fino a %1$s alle %2$s</string>
     <string name="settings_screen_saver">Salvaschermo</string>
-    <string name="settings_screen_saver_summary">Mostra l’orologio delle preghiere mentre il telefono è in carica o sul dock</string>
+    <string name="settings_screen_saver_summary">Mostra il quadrante delle preghiere mentre il telefono è in carica o sul dock</string>
     <string name="clock_tv_hint">Premi OK per gli orari di oggi e le impostazioni</string>
 
     <!-- The 16 points of the compass, clockwise from north -->

@@ -28,6 +28,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.pm.ShortcutInfoCompat;
 import androidx.core.content.pm.ShortcutManagerCompat;
@@ -37,6 +38,7 @@ import androidx.core.os.ConfigurationCompat;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.color.MaterialColors;
@@ -141,17 +143,25 @@ public class MainActivity extends AppCompatActivity implements App.PrayerTimeLis
             View button = findViewById(id);
             if (button != null) button.setOnClickListener(openSettings);
         }
-        findViewById(R.id.clock_button).setOnClickListener(new View.OnClickListener() {
+        // The next prayer's card opens out into the prayer dial, full screen, growing from the card
+        View hero = findViewById(R.id.hero);
+        hero.setClipToOutline(true); // Keeps the touch's ripple inside the card's round corners
+        hero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ClockActivity.class));
+                ActivityOptionsCompat grow = ActivityOptionsCompat.makeScaleUpAnimation(view, 0, 0, view.getWidth(), view.getHeight());
+                startActivity(new Intent(MainActivity.this, ClockActivity.class), grow.toBundle());
             }
         });
-        // The prayer clock, from a long press on the app's icon, named in the language in use
+        ViewCompat.replaceAccessibilityAction(hero, AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK, getString(R.string.open_dial), null);
+        // The prayer dial, from a long press on the app's icon, named in the language in use. Today opens
+        // beneath it, in place of whatever the app had open, so Back lands on Today.
         ShortcutManagerCompat.pushDynamicShortcut(this, new ShortcutInfoCompat.Builder(this, "clock")
-                .setShortLabel(getString(R.string.prayer_clock))
+                .setShortLabel(getString(R.string.prayer_dial))
                 .setIcon(IconCompat.createWithResource(this, R.drawable.ic_shortcut_clock))
-                .setIntent(new Intent(Intent.ACTION_VIEW, null, this, ClockActivity.class))
+                .setIntents(new Intent[]{
+                        new Intent(Intent.ACTION_VIEW, null, this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK),
+                        new Intent(Intent.ACTION_VIEW, null, this, ClockActivity.class)})
                 .build());
         findViewById(R.id.location_button).setOnClickListener(new View.OnClickListener() {
             @Override

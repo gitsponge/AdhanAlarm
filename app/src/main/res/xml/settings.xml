@@ -104,7 +104,7 @@
             android:persistent="false"
             android:title="@string/language"
             app:useSimpleSummaryProvider="true" />
-        <!-- Opens the phone's own screen saver settings, where the prayer clock can be chosen -->
+        <!-- Opens the phone's own screen saver settings, where the prayer dial can be chosen -->
         <Preference
             android:key="screenSaver"
             android:summary="@string/settings_screen_saver_summary"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- The prayer clock's words: the time, light and large; what's next, keyed by a dot in its window's colour;
-     and the day in both calendars, quietest of all -->
+<!-- The words under the prayer dial full screen: the time, light and large; what's next, keyed by a dot in
+     its window's colour; and the day in both calendars, quietest of all -->
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">

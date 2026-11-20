@@ -27,9 +27,9 @@ import islam.adhanalarm.widget.NextNotificationWidgetProvider;
 import islam.adhanalarm.widget.PrayerDialWidgetProvider;
 
 /**
- * Keeps the prayer clock's screen up to date: the dial, the time, what's next, and the day. It changes just
+ * Keeps the prayer dial full screen up to date: the dial, the time, what's next, and the day. It changes just
  * after each minute turns, and drifts the whole picture a few pixels each minute so nothing stays lit in one
- * place. The prayer clock and the screen saver each host one.
+ * place. The dial full screen and the screen saver each host one.
  */
 public final class ClockController implements App.PrayerTimeListener, AdhanService.PlaybackListener {
 

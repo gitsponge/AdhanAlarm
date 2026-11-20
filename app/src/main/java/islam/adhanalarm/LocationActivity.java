@@ -290,7 +290,7 @@ public class LocationActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull Holder holder, int position) {
             final CityDatabase.City city = mCities.get(position);
             holder.name.setText(city.name);
-            holder.place.setText(city.getPlace());
+            holder.place.setText(city.getPlace(holder.itemView.getContext()));
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

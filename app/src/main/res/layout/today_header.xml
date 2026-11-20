@@ -60,22 +60,30 @@
             android:textAppearance="@style/Text.Caption" />
     </LinearLayout>
 
+    <!-- The next prayer's card. A tap anywhere on it opens it out into the prayer dial, full screen -->
     <LinearLayout
         android:id="@+id/hero"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:background="@drawable/hero_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
         android:orientation="vertical"
         android:paddingHorizontal="24dp"
         android:paddingVertical="20dp">
 
+        <!-- At its end, two arrows apart, the usual sign that something opens out; the card itself takes the tap -->
         <TextView
             android:id="@+id/hero_label"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:textAppearance="?attr/textAppearanceLabelLarge"
-            android:textColor="?attr/colorOnPrimaryContainer" />
+            android:textColor="?attr/colorOnPrimaryContainer"
+            app:drawableEndCompat="@drawable/ic_open_in_full"
+            app:drawableTint="@color/hero_open" />
 
         <LinearLayout
             android:layout_width="match_parent"

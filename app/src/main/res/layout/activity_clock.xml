@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The prayer dial full screen, as the app shows it: the dial and its words, and a back arrow that a tap
+     brings up with the phone's own bars for a few seconds. The screen saver shows the dial alone. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    tools:ignore="Overdraw">
+
+    <include layout="@layout/clock" />
+
+    <!-- Padded in code to where the status bar and any camera cut-out come, so the arrow stays put as they show -->
+    <FrameLayout
+        android:id="@+id/clock_controls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:alpha="0"
+        android:background="@drawable/clock_controls_scrim"
+        android:paddingBottom="24dp"
+        android:visibility="invisible">
+
+        <Button
+            android:id="@+id/clock_back"
+            style="@style/Widget.Material3.Button.IconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_margin="4dp"
+            android:contentDescription="@string/back"
+            android:tooltipText="@string/back"
+            app:icon="@drawable/ic_back"
+            app:iconTint="@color/dial_cream"
+            tools:ignore="UnusedAttribute" />
+    </FrameLayout>
+</FrameLayout>

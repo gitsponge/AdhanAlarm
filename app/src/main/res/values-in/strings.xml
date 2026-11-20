@@ -56,6 +56,8 @@
     <string name="longitude_west">%s° BB</string>
     <string name="place_note_city">Kota terdekat menurut data peta di ponsel</string>
     <string name="place_note_none">Tidak ada kota dalam radius 20 km</string>
+    <string name="palestine">Palestina</string>
+    <string name="al_quds">Al-Quds</string>
 
     <!-- Today -->
     <string name="next_prayer">Salat berikutnya</string>
@@ -225,8 +227,8 @@
     <string name="privacy_summary">Pengingat Adzan tidak pernah terhubung ke internet atau membagikan data Anda</string>
     <string name="source_code">Kode sumber</string>
     <string name="credits">Kredit</string>
-    <string name="credits_summary">Daftar kota: GeoNames, CC BY 4.0</string>
-    <string name="credits_text">Daftar kota: GeoNames (geonames.org), dengan lisensi Creative Commons Attribution 4.0.\n\nWaktu salat: ITL, proyek Islamic Tools and Libraries.\n\nKalender Hijriah: hvjavacal.\n\nPeta bulan: NASA\'s Scientific Visualization Studio.</string>
+    <string name="credits_summary">Daftar kota: GeoNames, CC BY 4.0, dengan perubahan</string>
+    <string name="credits_text">Daftar kota: GeoNames (geonames.org), dengan lisensi Creative Commons Attribution 4.0, dengan perubahan pada beberapa tempat yang disengketakan.\n\nWaktu salat: ITL, proyek Islamic Tools and Libraries.\n\nKalender Hijriah: hvjavacal.\n\nPeta bulan: NASA\'s Scientific Visualization Studio.</string>
     <string name="version">Versi</string>
 
     <!-- Location -->
@@ -268,16 +270,16 @@
     <string name="widget_next_prayer_description">Salat berikutnya dan waktunya</string>
     <string name="widget_today">Jadwal hari ini</string>
     <string name="widget_today_description">Semua waktu salat hari ini</string>
-    <string name="widget_dial">Jam salat</string>
-    <string name="widget_dial_description">Jadwal salat hari ini pada jam 24 jam</string>
+    <string name="prayer_dial">Dial salat</string>
+    <string name="open_dial">buka dial salat</string>
+    <string name="widget_dial_description">Jadwal salat hari ini pada dial 24 jam</string>
     <string name="dial_short_window">%1$s, waktunya singkat</string>
     <string name="dial_noon">Tengah hari</string>
     <string name="dial_midnight">Tengah malam</string>
-    <string name="prayer_clock">Jam salat</string>
     <string name="clock_ends">%1$s berakhir %2$s</string>
     <string name="clock_until">sampai %1$s pukul %2$s</string>
     <string name="settings_screen_saver">Screensaver</string>
-    <string name="settings_screen_saver_summary">Tampilkan jam salat saat ponsel diisi daya atau terpasang di dok</string>
+    <string name="settings_screen_saver_summary">Tampilkan dial salat saat ponsel diisi daya atau terpasang di dok</string>
     <string name="clock_tv_hint">Tekan OK untuk jadwal hari ini dan setelan</string>
 
     <!-- The 16 points of the compass, clockwise from north -->

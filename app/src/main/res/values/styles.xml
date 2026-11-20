@@ -48,7 +48,7 @@
         <item name="widgetLayout">@layout/preference_switch</item>
     </style>
 
-    <!-- The prayer clock and its screen saver: dark, black behind, no bars -->
+    <!-- The prayer dial full screen and its screen saver: dark, black behind, no bars -->
     <style name="ClockTheme" parent="Theme.Material3.Dark.NoActionBar">
         <item name="android:windowBackground">@android:color/black</item>
         <item name="android:statusBarColor">@android:color/transparent</item>

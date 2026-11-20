@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/today"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,7 +24,7 @@
                 <include layout="@layout/today_header" />
             </LinearLayout>
 
-            <!-- The prayer clock and settings, level with the title -->
+            <!-- Settings, level with the title, as on Qibla. The prayer dial opens from the next prayer's card -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -33,16 +32,6 @@
                 android:layout_marginTop="6dp"
                 android:layout_marginEnd="4dp"
                 android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/clock_button"
-                    style="@style/Widget.App.IconButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/prayer_clock"
-                    android:tooltipText="@string/prayer_clock"
-                    tools:ignore="UnusedAttribute"
-                    app:icon="@drawable/ic_fullscreen" />
 
                 <Button
                     android:id="@+id/settings_button"

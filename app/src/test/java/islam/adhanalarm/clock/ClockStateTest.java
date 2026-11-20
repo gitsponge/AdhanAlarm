@@ -17,7 +17,7 @@ import islam.adhanalarm.handler.Schedules;
 import islam.adhanalarm.widget.DialArt;
 
 /**
- * What the prayer clock says under the time, through a day and through a year
+ * What the prayer dial full screen says under the time, through a day and through a year
  */
 public class ClockStateTest {
 

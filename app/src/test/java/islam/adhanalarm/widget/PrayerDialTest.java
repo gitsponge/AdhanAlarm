@@ -82,7 +82,7 @@ public class PrayerDialTest {
         float dp = 2.625f;
         // A 2x2 widget's face is about 57 dp from the centre; its moon used to be 9 dp across
         assertTrue(2 * PrayerDial.moonRadius(56.8f * dp) / dp >= 16);
-        // The prayer clock's is about 164 dp, for a moon about 49 dp across where it used to be 15
+        // The full-screen dial's is about 164 dp, for a moon about 49 dp across where it used to be 15
         assertEquals(49, 2 * PrayerDial.moonRadius(163.9f * dp) / dp, 0.5);
     }
 

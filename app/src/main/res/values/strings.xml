@@ -63,6 +63,10 @@
     <string name="longitude_west">%s° W</string>
     <string name="place_note_city">Nearest city via offline mapping</string>
     <string name="place_note_none">No city within 20 km</string>
+    <!-- In the city search, under a place's name: Android's own list of countries calls it the Palestinian Territories -->
+    <string name="palestine">Palestine</string>
+    <!-- In the city search, under Jerusalem: its Arabic name and no country, as its status is unresolved -->
+    <string name="al_quds">Al-Quds</string>
 
     <!-- Today -->
     <string name="next_prayer">Next prayer</string>
@@ -234,8 +238,8 @@
     <string name="source_code">Source code</string>
     <string name="source_code_summary" translatable="false">github.com/gitsponge/AdhanAlarm</string>
     <string name="credits">Credits</string>
-    <string name="credits_summary">City list: GeoNames, CC BY 4.0</string>
-    <string name="credits_text">City list: GeoNames (geonames.org), under the Creative Commons Attribution 4.0 licence.\n\nPrayer times: ITL, the Islamic Tools and Libraries project.\n\nHijri calendar: hvjavacal.\n\nMoon map: NASA\'s Scientific Visualization Studio.</string>
+    <string name="credits_summary">City list: GeoNames, CC BY 4.0, with changes</string>
+    <string name="credits_text">City list: GeoNames (geonames.org), under the Creative Commons Attribution 4.0 licence, with changes for a few disputed places.\n\nPrayer times: ITL, the Islamic Tools and Libraries project.\n\nHijri calendar: hvjavacal.\n\nMoon map: NASA\'s Scientific Visualization Studio.</string>
     <string name="version">Version</string>
 
     <!-- Location -->
@@ -277,20 +281,22 @@
     <string name="widget_next_prayer_description">The next prayer and its time</string>
     <string name="widget_today">Today\'s times</string>
     <string name="widget_today_description">All of today\'s prayer times</string>
-    <string name="widget_dial">Prayer dial</string>
+    <!-- The dial's one name: the widget's, and that of the dial full screen, its shortcut and its screen saver.
+         It's a dial, as a sundial has, rather than a clock -->
+    <string name="prayer_dial">Prayer dial</string>
+    <!-- What a tap on the next prayer's card does, as TalkBack says it after "Double-tap to" -->
+    <string name="open_dial">open the prayer dial</string>
     <string name="widget_dial_description">Today\'s prayer times on a 24-hour dial</string>
     <!-- Read out after a prayer and its time, for a window under two hours, which the dial shows in copper -->
     <string name="dial_short_window">%1$s, a short window</string>
     <!-- On the prayer dial's face, at the top and the bottom of its 24 hours: 12 noon and 12 midnight. Keep them short, as they sit inside the dial, and unlike the noon prayer's name -->
     <string name="dial_noon">Noon</string>
     <string name="dial_midnight">Midnight</string>
-    <!-- The dial full screen, for a phone on a stand, and the name of its screen saver -->
-    <string name="prayer_clock">Prayer clock</string>
     <!-- For example "Maghrib ends in 52 min": a prayer's name, then the countdown as in countdown_minutes -->
     <string name="clock_ends">%1$s ends %2$s</string>
     <!-- For example "until `Ishaa' at 7:14 p.m.": what ends the window, and its time -->
     <string name="clock_until">until %1$s at %2$s</string>
     <string name="settings_screen_saver">Screen saver</string>
-    <string name="settings_screen_saver_summary">Show the prayer clock while your phone charges or sits in a dock</string>
+    <string name="settings_screen_saver_summary">Show the prayer dial while your phone charges or sits in a dock</string>
     <string name="clock_tv_hint">Press OK for today\'s times and settings</string>
 </resources>

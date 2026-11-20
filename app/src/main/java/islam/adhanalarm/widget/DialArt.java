@@ -24,7 +24,7 @@ import islam.adhanalarm.handler.ScheduleHandler;
  * window, with its time as room allows, and the next prayer's name highlighted. Optionally the Islamic date
  * sits underneath in small type. Everything is quieter than the dial: the names in cream, the times and the
  * date a step fainter but still easy to read, the pointers hairlines. The widget draws it into a picture; the
- * prayer clock and the screen saver draw it straight onto the screen.
+ * dial full screen and the screen saver draw it straight onto the screen.
  */
 public final class DialArt {
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- The prayer clock, upright: the dial above, then the time, what's next and the day. Black, for a dark room
-     and a screen whose black pixels are off. Painted here too, as the screen saver's window isn't. -->
+<!-- The prayer dial full screen, upright: the dial above, then the time, what's next and the day. Black, for
+     a dark room and a screen whose black pixels are off. Painted here too, as the screen saver's window isn't. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/clock"

@@ -56,6 +56,8 @@
     <string name="longitude_west">%s° O</string>
     <string name="place_note_city">Ville la plus proche, calculée sur le téléphone</string>
     <string name="place_note_none">Aucune ville à moins de 20 km</string>
+    <string name="palestine">Palestine</string>
+    <string name="al_quds">Al-Qods</string>
 
     <!-- Today -->
     <string name="next_prayer">Prochaine prière</string>
@@ -227,8 +229,8 @@
     <string name="privacy_summary">Adhān alarme ne se connecte jamais à Internet et ne partage jamais vos données</string>
     <string name="source_code">Code source</string>
     <string name="credits">Crédits</string>
-    <string name="credits_summary">Liste des villes : GeoNames, CC BY 4.0</string>
-    <string name="credits_text">Liste des villes : GeoNames (geonames.org), sous licence Creative Commons Attribution 4.0.\n\nHeures de prière : ITL, le projet Islamic Tools and Libraries.\n\nCalendrier de l\'Hégire : hvjavacal.\n\nCarte de la Lune : NASA\'s Scientific Visualization Studio.</string>
+    <string name="credits_summary">Liste des villes : GeoNames, CC BY 4.0, modifiée</string>
+    <string name="credits_text">Liste des villes : GeoNames (geonames.org), sous licence Creative Commons Attribution 4.0, modifiée pour quelques lieux contestés.\n\nHeures de prière : ITL, le projet Islamic Tools and Libraries.\n\nCalendrier de l\'Hégire : hvjavacal.\n\nCarte de la Lune : NASA\'s Scientific Visualization Studio.</string>
     <string name="version">Version</string>
 
     <!-- Location -->
@@ -270,16 +272,16 @@
     <string name="widget_next_prayer_description">La prochaine prière et son heure</string>
     <string name="widget_today">Horaires du jour</string>
     <string name="widget_today_description">Toutes les heures de prière d\'aujourd\'hui</string>
-    <string name="widget_dial">Cadran des prières</string>
+    <string name="prayer_dial">Cadran des prières</string>
+    <string name="open_dial">ouvrir le cadran des prières</string>
     <string name="widget_dial_description">Les heures de prière du jour sur un cadran de 24 heures</string>
     <string name="dial_short_window">%1$s, un créneau court</string>
     <string name="dial_noon">Midi</string>
     <string name="dial_midnight">Minuit</string>
-    <string name="prayer_clock">Horloge des prières</string>
     <string name="clock_ends">%1$s se termine %2$s</string>
     <string name="clock_until">jusqu’à %1$s à %2$s</string>
     <string name="settings_screen_saver">Économiseur d’écran</string>
-    <string name="settings_screen_saver_summary">Afficher l’horloge des prières pendant que le téléphone charge ou est sur sa station</string>
+    <string name="settings_screen_saver_summary">Afficher le cadran des prières pendant que le téléphone charge ou est sur sa station</string>
     <string name="clock_tv_hint">Appuyez sur OK pour les horaires du jour et les réglages</string>
 
     <!-- The 16 points of the compass, clockwise from north -->

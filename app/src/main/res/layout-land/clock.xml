@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- The prayer clock on its side, as on a stand or in a dock: the dial, with the words beside it -->
+<!-- The prayer dial full screen on its side, as on a stand or in a dock: the dial, with the words beside it -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/clock"

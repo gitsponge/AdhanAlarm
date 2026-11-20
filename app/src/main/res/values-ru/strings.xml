@@ -56,6 +56,8 @@
     <string name="longitude_west">%s° з. д.</string>
     <string name="place_note_city">Ближайший город по встроенной карте</string>
     <string name="place_note_none">Нет городов в радиусе 20 км</string>
+    <string name="palestine">Палестина</string>
+    <string name="al_quds">Аль-Кудс</string>
 
     <!-- Today -->
     <string name="next_prayer">Следующий намаз</string>
@@ -228,8 +230,8 @@
     <string name="privacy_summary">Приложение никогда не выходит в интернет и не передаёт ваши данные</string>
     <string name="source_code">Исходный код</string>
     <string name="credits">Благодарности</string>
-    <string name="credits_summary">Список городов: GeoNames, CC BY 4.0</string>
-    <string name="credits_text">Список городов: GeoNames (geonames.org), на условиях лицензии Creative Commons Attribution 4.0.\n\nВремя намазов: ITL, проект Islamic Tools and Libraries.\n\nКалендарь хиджры: hvjavacal.\n\nКарта Луны: NASA\'s Scientific Visualization Studio.</string>
+    <string name="credits_summary">Список городов: GeoNames, CC BY 4.0, с изменениями</string>
+    <string name="credits_text">Список городов: GeoNames (geonames.org), на условиях лицензии Creative Commons Attribution 4.0, с изменениями для нескольких спорных мест.\n\nВремя намазов: ITL, проект Islamic Tools and Libraries.\n\nКалендарь хиджры: hvjavacal.\n\nКарта Луны: NASA\'s Scientific Visualization Studio.</string>
     <string name="version">Версия</string>
 
     <!-- Location -->
@@ -271,16 +273,16 @@
     <string name="widget_next_prayer_description">Следующий намаз и его время</string>
     <string name="widget_today">Расписание на сегодня</string>
     <string name="widget_today_description">Время всех намазов на сегодня</string>
-    <string name="widget_dial">Циферблат намазов</string>
+    <string name="prayer_dial">Циферблат намазов</string>
+    <string name="open_dial">открыть циферблат намазов</string>
     <string name="widget_dial_description">Время намазов на сегодня на 24-часовом циферблате</string>
     <string name="dial_short_window">%1$s, короткий промежуток</string>
     <string name="dial_noon">Полдень</string>
     <string name="dial_midnight">Полночь</string>
-    <string name="prayer_clock">Часы намазов</string>
     <string name="clock_ends">%1$s заканчивается %2$s</string>
     <string name="clock_until">до %1$s в %2$s</string>
     <string name="settings_screen_saver">Заставка</string>
-    <string name="settings_screen_saver_summary">Показывать часы намазов, пока телефон заряжается или стоит в док-станции</string>
+    <string name="settings_screen_saver_summary">Показывать циферблат намазов, пока телефон заряжается или стоит в док-станции</string>
     <string name="clock_tv_hint">Нажмите OK, чтобы открыть время на сегодня и настройки</string>
 
     <!-- The 16 points of the compass, clockwise from north -->

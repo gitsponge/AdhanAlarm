@@ -48,7 +48,7 @@ public class AdhanService extends Service implements MediaPlayer.OnCompletionLis
     private static boolean sKeepNotification = true;
 
     /**
-     * Told on the main thread when a sound starts and stops, so the prayer clock can offer to stop it
+     * Told on the main thread when a sound starts and stops, so the dial full screen can offer to stop it
      */
     public interface PlaybackListener {
         void onPlaybackChanged(boolean playing);

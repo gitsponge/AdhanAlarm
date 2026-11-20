@@ -11,7 +11,7 @@ import islam.adhanalarm.R;
 import islam.adhanalarm.handler.ScheduleHandler;
 
 /**
- * The line under the prayer clock's time, and the one under that, as the clock, the screen saver and the car
+ * The line under the full-screen dial's time, and the one under that, as the dial, the screen saver and the car
  * all show them: "Maghrib in 1 h 17 min" over "5:57 p.m., a short window", or inside a short window
  * "Maghrib ends in 52 min" over "until `Ishaa' at 7:14 p.m."
  */

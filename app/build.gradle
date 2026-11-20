@@ -10,7 +10,7 @@ android {
         applicationId = 'islam.adhanalarm'
         minSdk = 23
         targetSdk = 37
-        versionCode = 123 // Google Play needs every upload above the last one, which was 122 (4.1)
+        versionCode = 124 // Google Play needs every upload above the last one, which was 123 (the first 4.2)
         versionName = '4.2'
     }
 

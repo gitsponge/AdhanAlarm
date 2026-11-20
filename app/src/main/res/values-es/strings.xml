@@ -56,6 +56,8 @@
     <string name="longitude_west">%s° O</string>
     <string name="place_note_city">Ciudad más cercana, calculada en tu teléfono</string>
     <string name="place_note_none">Ninguna ciudad a menos de 20 km</string>
+    <string name="palestine">Palestina</string>
+    <string name="al_quds">Al-Quds</string>
 
     <!-- Today -->
     <string name="next_prayer">Próxima oración</string>
@@ -227,8 +229,8 @@
     <string name="privacy_summary">Adhān Alarma nunca se conecta a internet ni comparte tus datos</string>
     <string name="source_code">Código fuente</string>
     <string name="credits">Créditos</string>
-    <string name="credits_summary">Lista de ciudades: GeoNames, CC BY 4.0</string>
-    <string name="credits_text">Lista de ciudades: GeoNames (geonames.org), con licencia Creative Commons Atribución 4.0.\n\nHorarios de oración: ITL, el proyecto Islamic Tools and Libraries.\n\nCalendario de la Hégira: hvjavacal.\n\nMapa de la Luna: NASA\'s Scientific Visualization Studio.</string>
+    <string name="credits_summary">Lista de ciudades: GeoNames, CC BY 4.0, con cambios</string>
+    <string name="credits_text">Lista de ciudades: GeoNames (geonames.org), con licencia Creative Commons Atribución 4.0, con cambios en algunos lugares en disputa.\n\nHorarios de oración: ITL, el proyecto Islamic Tools and Libraries.\n\nCalendario de la Hégira: hvjavacal.\n\nMapa de la Luna: NASA\'s Scientific Visualization Studio.</string>
     <string name="version">Versión</string>
 
     <!-- Location -->
@@ -270,16 +272,16 @@
     <string name="widget_next_prayer_description">La próxima oración y su hora</string>
     <string name="widget_today">Horarios de hoy</string>
     <string name="widget_today_description">Todos los horarios de oración de hoy</string>
-    <string name="widget_dial">Reloj de oraciones</string>
-    <string name="widget_dial_description">Los horarios de oración de hoy en una esfera de 24 horas</string>
+    <string name="prayer_dial">Cuadrante de oraciones</string>
+    <string name="open_dial">abrir el cuadrante de oraciones</string>
+    <string name="widget_dial_description">Los horarios de oración de hoy en un cuadrante de 24 horas</string>
     <string name="dial_short_window">%1$s, un intervalo corto</string>
     <string name="dial_noon">Mediodía</string>
     <string name="dial_midnight">Medianoche</string>
-    <string name="prayer_clock">Reloj de oración</string>
     <string name="clock_ends">%1$s termina %2$s</string>
     <string name="clock_until">hasta %1$s a las %2$s</string>
     <string name="settings_screen_saver">Salvapantallas</string>
-    <string name="settings_screen_saver_summary">Muestra el reloj de oración mientras el teléfono se carga o está en la base</string>
+    <string name="settings_screen_saver_summary">Muestra el cuadrante de oraciones mientras el teléfono se carga o está en la base</string>
     <string name="clock_tv_hint">Pulsa OK para ver los horarios de hoy y los ajustes</string>
 
     <!-- The 16 points of the compass, clockwise from north -->

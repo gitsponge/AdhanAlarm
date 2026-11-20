@@ -122,7 +122,7 @@ public class DialLayoutTest {
 
     /**
      * The highlight round a label, and its pointer at the line's full width, reach no further past the box than
-     * DialArt.OVERHANG, which the prayer clock keeps clear round its box so nothing is cut off at the screen's edge
+     * DialArt.OVERHANG, which the full-screen dial keeps clear round its box so nothing is cut off at the screen's edge
      */
     private static void assertWithinReach(String what, DialLayout.Label a, float left, float top, float right, float bottom, float density) {
         float reach = DialArt.OVERHANG * density, px = DialLayout.PILL_X * density, py = DialLayout.PILL_Y * density;
@@ -137,7 +137,7 @@ public class DialLayoutTest {
 
     @Test
     public void onAPhonesClockTheDialFillsTheWidthWithNothingCutOff() {
-        // The prayer clock upright on a phone: the dial's space, less the clock's own margin
+        // The dial full screen, upright on a phone: the dial's space, less the screen's own margin
         float width = 412 - 2 * 20, height = 560;
         float reach = DialArt.OVERHANG * DENSITY;
         int full = 0, total = 0;

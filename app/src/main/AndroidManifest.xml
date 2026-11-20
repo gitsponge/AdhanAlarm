@@ -52,16 +52,18 @@
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".SetupActivity"
             android:exported="false" />
-        <!-- Open to the launcher's shortcut and to adb, for testing; it only shows the clock -->
+        <!-- The prayer dial full screen. Open to the launcher's shortcut and to adb, for testing; it only shows
+             the dial. Today is its parent, so from the widget or the car Back lands on Today -->
         <activity android:name=".clock.ClockActivity"
             android:exported="true"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/ClockTheme">
-            <!-- On a TV the app opens straight into the prayer clock -->
+            <!-- On a TV the app opens straight into the prayer dial -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
-            <!-- "Play the adhan on Adhān Alarm": the clock opens and the adhan plays -->
+            <!-- "Play the adhan on Adhān Alarm": the dial opens and the adhan plays -->
             <intent-filter>
                 <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -78,10 +80,10 @@
                 <action android:name="android.media.browse.MediaBrowserService" />
             </intent-filter>
         </service>
-        <!-- The prayer clock as a screen saver, chosen under Screen saver in the phone's display settings -->
+        <!-- The prayer dial as a screen saver, chosen under Screen saver in the phone's display settings -->
         <service android:name=".clock.PrayerClockDream"
             android:exported="true"
-            android:label="@string/prayer_clock"
+            android:label="@string/prayer_dial"
             android:permission="android.permission.BIND_DREAM_SERVICE">
             <intent-filter>
                 <action android:name="android.service.dreams.DreamService" />
@@ -110,7 +112,7 @@
             </intent-filter>
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_next_notification" />
         </receiver>
-        <receiver android:name=".widget.PrayerDialWidgetProvider" android:exported="false" android:label="@string/widget_dial">
+        <receiver android:name=".widget.PrayerDialWidgetProvider" android:exported="false" android:label="@string/prayer_dial">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>

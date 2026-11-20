@@ -1,6 +1,5 @@
 package islam.adhanalarm.auto;
 
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -85,7 +84,7 @@ public class AutoMediaService extends MediaLibraryService {
                 .setHandleAudioBecomingNoisy(true)
                 .build();
         mSession = new MediaLibrarySession.Builder(this, mPlayer, new Library())
-                .setSessionActivity(PendingIntent.getActivity(this, 0, new Intent(this, ClockActivity.class), PendingIntent.FLAG_IMMUTABLE))
+                .setSessionActivity(ClockActivity.withToday(this)) // From the phone's media controls, with Today beneath for Back
                 .build();
         mHandler.postDelayed(mTick, 60000 - System.currentTimeMillis() % 60000 + 250);
     }
@@ -227,7 +226,7 @@ public class AutoMediaService extends MediaLibraryService {
         return NEXT;
     }
 
-    /** A small dot in the window's colour, as beside the prayer clock's line */
+    /** A small dot in the window's colour, as beside the line under the full-screen dial's time */
     private Bitmap dot(boolean isShort) {
         int size = 64;
         Bitmap bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);

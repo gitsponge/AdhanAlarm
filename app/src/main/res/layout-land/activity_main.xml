@@ -9,7 +9,7 @@
     android:orientation="horizontal"
     tools:context=".MainActivity">
 
-    <!-- In landscape the tabs move to a rail down the side, with the prayer clock and settings at its foot -->
+    <!-- In landscape the tabs move to a rail down the side, with settings at its foot -->
     <LinearLayout
         android:id="@+id/rail"
         android:layout_width="wrap_content"
@@ -26,17 +26,6 @@
             app:labelVisibilityMode="labeled"
             app:menu="@menu/navigation"
             app:menuGravity="top" />
-
-        <Button
-            android:id="@+id/clock_button"
-            style="@style/Widget.App.IconButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:contentDescription="@string/prayer_clock"
-            android:tooltipText="@string/prayer_clock"
-            tools:ignore="UnusedAttribute"
-            app:icon="@drawable/ic_fullscreen" />
 
         <Button
             android:id="@+id/settings_button"

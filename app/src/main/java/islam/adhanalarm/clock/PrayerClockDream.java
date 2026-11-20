@@ -9,7 +9,7 @@ import android.view.View;
 import islam.adhanalarm.R;
 
 /**
- * The prayer clock as the phone's screen saver, while it charges or sits in a dock: chosen under Screen
+ * The prayer dial as the phone's screen saver, while it charges or sits in a dock: chosen under Screen
  * saver in the phone's display settings. Any touch wakes the phone as usual, so there's no Stop button; the
  * adhan's notification has one. From the middle of the night until fajr it dims.
  */

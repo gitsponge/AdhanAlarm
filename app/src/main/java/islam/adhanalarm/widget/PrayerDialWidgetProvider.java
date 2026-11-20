@@ -158,8 +158,8 @@ public class PrayerDialWidgetProvider extends AppWidgetProvider {
             views.setImageViewBitmap(R.id.dial, PrayerDial.draw(context, schedule, now, sizePx));
             views.setContentDescription(android.R.id.background, describeNext(context, schedule, format));
         }
-        // Opens the dial full screen, as the prayer clock
-        views.setOnClickPendingIntent(android.R.id.background, PendingIntent.getActivity(context, 0, new Intent(context, ClockActivity.class), PendingIntent.FLAG_IMMUTABLE));
+        // Opens the dial full screen, with Today beneath it for Back
+        views.setOnClickPendingIntent(android.R.id.background, ClockActivity.withToday(context));
         return views;
     }
 
